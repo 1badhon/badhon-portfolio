@@ -518,3 +518,146 @@ font-size:40px;
 }
 
 }
+/* ===== Animated Digital Grid ===== */
+
+.grid-bg{
+    position:fixed;
+    inset:0;
+    z-index:-3;
+
+    background:
+    linear-gradient(rgba(56,189,248,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,.08) 1px, transparent 1px);
+
+    background-size:50px 50px;
+
+    animation:gridMove 12s linear infinite;
+}
+
+@keyframes gridMove{
+
+from{
+background-position:0 0;
+}
+
+to{
+background-position:50px 50px;
+}
+
+}
+
+/* ===== Blue Glow ===== */
+
+.glow{
+position:fixed;
+border-radius:50%;
+filter:blur(120px);
+z-index:-2;
+opacity:.5;
+animation:moveGlow 12s ease-in-out infinite alternate;
+}
+
+.glow1{
+width:350px;
+height:350px;
+background:#00bfff;
+top:5%;
+left:5%;
+}
+
+.glow2{
+width:400px;
+height:400px;
+background:#2563eb;
+bottom:5%;
+right:5%;
+animation-delay:2s;
+}
+
+@keyframes moveGlow{
+
+0%{
+transform:translate(0,0);
+}
+
+100%{
+transform:translate(80px,-60px);
+}
+
+}
+
+/* ===== Glass Effect ===== */
+
+section,
+nav,
+header{
+
+background:rgba(15,23,42,.45);
+
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+/* ===== Hero Image Animation ===== */
+
+.hero-image img{
+
+animation:float 4s ease-in-out infinite;
+
+filter:drop-shadow(0 0 35px #38bdf8);
+
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-15px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+/* ===== Button Animation ===== */
+
+.btn,
+.btn2{
+
+transition:.4s;
+
+}
+
+.btn:hover,
+.btn2:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 0 25px #38bdf8;
+
+}
+
+/* ===== Card Hover ===== */
+
+.card,
+.box{
+
+transition:.4s;
+
+}
+
+.card:hover,
+.box:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 0 25px rgba(56,189,248,.7);
+
+}
