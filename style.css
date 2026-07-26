@@ -471,11 +471,14 @@ text-align:center;
 }
 
 .hero-image img{
-width:350px;
-border-radius:50%;
-border:6px solid #38bdf8;
-box-shadow:0 0 40px #38bdf8;
-animation:float 3s ease-in-out infinite;
+    width:350px;
+    height:350px;
+    object-fit:cover;
+
+    border-radius:50%;
+    border:6px solid #38bdf8;
+    box-shadow:0 0 40px #38bdf8;
+    animation:float 3s ease-in-out infinite;
 }
 
 @keyframes float{
