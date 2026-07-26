@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script>
+const text="Aspiring Network Engineer";
+let i=0;
+
+function type(){
+    if(i<text.length){
+        document.getElementById("typing").innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(type,100);
+    }
+}
+type();
+</script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +51,7 @@
 
 <h1>Badhon Biswas</h1>
 
-<h3>Diploma in Computer Science & Technology (Networking)</h3>
+<h3><span id="typing"></span></h3>
 
 <p>
 Aspiring Networking Engineer from Bangladesh
