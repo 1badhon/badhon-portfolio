@@ -22,6 +22,39 @@ type();
 <link rel="stylesheet" href="style.css">
 
 </head>
+  <button onclick="topFunction()" id="topBtn">↑</button>
+
+<script>
+
+let btn=document.getElementById("topBtn");
+
+window.onscroll=function(){
+
+if(document.documentElement.scrollTop>300){
+
+btn.style.display="block";
+
+}else{
+
+btn.style.display="none";
+
+}
+
+}
+
+function topFunction(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+</script>
 
 <body>
 
@@ -105,6 +138,12 @@ Currently I am looking for an Industrial Attachment opportunity to improve my pr
 
 ✔ MikroTik Basics
 
+</div>
+  <div class="skill">
+<p>Cisco Networking</p>
+<div class="bar">
+<div class="fill" style="width:85%"></div>
+</div>
 </div>
 
 <div class="card">
