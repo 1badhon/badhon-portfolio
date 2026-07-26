@@ -509,10 +509,9 @@ font-size:40px;
 }
 
 .hero-image img{
-
-width:350px;
-margin-bottom:350px;
-
+    width:350px;
+    height:350px;
+    object-fit:cover;
 }
 
 }
