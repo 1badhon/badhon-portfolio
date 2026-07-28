@@ -57,6 +57,7 @@ particlesJS("particles-js", {
   },
   retina_detect: true
 });
+
 const text = "Aspiring Network Engineer";
 let i = 0;
 
@@ -68,4 +69,25 @@ function typing() {
   }
 }
 
-typing();
+// Back to Top Button
+const btn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", () => {
+  if (document.documentElement.scrollTop > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+function topFunction() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+// সব HTML লোড হওয়ার পরে চালু হবে
+window.onload = function () {
+  typing();
+};
