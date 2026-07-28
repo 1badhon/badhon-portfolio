@@ -1,313 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script>
-const text="Aspiring Network Engineer";
-let i=0;
 
-function type(){
-    if(i<text.length){
-        document.getElementById("typing").innerHTML+=text.charAt(i);
-        i++;
-        setTimeout(type,100);
-    }
-}
-type();
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Badhon Biswas | Network Engineer</title>
 
-let btn=document.getElementById("topBtn");
-
-window.onscroll=function(){
-
-if(document.documentElement.scrollTop>300){
-
-btn.style.display="block";
-
-}else{
-
-btn.style.display="none";
-
-}
-
-}
-
-function topFunction(){
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-}
-
-</script>
+    <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
-  <div class="grid-bg"></div>
-<div class="glow glow1"></div>
-<div class="glow glow2"></div>
-  <div id="particles-js"></div>
 
-<nav>
+    <!-- Background -->
+    <div class="grid-bg"></div>
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div id="particles-js"></div>
 
-<h2>Badhon</h2>
+    <!-- Navbar -->
+    <nav>
 
-<ul>
+        <h2>Badhon</h2>
 
-<li><a href="#about">About</a></li>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
 
-<li><a href="#skills">Skills</a></li>
+    </nav>
 
-<li><a href="#education">Education</a></li>
+    <!-- Hero -->
 
-<li><a href="#projects">Projects</a></li>
+    <header class="hero">
 
-<li><a href="#contact">Contact</a></li>
+        <div class="hero-text">
 
-</ul>
+            <h4>Hello, I'm</h4>
 
-</nav>
+            <h1>Badhon Biswas</h1>
 
-<header class="hero">
+            <h2 id="typing"></h2>
 
-    <div class="hero-text">
+            <p>
+                Passionate about Networking, Cisco, Linux and
+                building secure computer networks.
+            </p>
 
-        <h4>Hello, I'm</h4>
+            <a class="btn"
+                href="Badhon_Biswas_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer">
 
-        <h1>Badhon Biswas</h1>
+                Download CV
 
-        <h2 id="typing"></h2>
+            </a>
+
+            <a class="btn2"
+                href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                LinkedIn
+
+            </a>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img src="new.png"
+                alt="Badhon Biswas">
+
+        </div>
+
+    </header>
+
+    <!-- About -->
+
+    <section id="about">
+
+        <h2>About Me</h2>
 
         <p>
-            Passionate about Networking, Cisco, Linux and
-            building secure computer networks.
+
+            I am a Diploma in Computer Science & Technology (Networking)
+            student from Bangladesh.
+
+            I love Networking, Cisco, MikroTik, Linux and Web Development.
+
+            Currently I am looking for an Industrial Attachment opportunity
+            to improve my practical skills.
+
         </p>
 
-        <a class="btn" href="Badhon_Biswas_CV.pdf" target="_blank">
-            Download CV
-        </a>
+    </section>
 
-        <a class="btn2"
-        href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
-        target="_blank">
-            LinkedIn
-        </a>
+    <!-- Skills -->
 
-    </div>
+    <section id="skills">
 
-    <div class="hero-image">
+        <h2>Technical Skills</h2>
 
-        <img src="new.png">
+        <div class="card">✔ Networking Fundamentals</div>
 
-    </div>
+        <div class="card">✔ Cisco Packet Tracer</div>
 
-</header>
+        <div class="card">✔ MikroTik Basics</div>
 
-<section id="about">
+        <div class="card">✔ Windows Installation</div>
 
-<h2>About Me</h2>
+        <div class="card">✔ Ubuntu Linux</div>
 
-<p>
+        <div class="card">✔ HTML</div>
 
-I am a Diploma in Computer Science & Technology (Networking) student from Bangladesh.
+        <div class="card">✔ CSS</div>
 
-I love Networking, Cisco, MikroTik, Linux and Web Development.
+        <div class="card">✔ Git & GitHub</div>
 
-Currently I am looking for an Industrial Attachment opportunity to improve my practical skills.
+    </section>
 
-</p>
+    <!-- Education -->
 
-</section>
+    <section id="education">
 
-<section id="skills">
+        <h2>Education</h2>
 
-<h2>Technical Skills</h2>
+        <div class="box">
 
-<div class="card">
+            <h3>Diploma in CST (Networking)</h3>
 
-✔ Networking Fundamentals
+            <p>Magura Polytechnic Institute</p>
 
-</div>
+            <p>Result : Running</p>
 
-<div class="card">
+        </div>
 
-✔ Cisco Packet Tracer
+        <div class="box">
 
-</div>
+            <h3>SSC (Vocational)</h3>
 
-<div class="card">
+            <p>Sreepur Govt. M.C Pilot High School</p>
 
-✔ MikroTik Basics
+            <p>GPA : 4.93</p>
 
-</div>
+        </div>
 
+    </section>
 
-<div class="card">
+    <!-- Projects -->
 
-✔ Windows Installation
+    <section id="projects">
 
-</div>
+        <h2>Projects</h2>
 
-<div class="card">
+        <div class="box">
 
-✔ Ubuntu Linux
+            <h3>Portfolio Website</h3>
 
-</div>
+            <p>Personal Portfolio using HTML & CSS.</p>
 
-<div class="card">
+        </div>
 
-✔ HTML
+        <div class="box">
 
-</div>
+            <h3>Cisco Packet Tracer Lab</h3>
 
-<div class="card">
+            <p>Basic Networking Topology Design.</p>
 
-✔ CSS
+        </div>
 
-</div>
+        <div class="box">
 
-<div class="card">
+            <h3>IP Addressing Practice</h3>
 
-✔ Git & GitHub
+            <p>Subnetting & IP Configuration.</p>
 
-</div>
+        </div>
 
-</section>
+    </section>
 
-<section id="education">
+    <!-- Contact -->
 
-<h2>Education</h2>
+    <section id="contact">
 
-<div class="box">
+        <h2>Contact</h2>
 
-<h3>Diploma in CST (Networking)</h3>
+        <p>📧 badhonbiswas.1.bd@gmail.com</p>
 
-<p>
+        <p>📱 01866314941</p>
 
-Magura Polytechnic Institute
+        <p>📍 Magura, Bangladesh</p>
 
-</p>
+        <p>
 
-<p>
+            <a href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
+                target="_blank"
+                rel="noopener noreferrer">
 
-Result : Running
+                Visit My LinkedIn
 
-</p>
+            </a>
 
-</div>
+        </p>
 
-<div class="box">
+    </section>
 
-<h3>SSC (Vocational)</h3>
+    <!-- Footer -->
 
-<p>
+    <footer>
 
-Sreepur Govt. M.C Pilot High School
+        <p>© 2026 Badhon Biswas</p>
 
-</p>
+    </footer>
 
-<p>
+    <!-- Back To Top -->
 
-GPA : 4.93
+    <button id="topBtn" onclick="topFunction()">↑</button>
 
-</p>
+    <!-- JS -->
 
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-</section>
-
-<section id="projects">
-
-<h2>Projects</h2>
-
-<div class="box">
-
-<h3>Portfolio Website</h3>
-
-<p>
-
-Personal Portfolio using HTML & CSS.
-
-</p>
-
-</div>
-
-<div class="box">
-
-<h3>Cisco Packet Tracer Lab</h3>
-
-<p>
-
-Basic Networking Topology Design.
-
-</p>
-
-</div>
-
-<div class="box">
-
-<h3>IP Addressing Practice</h3>
-
-<p>
-
-Subnetting & IP Configuration.
-
-</p>
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<h2>Contact</h2>
-
-<p>📧 badhonbiswas.1.bd@gmail.com</p>
-
-<p>📱 01866314941</p>
-
-<p>📍 Magura, Bangladesh</p>
-
-<p>
-
-<a
-href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
-target="_blank">
-
-Visit My LinkedIn
-
-</a>
-
-</p>
-
-</section>
-
-<footer>
-
-<p>
-
-© 2026 Badhon Biswas
-
-</p>
-
-</footer>
-  </script>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Badhon Biswas | Networking Engineer</title>
-
-<link rel="stylesheet" href="style.css">
-
-</head>
-  <button onclick="topFunction()" id="topBtn">↑</button>
-
-<script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
