@@ -91,3 +91,59 @@ function topFunction() {
 window.onload = function () {
   typing();
 };
+/* ==========================================
+   NETWORK LAB - PULSE ANIMATION
+========================================== */
+
+const packet = document.getElementById("packet");
+const startBtn = document.getElementById("startPulse");
+const stopBtn = document.getElementById("stopPulse");
+const statusText = document.getElementById("networkStatus");
+
+let pulseRunning = false;
+
+function startPacket() {
+
+    if (pulseRunning) return;
+
+    pulseRunning = true;
+
+    packet.classList.add("move");
+
+    statusText.innerHTML = "Sending Packet...";
+    statusText.style.color = "#22c55e";
+
+    // প্রতি ২ সেকেন্ডে Delivered দেখাবে
+    window.packetLoop = setInterval(() => {
+
+        statusText.innerHTML = "Packet Delivered ✔";
+
+        setTimeout(() => {
+
+            if (pulseRunning) {
+
+                statusText.innerHTML = "Sending Packet...";
+
+            }
+
+        }, 800);
+
+    }, 2000);
+
+}
+
+function stopPacket() {
+
+    pulseRunning = false;
+
+    packet.classList.remove("move");
+
+    clearInterval(window.packetLoop);
+
+    statusText.innerHTML = "Waiting...";
+    statusText.style.color = "#38bdf8";
+
+}
+
+startBtn.addEventListener("click", startPacket);
+stopBtn.addEventListener("click", stopPacket);
