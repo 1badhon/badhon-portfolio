@@ -190,7 +190,9 @@ const resetGame = document.getElementById("resetGame");
 const nextLevel = document.getElementById("nextLevel");
 
 let currentStep = 1;
-let currentLevel = 1;
+
+// সঠিক ক্রম
+const correctOrder = [1, 2, 3, 4];
 
 devices.forEach(device => {
 
@@ -198,60 +200,54 @@ devices.forEach(device => {
 
         const order = Number(device.dataset.order);
 
-        if (order === currentStep) {
+        // একই ডিভাইসে আবার ক্লিক করলে কিছু হবে না
+        if (device.classList.contains("correct")) return;
 
-    device.addEventListener("click", () => {
+        // সঠিক ডিভাইস
+        if (order === correctOrder[currentStep - 1]) {
 
-    const order = Number(device.dataset.order);
+            device.classList.add("correct");
 
-    // একই ডিভাইসে বারবার ক্লিক করলে কিছু হবে না
-    if (device.classList.contains("correct")) return;
+            currentStep++;
 
-    // সঠিক ডিভাইস
-    if (order === currentStep) {
+            if (currentStep > correctOrder.length) {
 
-        device.classList.add("correct");
-        currentStep++;
+                gameStatus.innerHTML = "🎉 Level 1 Complete!";
+                gameStatus.style.color = "#22c55e";
 
-        if (currentStep > 4) {
+                nextLevel.style.display = "inline-block";
 
-            gameStatus.innerHTML = "🎉 Level 1 Complete!";
-            gameStatus.style.color = "#22c55e";
+            } else {
 
-            nextLevel.style.display = "inline-block";
+                gameStatus.innerHTML = "✅ Correct! Continue...";
+                gameStatus.style.color = "#38bdf8";
+
+            }
 
         } else {
 
-            gameStatus.innerHTML = "✅ Correct! Continue...";
-            gameStatus.style.color = "#38bdf8";
+            gameStatus.innerHTML = "❌ Wrong Route! Restarting...";
+            gameStatus.style.color = "#ef4444";
 
+            currentStep = 1;
+
+            devices.forEach(d => {
+                d.classList.remove("correct");
+                d.classList.remove("wrong");
+            });
+
+            device.classList.add("wrong");
+
+            setTimeout(() => {
+                device.classList.remove("wrong");
+            }, 500);
         }
 
-    } else {
-
-        // ভুল হলে সব Reset
-        gameStatus.innerHTML = "❌ Wrong Route! Restarting...";
-        gameStatus.style.color = "#ef4444";
-
-        currentStep = 1;
-
-        devices.forEach(d => {
-            d.classList.remove("correct");
-            d.classList.remove("wrong");
-        });
-
-        device.classList.add("wrong");
-
-        setTimeout(() => {
-            device.classList.remove("wrong");
-        }, 500);
-
-    }
+    });
 
 });
 
-});
-
+// Reset Button
 resetGame.addEventListener("click", () => {
 
     currentStep = 1;
@@ -259,9 +255,18 @@ resetGame.addEventListener("click", () => {
     gameStatus.innerHTML = "Waiting...";
     gameStatus.style.color = "#38bdf8";
 
+    nextLevel.style.display = "none";
+
     devices.forEach(device => {
         device.classList.remove("correct");
         device.classList.remove("wrong");
     });
+
+});
+
+// আপাতত Next Level শুধু Message দেখাবে
+nextLevel.addEventListener("click", () => {
+
+    alert("🚀 Level 2 Coming Soon!");
 
 });
