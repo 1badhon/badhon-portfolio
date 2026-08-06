@@ -181,92 +181,120 @@ powerSwitch.addEventListener("click", () => {
 
 });
 /* ===========================
-   ROUTING GAME
+   ROUTING GAME V2
 =========================== */
+
+const levels = [
+{
+title: "Level 1",
+question: "PC → Router → Switch → Server",
+order: [1,2,3,4]
+},
+{
+title: "Level 2",
+question: "PC → Switch → Router → Server",
+order: [1,3,2,4]
+},
+{
+title: "Level 3",
+question: "Router → PC → Switch → Server",
+order: [2,1,3,4]
+}
+];
+
+let currentLevel = 0;
+let currentStep = 0;
 
 const devices = document.querySelectorAll(".route-device");
 const gameStatus = document.getElementById("gameStatus");
 const resetGame = document.getElementById("resetGame");
 const nextLevel = document.getElementById("nextLevel");
+const levelTitle = document.getElementById("levelTitle");
+const questionText = document.getElementById("questionText");
 
-let currentStep = 1;
+function loadLevel(){
 
-// সঠিক ক্রম
-const correctOrder = [1, 2, 3, 4];
+currentStep=0;
 
-devices.forEach(device => {
+devices.forEach(d=>{
+d.classList.remove("correct");
+d.classList.remove("wrong");
+});
 
-    device.addEventListener("click", () => {
+levelTitle.innerHTML=levels[currentLevel].title;
 
-        const order = Number(device.dataset.order);
+questionText.innerHTML="Question: "+levels[currentLevel].question;
 
-        // একই ডিভাইসে আবার ক্লিক করলে কিছু হবে না
-        if (device.classList.contains("correct")) return;
+gameStatus.innerHTML="Waiting...";
+gameStatus.style.color="#38bdf8";
 
-        // সঠিক ডিভাইস
-        if (order === correctOrder[currentStep - 1]) {
+nextLevel.style.display="none";
 
-            device.classList.add("correct");
+}
 
-            currentStep++;
+devices.forEach(device=>{
 
-            if (currentStep > correctOrder.length) {
+device.addEventListener("click",()=>{
 
-                gameStatus.innerHTML = "🎉 Level 1 Complete!";
-                gameStatus.style.color = "#22c55e";
+const order=Number(device.dataset.order);
 
-                nextLevel.style.display = "inline-block";
+if(device.classList.contains("correct")) return;
 
-            } else {
+if(order===levels[currentLevel].order[currentStep]){
 
-                gameStatus.innerHTML = "✅ Correct! Continue...";
-                gameStatus.style.color = "#38bdf8";
+device.classList.add("correct");
 
-            }
+currentStep++;
 
-        } else {
+if(currentStep===levels[currentLevel].order.length){
 
-            gameStatus.innerHTML = "❌ Wrong Route! Restarting...";
-            gameStatus.style.color = "#ef4444";
+gameStatus.innerHTML="🎉 Level Complete!";
+gameStatus.style.color="#22c55e";
 
-            currentStep = 1;
+nextLevel.style.display="inline-block";
 
-            devices.forEach(d => {
-                d.classList.remove("correct");
-                d.classList.remove("wrong");
-            });
+}else{
 
-            device.classList.add("wrong");
+gameStatus.innerHTML="Correct ✔";
 
-            setTimeout(() => {
-                device.classList.remove("wrong");
-            }, 500);
-        }
+}
 
-    });
+}else{
+
+gameStatus.innerHTML="❌ Wrong Route!";
+
+gameStatus.style.color="red";
+
+currentStep=0;
+
+devices.forEach(d=>{
+d.classList.remove("correct");
+});
+
+}
 
 });
 
-// Reset Button
-resetGame.addEventListener("click", () => {
+});
 
-    currentStep = 1;
+resetGame.addEventListener("click",loadLevel);
 
-    gameStatus.innerHTML = "Waiting...";
-    gameStatus.style.color = "#38bdf8";
+nextLevel.addEventListener("click",()=>{
 
-    nextLevel.style.display = "none";
+currentLevel++;
 
-    devices.forEach(device => {
-        device.classList.remove("correct");
-        device.classList.remove("wrong");
-    });
+if(currentLevel>=levels.length){
+
+gameStatus.innerHTML="🏆 Congratulations! All Levels Complete.";
+
+nextLevel.style.display="none";
+
+return;
+
+}
+
+loadLevel();
 
 });
 
-// আপাতত Next Level শুধু Message দেখাবে
-nextLevel.addEventListener("click", () => {
-
-    alert("🚀 Level 2 Coming Soon!");
-
-});
+loadLevel();
