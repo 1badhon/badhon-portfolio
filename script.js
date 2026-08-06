@@ -180,3 +180,67 @@ powerSwitch.addEventListener("click", () => {
     }
 
 });
+/* ===========================
+   ROUTING GAME
+=========================== */
+
+const devices = document.querySelectorAll(".route-device");
+const gameStatus = document.getElementById("gameStatus");
+const resetGame = document.getElementById("resetGame");
+
+let currentStep = 1;
+
+devices.forEach(device => {
+
+    device.addEventListener("click", () => {
+
+        const order = Number(device.dataset.order);
+
+        if (order === currentStep) {
+
+            device.classList.add("correct");
+
+            currentStep++;
+
+            if (currentStep === 5) {
+
+                gameStatus.innerHTML = "🎉 Packet Successfully Delivered!";
+                gameStatus.style.color = "#22c55e";
+
+            } else {
+
+                gameStatus.innerHTML = `Step ${currentStep - 1} Complete`;
+                gameStatus.style.color = "#38bdf8";
+
+            }
+
+        } else {
+
+            device.classList.add("wrong");
+
+            gameStatus.innerHTML = "❌ Wrong Route! Try Again";
+            gameStatus.style.color = "#ef4444";
+
+            setTimeout(() => {
+                device.classList.remove("wrong");
+            }, 500);
+
+        }
+
+    });
+
+});
+
+resetGame.addEventListener("click", () => {
+
+    currentStep = 1;
+
+    gameStatus.innerHTML = "Waiting...";
+    gameStatus.style.color = "#38bdf8";
+
+    devices.forEach(device => {
+        device.classList.remove("correct");
+        device.classList.remove("wrong");
+    });
+
+});
