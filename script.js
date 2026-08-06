@@ -200,37 +200,55 @@ devices.forEach(device => {
 
         if (order === currentStep) {
 
-            device.classList.add("correct");
+    device.addEventListener("click", () => {
 
-            currentStep++;
+    const order = Number(device.dataset.order);
 
-            if (currentStep === 5) {
+    // একই ডিভাইসে বারবার ক্লিক করলে কিছু হবে না
+    if (device.classList.contains("correct")) return;
 
-                gameStatus.innerHTML = "🎉 Packet Successfully Delivered!";
-                nextLevel.style.display = "inline-block";
-                gameStatus.style.color = "#22c55e";
+    // সঠিক ডিভাইস
+    if (order === currentStep) {
 
-            } else {
+        device.classList.add("correct");
+        currentStep++;
 
-                gameStatus.innerHTML = `Step ${currentStep - 1} Complete`;
-                gameStatus.style.color = "#38bdf8";
+        if (currentStep > 4) {
 
-            }
+            gameStatus.innerHTML = "🎉 Level 1 Complete!";
+            gameStatus.style.color = "#22c55e";
+
+            nextLevel.style.display = "inline-block";
 
         } else {
 
-            device.classList.add("wrong");
-
-            gameStatus.innerHTML = "❌ Wrong Route! Try Again";
-            gameStatus.style.color = "#ef4444";
-
-            setTimeout(() => {
-                device.classList.remove("wrong");
-            }, 500);
+            gameStatus.innerHTML = "✅ Correct! Continue...";
+            gameStatus.style.color = "#38bdf8";
 
         }
 
-    });
+    } else {
+
+        // ভুল হলে সব Reset
+        gameStatus.innerHTML = "❌ Wrong Route! Restarting...";
+        gameStatus.style.color = "#ef4444";
+
+        currentStep = 1;
+
+        devices.forEach(d => {
+            d.classList.remove("correct");
+            d.classList.remove("wrong");
+        });
+
+        device.classList.add("wrong");
+
+        setTimeout(() => {
+            device.classList.remove("wrong");
+        }, 500);
+
+    }
+
+});
 
 });
 
