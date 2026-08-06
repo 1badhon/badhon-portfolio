@@ -147,3 +147,36 @@ function stopPacket() {
 
 startBtn.addEventListener("click", startPacket);
 stopBtn.addEventListener("click", stopPacket);
+/* ===========================
+   POWER SWITCH
+=========================== */
+
+const powerSwitch = document.getElementById("powerSwitch");
+
+powerSwitch.addEventListener("click", () => {
+
+    // Light Mode Toggle
+    document.body.classList.toggle("lights-off");
+
+    // Packet Animation বন্ধ
+    if (document.body.classList.contains("lights-off")) {
+
+        stopPacket();
+
+        // Particles বন্ধ
+        const particles = document.getElementById("particles-js");
+        if (particles) {
+            particles.style.display = "none";
+        }
+
+    } else {
+
+        // Particles আবার চালু
+        const particles = document.getElementById("particles-js");
+        if (particles) {
+            particles.style.display = "block";
+        }
+
+    }
+
+});
