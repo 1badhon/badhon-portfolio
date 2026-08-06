@@ -1078,3 +1078,76 @@ body.lights-off .power-switch {
     border-color: #ff4444;
     box-shadow: 0 0 20px #ff4444;
 }
+/* ===========================
+   ROUTING GAME
+=========================== */
+
+#routing-game{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.routing-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin:40px 0;
+}
+
+.route-device{
+    width:130px;
+    height:130px;
+    background:#0f172a;
+    border:2px solid #38bdf8;
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    font-size:40px;
+    color:#38bdf8;
+    transition:.3s;
+    box-shadow:0 0 15px rgba(56,189,248,.35);
+}
+
+.route-device span{
+    margin-top:10px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.route-device:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 25px #38bdf8;
+}
+
+.route-device.correct{
+    background:#16a34a;
+    border-color:#16a34a;
+    color:#fff;
+}
+
+.route-device.wrong{
+    background:#dc2626;
+    border-color:#dc2626;
+    color:#fff;
+    animation:shake .35s;
+}
+
+#gameStatus{
+    margin:25px 0;
+    font-size:22px;
+    font-weight:bold;
+    color:#38bdf8;
+}
+
+@keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-6px);}
+    50%{transform:translateX(6px);}
+    75%{transform:translateX(-6px);}
+    100%{transform:translateX(0);}
+}
