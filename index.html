@@ -236,6 +236,68 @@
     </button>
 
 </section>
+    <!-- ========================= -->
+<!-- Network Lab -->
+<!-- ========================= -->
+
+<section id="lab">
+
+    <h2>Interactive Network Lab</h2>
+
+    <p class="lab-text">
+        Click the button below to simulate packet transmission.
+    </p>
+
+    <div class="network">
+
+        <div class="device">
+            <i class="fa-solid fa-computer"></i>
+            <span>PC</span>
+        </div>
+
+        <div class="line">
+            <div class="packet" id="packet"></div>
+        </div>
+
+        <div class="device">
+            <i class="fa-solid fa-wifi"></i>
+            <span>Router</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="device">
+            <i class="fa-solid fa-network-wired"></i>
+            <span>Switch</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="device">
+            <i class="fa-solid fa-server"></i>
+            <span>Server</span>
+        </div>
+
+    </div>
+
+    <div class="lab-buttons">
+
+        <button class="btn" id="startPulse">
+            Start Packet
+        </button>
+
+        <button class="btn2" id="stopPulse">
+            Stop
+        </button>
+
+    </div>
+
+    <div class="status">
+        Status :
+        <span id="networkStatus">Waiting...</span>
+    </div>
+
+</section>
 
     <!-- Contact -->
 
