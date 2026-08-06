@@ -186,24 +186,21 @@ powerSwitch.addEventListener("click", () => {
 
 const levels = [
 {
-title: "Level 1",
-question: "PC → Router → Switch → Server",
-order: [1,2,3,4]
+    title: "Level 1",
+    question: "PC → Router → Switch → Server",
+    order: [1,2,3,4]
 },
 {
-title: "Level 2",
-question: "PC → Switch → Router → Server",
-order: [1,3,2,4]
+    title: "Level 2",
+    question: "PC → Switch → Router → Server",
+    order: [1,3,2,4]
 },
 {
-title: "Level 3",
-question: "Router → PC → Switch → Server",
-order: [2,1,3,4]
+    title: "Level 3",
+    question: "Router → PC → Switch → Server",
+    order: [2,1,3,4]
 }
 ];
-
-let currentLevel = 0;
-let currentStep = 0;
 
 const devices = document.querySelectorAll(".route-device");
 const gameStatus = document.getElementById("gameStatus");
@@ -212,68 +209,80 @@ const nextLevel = document.getElementById("nextLevel");
 const levelTitle = document.getElementById("levelTitle");
 const questionText = document.getElementById("questionText");
 
+let currentLevel = 0;
+let currentStep = 0;
+
 function loadLevel(){
 
-currentStep=0;
+    currentStep = 0;
 
-devices.forEach(d=>{
-d.classList.remove("correct");
-d.classList.remove("wrong");
-});
+    levelTitle.textContent = levels[currentLevel].title;
+    questionText.textContent =
+    "Question: " + levels[currentLevel].question;
 
-levelTitle.innerHTML=levels[currentLevel].title;
+    gameStatus.textContent = "Waiting...";
+    gameStatus.style.color = "#38bdf8";
 
-questionText.innerHTML="Question: "+levels[currentLevel].question;
+    nextLevel.style.display = "none";
 
-gameStatus.innerHTML="Waiting...";
-gameStatus.style.color="#38bdf8";
-
-nextLevel.style.display="none";
+    devices.forEach(device=>{
+        device.classList.remove("correct");
+        device.classList.remove("wrong");
+    });
 
 }
 
 devices.forEach(device=>{
 
-device.addEventListener("click",()=>{
+    device.addEventListener("click",()=>{
 
-const order=Number(device.dataset.order);
+        const clicked = Number(device.dataset.order);
+        const answer = levels[currentLevel].order[currentStep];
 
-if(device.classList.contains("correct")) return;
+        if(device.classList.contains("correct")) return;
 
-if(order===levels[currentLevel].order[currentStep]){
+        if(clicked === answer){
 
-device.classList.add("correct");
+            device.classList.add("correct");
 
-currentStep++;
+            currentStep++;
 
-if(currentStep===levels[currentLevel].order.length){
+            if(currentStep === levels[currentLevel].order.length){
 
-gameStatus.innerHTML="🎉 Level Complete!";
-gameStatus.style.color="#22c55e";
+                gameStatus.textContent = "🎉 Level Complete!";
+                gameStatus.style.color = "#22c55e";
 
-nextLevel.style.display="inline-block";
+                nextLevel.style.display = "inline-block";
 
-}else{
+            }else{
 
-gameStatus.innerHTML="Correct ✔";
+                gameStatus.textContent =
+                "✅ Correct! Continue...";
+                gameStatus.style.color="#38bdf8";
 
-}
+            }
 
-}else{
+        }else{
 
-gameStatus.innerHTML="❌ Wrong Route!";
+            gameStatus.textContent =
+            "❌ Wrong Route! Restarting...";
+            gameStatus.style.color="#ef4444";
 
-gameStatus.style.color="red";
+            currentStep = 0;
 
-currentStep=0;
+            devices.forEach(d=>{
+                d.classList.remove("correct");
+            });
 
-devices.forEach(d=>{
-d.classList.remove("correct");
-});
+            device.classList.add("wrong");
 
-}
+            setTimeout(()=>{
+                device.classList.remove("wrong");
+            },500);
 
-});
+        }
+
+    });
 
 });
 
@@ -281,19 +290,22 @@ resetGame.addEventListener("click",loadLevel);
 
 nextLevel.addEventListener("click",()=>{
 
-currentLevel++;
+    currentLevel++;
 
-if(currentLevel>=levels.length){
+    if(currentLevel >= levels.length){
 
-gameStatus.innerHTML="🏆 Congratulations! All Levels Complete.";
+        gameStatus.textContent =
+        "🏆 Congratulations! You finished all levels.";
 
-nextLevel.style.display="none";
+        gameStatus.style.color="#22c55e";
 
-return;
+        nextLevel.style.display="none";
 
-}
+        return;
 
-loadLevel();
+    }
+
+    loadLevel();
 
 });
 
