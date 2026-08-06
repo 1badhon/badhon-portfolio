@@ -195,66 +195,45 @@
 <!-- Network Lab -->
 <!-- ========================= -->
 
-<section id="lab">
+<section id="routing-game">
 
-    <h2>Interactive Network Lab</h2>
+    <h2>🎮 Packet Routing Challenge</h2>
 
-    <p class="lab-text">
-        Click the button below to simulate packet transmission.
+    <p>
+        Click the devices in the correct order to deliver the packet.
     </p>
 
-    <div class="network">
+    <div class="routing-container">
 
-        <div class="device">
-            <i class="fa-solid fa-computer"></i>
+        <div class="route-device" data-order="1">
+            💻
             <span>PC</span>
         </div>
 
-        <div class="line">
-            <div class="packet" id="packet"></div>
-        </div>
-
-        <div class="device">
-           <i class="fa-solid fa-wifi"></i>
+        <div class="route-device" data-order="2">
+            📡
             <span>Router</span>
         </div>
 
-        <div class="line"></div>
-
-        <div class="device">
-            <i class="fa-solid fa-network-wired"></i>
+        <div class="route-device" data-order="3">
+            🔀
             <span>Switch</span>
         </div>
 
-        <div class="line"></div>
-
-        <div class="device">
-            <i class="fa-solid fa-server"></i>
+        <div class="route-device" data-order="4">
+            🖥️
             <span>Server</span>
         </div>
 
     </div>
 
-    <div class="lab-buttons">
-
-        <button class="btn" id="startPulse">
-            Start Packet
-        </button>
-
-        <button class="btn2" id="stopPulse">
-            Stop
-        </button>
-
+    <div id="gameStatus">
+        Waiting...
     </div>
 
-    <div class="status">
-
-        Status :
-        <span id="networkStatus">
-            Waiting...
-        </span>
-
-    </div>
+    <button class="btn" id="resetGame">
+        Reset Game
+    </button>
 
 </section>
 
