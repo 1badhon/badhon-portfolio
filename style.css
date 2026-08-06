@@ -1151,3 +1151,67 @@ body.lights-off .power-switch {
     75%{transform:translateX(-6px);}
     100%{transform:translateX(0);}
 }
+/* ===== Network Lab ===== */
+
+.network{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin:40px 0;
+}
+
+.device{
+    width:100px;
+    height:100px;
+    border:2px solid #38bdf8;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#38bdf8;
+    background:#0f172a;
+}
+
+.device i{
+    font-size:35px;
+    margin-bottom:8px;
+}
+
+.line{
+    width:80px;
+    height:4px;
+    background:#38bdf8;
+    position:relative;
+}
+
+.packet{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#22c55e;
+    position:absolute;
+    top:-5px;
+    left:0;
+}
+
+.move{
+    animation:packetMove 2s linear infinite;
+}
+
+@keyframes packetMove{
+    from{
+        left:0;
+    }
+    to{
+        left:70px;
+    }
+}
+
+.status{
+    text-align:center;
+    margin-top:20px;
+    font-size:20px;
+}
