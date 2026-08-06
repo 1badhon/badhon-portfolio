@@ -187,8 +187,10 @@ powerSwitch.addEventListener("click", () => {
 const devices = document.querySelectorAll(".route-device");
 const gameStatus = document.getElementById("gameStatus");
 const resetGame = document.getElementById("resetGame");
+const nextLevel = document.getElementById("nextLevel");
 
 let currentStep = 1;
+let currentLevel = 1;
 
 devices.forEach(device => {
 
@@ -205,6 +207,7 @@ devices.forEach(device => {
             if (currentStep === 5) {
 
                 gameStatus.innerHTML = "🎉 Packet Successfully Delivered!";
+                nextLevel.style.display = "inline-block";
                 gameStatus.style.color = "#22c55e";
 
             } else {
