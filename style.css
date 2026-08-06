@@ -1021,3 +1021,60 @@ left:-6px;
 }
 
 }
+/* ===========================
+   POWER SWITCH
+=========================== */
+
+.power-switch {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #0f172a;
+    border: 2px solid #38bdf8;
+    color: #38bdf8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.4s ease;
+    box-shadow: 0 0 15px rgba(56,189,248,.5);
+}
+
+.power-switch:hover {
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: 0 0 25px #38bdf8;
+}
+
+.power-switch i {
+    font-size: 22px;
+}
+
+/* ===========================
+   LIGHT OFF MODE
+=========================== */
+
+body.lights-off {
+    background: #000;
+    transition: 0.8s;
+}
+
+body.lights-off .grid-bg,
+body.lights-off .glow,
+body.lights-off #particles-js {
+    opacity: 0;
+    transition: 0.8s;
+}
+
+body.lights-off section,
+body.lights-off header,
+body.lights-off footer,
+body.lights-off nav {
+    filter: brightness(0.25);
+    transition: 0.8s;
+}
+
+body.lights-off .power-switch {
+    color: #ff4444;
+    border-color: #ff4444;
+    box-shadow: 0 0 20px #ff4444;
+}
