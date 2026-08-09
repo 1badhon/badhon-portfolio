@@ -2694,3 +2694,10 @@ footer {
             14px;
     }
 }
+nav ul li a.active {
+    color: #38bdf8;
+}
+
+nav ul li a.active::after {
+    width: 100%;
+}
