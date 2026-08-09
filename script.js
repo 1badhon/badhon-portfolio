@@ -1,284 +1,428 @@
-particlesJS("particles-js", {
-  particles: {
-    number: {
-      value: 80,
-      density: {
-        enable: true,
-        value_area: 800
-      }
-    },
-    color: {
-      value: "#38bdf8"
-    },
-    shape: {
-      type: "circle"
-    },
-    opacity: {
-      value: 0.6
-    },
-    size: {
-      value: 3
-    },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#38bdf8",
-      opacity: 0.4,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 2
-    }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: {
-        enable: true,
-        mode: "grab"
-      },
-      onclick: {
-        enable: true,
-        mode: "push"
-      }
-    },
-    modes: {
-      grab: {
-        distance: 150,
-        line_linked: {
-          opacity: 1
-        }
-      },
-      push: {
-        particles_nb: 4
-      }
-    }
-  },
-  retina_detect: true
-});
-
-const text = "Aspiring Network Engineer";
-let i = 0;
-
-function typing() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing, 100);
-  }
-}
-
-// Back to Top Button
-const btn = document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-  if (document.documentElement.scrollTop > 300) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-});
-
-function topFunction() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
-
-// সব HTML লোড হওয়ার পরে চালু হবে
-window.onload = function () {
-  typing();
-};
 /* ==========================================
-   NETWORK LAB - PULSE ANIMATION
+   PARTICLES BACKGROUND
 ========================================== */
 
-const packet = document.getElementById("packet");
-const startBtn = document.getElementById("startPulse");
-const stopBtn = document.getElementById("stopPulse");
-const statusText = document.getElementById("networkStatus");
+if (typeof particlesJS !== "undefined") {
 
-let pulseRunning = false;
+    particlesJS("particles-js", {
 
-function startPacket() {
+        particles: {
 
-    if (pulseRunning) return;
+            number: {
+                value: 80,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
 
-    pulseRunning = true;
+            color: {
+                value: "#38bdf8"
+            },
 
-    packet.classList.add("move");
+            shape: {
+                type: "circle"
+            },
 
-    statusText.innerHTML = "Sending Packet...";
-    statusText.style.color = "#22c55e";
+            opacity: {
+                value: 0.6
+            },
 
-    // প্রতি ২ সেকেন্ডে Delivered দেখাবে
-    window.packetLoop = setInterval(() => {
+            size: {
+                value: 3
+            },
 
-        statusText.innerHTML = "Packet Delivered ✔";
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#38bdf8",
+                opacity: 0.4,
+                width: 1
+            },
 
-        setTimeout(() => {
+            move: {
+                enable: true,
+                speed: 2
+            }
 
-            if (pulseRunning) {
+        },
 
-                statusText.innerHTML = "Sending Packet...";
+        interactivity: {
+
+            detect_on: "canvas",
+
+            events: {
+
+                onhover: {
+                    enable: true,
+                    mode: "grab"
+                },
+
+                onclick: {
+                    enable: true,
+                    mode: "push"
+                }
+
+            },
+
+            modes: {
+
+                grab: {
+                    distance: 150,
+
+                    line_linked: {
+                        opacity: 1
+                    }
+                },
+
+                push: {
+                    particles_nb: 4
+                }
 
             }
 
-        }, 800);
+        },
 
-    }, 2000);
+        retina_detect: true
 
-}
-
-function stopPacket() {
-
-    pulseRunning = false;
-
-    packet.classList.remove("move");
-
-    clearInterval(window.packetLoop);
-
-    statusText.innerHTML = "Waiting...";
-    statusText.style.color = "#38bdf8";
-
-}
-
-startBtn.addEventListener("click", startPacket);
-stopBtn.addEventListener("click", stopPacket);
-/* ===========================
-   POWER SWITCH
-=========================== */
-
-const powerSwitch = document.getElementById("powerSwitch");
-
-powerSwitch.addEventListener("click", () => {
-
-    // Light Mode Toggle
-    document.body.classList.toggle("lights-off");
-
-    // Packet Animation বন্ধ
-    if (document.body.classList.contains("lights-off")) {
-
-        stopPacket();
-
-        // Particles বন্ধ
-        const particles = document.getElementById("particles-js");
-        if (particles) {
-            particles.style.display = "none";
-        }
-
-    } else {
-
-        // Particles আবার চালু
-        const particles = document.getElementById("particles-js");
-        if (particles) {
-            particles.style.display = "block";
-        }
-
-    }
-
-});
-/* ===========================
-   ROUTING GAME V2
-=========================== */
-
-const levels = [
-{
-    title: "Level 1",
-    question: "PC → Router → Switch → Server",
-    order: [1,2,3,4]
-},
-{
-    title: "Level 2",
-    question: "PC → Switch → Router → Server",
-    order: [1,3,2,4]
-},
-{
-    title: "Level 3",
-    question: "Router → PC → Switch → Server",
-    order: [2,1,3,4]
-}
-];
-
-const devices = document.querySelectorAll(".route-device");
-const gameStatus = document.getElementById("gameStatus");
-const resetGame = document.getElementById("resetGame");
-const nextLevel = document.getElementById("nextLevel");
-const levelTitle = document.getElementById("levelTitle");
-const questionText = document.getElementById("questionText");
-
-let currentLevel = 0;
-let currentStep = 0;
-
-function loadLevel(){
-
-    currentStep = 0;
-
-    levelTitle.textContent = levels[currentLevel].title;
-    questionText.textContent =
-    "Question: " + levels[currentLevel].question;
-
-    gameStatus.textContent = "Waiting...";
-    gameStatus.style.color = "#38bdf8";
-
-    nextLevel.style.display = "none";
-
-    devices.forEach(device=>{
-        device.classList.remove("correct");
-        device.classList.remove("wrong");
     });
 
 }
 
-devices.forEach(device=>{
 
-    device.addEventListener("click",()=>{
+/* ==========================================
+   TYPING EFFECT
+========================================== */
 
-        const clicked = Number(device.dataset.order);
-        const answer = levels[currentLevel].order[currentStep];
+const typingElement = document.getElementById("typing");
 
-        if(device.classList.contains("correct")) return;
+const text = "Aspiring Network Engineer";
 
-        if(clicked === answer){
+let typingIndex = 0;
+
+function typing() {
+
+    if (!typingElement) return;
+
+    if (typingIndex < text.length) {
+
+        typingElement.innerHTML +=
+            text.charAt(typingIndex);
+
+        typingIndex++;
+
+        setTimeout(typing, 100);
+    }
+
+}
+
+
+/* ==========================================
+   BACK TO TOP BUTTON
+========================================== */
+
+const topBtn = document.getElementById("topBtn");
+
+window.addEventListener("scroll", () => {
+
+    if (!topBtn) return;
+
+    if (window.scrollY > 300) {
+
+        topBtn.style.display = "block";
+
+    } else {
+
+        topBtn.style.display = "none";
+
+    }
+
+});
+
+
+function topFunction() {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+/* ==========================================
+   POWER SWITCH
+========================================== */
+
+const powerSwitch =
+    document.getElementById("powerSwitch");
+
+if (powerSwitch) {
+
+    powerSwitch.addEventListener("click", () => {
+
+        document.body.classList.toggle("lights-off");
+
+        const particles =
+            document.getElementById("particles-js");
+
+        if (
+            document.body.classList.contains("lights-off")
+        ) {
+
+            if (particles) {
+                particles.style.display = "none";
+            }
+
+        } else {
+
+            if (particles) {
+                particles.style.display = "block";
+            }
+
+        }
+
+    });
+
+}
+
+
+/* ==========================================
+   PACKET ROUTING GAME
+========================================== */
+
+const devices =
+    document.querySelectorAll(".route-device");
+
+const gameStatus =
+    document.getElementById("gameStatus");
+
+const resetGame =
+    document.getElementById("resetGame");
+
+const nextLevel =
+    document.getElementById("nextLevel");
+
+const levelTitle =
+    document.getElementById("levelTitle");
+
+const questionText =
+    document.getElementById("questionText");
+
+
+/* ==========================================
+   GAME LEVELS
+========================================== */
+
+const levels = [
+
+    {
+        title: "Level 1",
+
+        question:
+            "Question: PC → Router → Switch → Server",
+
+        order: [1, 2, 3, 4]
+    },
+
+    {
+        title: "Level 2",
+
+        question:
+            "Question: PC → Switch → Router → Server",
+
+        order: [1, 3, 2, 4]
+    },
+
+    {
+        title: "Level 3",
+
+        question:
+            "Question: Router → PC → Switch → Server",
+
+        order: [2, 1, 3, 4]
+    }
+
+];
+
+
+let currentLevel = 0;
+
+let currentStep = 0;
+
+
+/* ==========================================
+   LOAD LEVEL
+========================================== */
+
+function loadLevel() {
+
+    currentStep = 0;
+
+    const level = levels[currentLevel];
+
+    if (levelTitle) {
+
+        levelTitle.textContent =
+            level.title;
+
+    }
+
+    if (questionText) {
+
+        questionText.textContent =
+            level.question;
+
+    }
+
+    if (gameStatus) {
+
+        gameStatus.textContent =
+            "Waiting...";
+
+        gameStatus.style.color =
+            "#38bdf8";
+
+    }
+
+    if (nextLevel) {
+
+        nextLevel.style.display =
+            "none";
+
+    }
+
+
+    devices.forEach(device => {
+
+        device.classList.remove("correct");
+
+        device.classList.remove("wrong");
+
+    });
+
+}
+
+
+/* ==========================================
+   DEVICE CLICK
+========================================== */
+
+devices.forEach(device => {
+
+    device.addEventListener("click", () => {
+
+        const clickedOrder =
+            Number(device.dataset.order);
+
+        const correctOrder =
+            levels[currentLevel].order[currentStep];
+
+
+        /* Already Correct */
+
+        if (
+            device.classList.contains("correct")
+        ) {
+
+            return;
+
+        }
+
+
+        /* ==================================
+           CORRECT ANSWER
+        ================================== */
+
+        if (clickedOrder === correctOrder) {
 
             device.classList.add("correct");
 
             currentStep++;
 
-            if(currentStep === levels[currentLevel].order.length){
 
-                gameStatus.textContent = "🎉 Level Complete!";
-                gameStatus.style.color = "#22c55e";
+            /* Level Complete */
 
-                nextLevel.style.display = "inline-block";
+            if (
+                currentStep ===
+                levels[currentLevel].order.length
+            ) {
 
-            }else{
+                if (gameStatus) {
 
-                gameStatus.textContent =
-                "✅ Correct! Continue...";
-                gameStatus.style.color="#38bdf8";
+                    gameStatus.textContent =
+                        "🎉 Level Complete!";
+
+                    gameStatus.style.color =
+                        "#22c55e";
+
+                }
+
+                if (nextLevel) {
+
+                    nextLevel.style.display =
+                        "inline-block";
+
+                }
+
+            } else {
+
+                if (gameStatus) {
+
+                    gameStatus.textContent =
+                        "✅ Correct! Continue...";
+
+                    gameStatus.style.color =
+                        "#38bdf8";
+
+                }
 
             }
 
-        }else{
 
-            gameStatus.textContent =
-            "❌ Wrong Route! Restarting...";
-            gameStatus.style.color="#ef4444";
+        }
 
-            currentStep = 0;
 
-            devices.forEach(d=>{
-                d.classList.remove("correct");
-            });
+        /* ==================================
+           WRONG ANSWER
+        ================================== */
+
+        else {
+
+            if (gameStatus) {
+
+                gameStatus.textContent =
+                    "❌ Wrong Route! Try Again.";
+
+                gameStatus.style.color =
+                    "#ef4444";
+
+            }
+
 
             device.classList.add("wrong");
 
-            setTimeout(()=>{
+
+            setTimeout(() => {
+
                 device.classList.remove("wrong");
-            },500);
+
+            }, 500);
+
+
+            /* Restart Current Level */
+
+            currentStep = 0;
+
+
+            devices.forEach(d => {
+
+                d.classList.remove("correct");
+
+            });
 
         }
 
@@ -286,27 +430,88 @@ devices.forEach(device=>{
 
 });
 
-resetGame.addEventListener("click",loadLevel);
 
-nextLevel.addEventListener("click",()=>{
+/* ==========================================
+   RESET GAME
+========================================== */
 
-    currentLevel++;
+if (resetGame) {
 
-    if(currentLevel >= levels.length){
+    resetGame.addEventListener("click", () => {
 
-        gameStatus.textContent =
-        "🏆 Congratulations! You finished all levels.";
+        currentLevel = 0;
 
-        gameStatus.style.color="#22c55e";
+        loadLevel();
 
-        nextLevel.style.display="none";
+    });
 
-        return;
+}
 
-    }
+
+/* ==========================================
+   NEXT LEVEL
+========================================== */
+
+if (nextLevel) {
+
+    nextLevel.addEventListener("click", () => {
+
+        currentLevel++;
+
+
+        /* All Levels Complete */
+
+        if (currentLevel >= levels.length) {
+
+            if (gameStatus) {
+
+                gameStatus.textContent =
+                    "🏆 Congratulations! All Levels Complete!";
+
+                gameStatus.style.color =
+                    "#22c55e";
+
+            }
+
+            if (levelTitle) {
+
+                levelTitle.textContent =
+                    "🏆 Completed";
+
+            }
+
+            if (questionText) {
+
+                questionText.textContent =
+                    "You completed the Packet Routing Challenge!";
+
+            }
+
+            nextLevel.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        /* Load Next Level */
+
+        loadLevel();
+
+    });
+
+}
+
+
+/* ==========================================
+   START WEBSITE
+========================================== */
+
+window.addEventListener("load", () => {
+
+    typing();
 
     loadLevel();
 
 });
-
-loadLevel();
