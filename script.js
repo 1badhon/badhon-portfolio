@@ -1,9 +1,8 @@
 /* ==========================================
-   PARTICLES
+   PARTICLES BACKGROUND
 ========================================== */
 
 if (typeof particlesJS !== "undefined") {
-
     particlesJS("particles-js", {
         particles: {
             number: {
@@ -79,14 +78,12 @@ if (typeof particlesJS !== "undefined") {
 
 
 /* ==========================================
-   TYPING
+   TYPING EFFECT
 ========================================== */
 
-const typingElement =
-    document.getElementById("typing");
+const typingElement = document.getElementById("typing");
 
-const typingText =
-    "Aspiring Network Engineer";
+const typingText = "Aspiring Network Engineer";
 
 let typingIndex = 0;
 
@@ -110,17 +107,17 @@ function typing() {
    BACK TO TOP
 ========================================== */
 
-const topBtn =
-    document.getElementById("topBtn");
+const topBtn = document.getElementById("topBtn");
 
 window.addEventListener("scroll", () => {
 
     if (!topBtn) return;
 
-    topBtn.style.display =
-        window.scrollY > 300
-            ? "block"
-            : "none";
+    if (window.scrollY > 300) {
+        topBtn.style.display = "block";
+    } else {
+        topBtn.style.display = "none";
+    }
 
 });
 
@@ -146,19 +143,13 @@ if (powerSwitch) {
 
     powerSwitch.addEventListener("click", () => {
 
-        document.body.classList.toggle(
-            "lights-off"
-        );
+        document.body.classList.toggle("lights-off");
 
         const particles =
-            document.getElementById(
-                "particles-js"
-            );
+            document.getElementById("particles-js");
 
         if (
-            document.body.classList.contains(
-                "lights-off"
-            )
+            document.body.classList.contains("lights-off")
         ) {
 
             if (particles) {
@@ -179,8 +170,11 @@ if (powerSwitch) {
 
 
 /* ==========================================
-   GAME ELEMENTS
+   NETWORK TROUBLESHOOTER
 ========================================== */
+
+
+/* ---------- HTML Elements ---------- */
 
 const livesElement =
     document.getElementById("lives");
@@ -195,59 +189,37 @@ const timerElement =
     document.getElementById("gameTimer");
 
 const progressBar =
-    document.getElementById(
-        "gameProgressBar"
-    );
+    document.getElementById("gameProgressBar");
 
 const questionElement =
-    document.getElementById(
-        "gameQuestion"
-    );
+    document.getElementById("gameQuestion");
 
 const optionsElement =
-    document.getElementById(
-        "gameOptions"
-    );
+    document.getElementById("gameOptions");
 
 const gameStatus =
-    document.getElementById(
-        "gameStatus"
-    );
+    document.getElementById("gameStatus");
 
 const startGame =
-    document.getElementById(
-        "startGame"
-    );
+    document.getElementById("startGame");
 
 const nextQuestion =
-    document.getElementById(
-        "nextQuestion"
-    );
+    document.getElementById("nextQuestion");
 
 const resetGame =
-    document.getElementById(
-        "resetGame"
-    );
+    document.getElementById("resetGame");
 
 const gameResult =
-    document.getElementById(
-        "gameResult"
-    );
+    document.getElementById("gameResult");
 
 const finalScore =
-    document.getElementById(
-        "finalScore"
-    );
+    document.getElementById("finalScore");
 
 const finalMessage =
-    document.getElementById(
-        "finalMessage"
-    );
+    document.getElementById("finalMessage");
 
 const playAgain =
-    document.getElementById(
-        "playAgain"
-    );
+    document.getElementById("playAgain");
 
 
 /* ==========================================
@@ -258,196 +230,241 @@ const questions = [
 
     {
         level: 1,
+
         question:
             "Which device connects multiple computers in a LAN?",
+
         options: [
             "Router",
             "Switch",
             "Modem",
             "Firewall"
         ],
+
         answer: "Switch"
     },
 
     {
         level: 1,
+
         question:
             "Which device connects different networks?",
+
         options: [
             "Switch",
             "Router",
             "Monitor",
             "Keyboard"
         ],
+
         answer: "Router"
     },
 
     {
         level: 1,
+
         question:
             "Which cable is commonly used for Ethernet networking?",
+
         options: [
             "UTP",
             "HDMI",
             "USB",
             "VGA"
         ],
+
         answer: "UTP"
     },
 
     {
         level: 2,
+
         question:
             "Which is a private IPv4 address?",
+
         options: [
             "8.8.8.8",
             "192.168.1.10",
             "1.1.1.1",
             "142.250.1.1"
         ],
+
         answer: "192.168.1.10"
     },
 
     {
         level: 2,
+
         question:
             "What is the subnet mask of a /24 network?",
+
         options: [
             "255.0.0.0",
             "255.255.0.0",
             "255.255.255.0",
             "255.255.255.255"
         ],
+
         answer: "255.255.255.0"
     },
 
     {
         level: 2,
+
         question:
             "How many usable host addresses are available in a /24 network?",
+
         options: [
             "254",
             "256",
             "128",
             "512"
         ],
+
         answer: "254"
     },
 
     {
         level: 3,
+
         question:
             "Which address could be a default gateway for 192.168.1.20?",
+
         options: [
             "192.168.1.1",
             "8.8.8.8",
             "127.0.0.1",
             "255.255.255.0"
         ],
+
         answer: "192.168.1.1"
     },
 
     {
         level: 3,
+
         question:
             "Which command checks basic network connectivity?",
+
         options: [
             "ping",
             "mkdir",
             "copy",
             "format"
         ],
+
         answer: "ping"
     },
 
     {
         level: 3,
+
         question:
             "What does IP stand for?",
+
         options: [
             "Internet Protocol",
             "Internal Program",
             "Internet Port",
             "Interface Process"
         ],
+
         answer: "Internet Protocol"
     },
 
     {
         level: 4,
+
         question:
             "Which protocol automatically assigns IP addresses?",
+
         options: [
             "DNS",
             "HTTP",
             "DHCP",
             "FTP"
         ],
+
         answer: "DHCP"
     },
 
     {
         level: 4,
+
         question:
             "Which protocol translates domain names to IP addresses?",
+
         options: [
             "DNS",
             "DHCP",
             "SSH",
             "SMTP"
         ],
+
         answer: "DNS"
     },
 
     {
         level: 4,
+
         question:
             "Which protocol is commonly used for secure web browsing?",
+
         options: [
             "HTTP",
             "HTTPS",
             "FTP",
             "Telnet"
         ],
+
         answer: "HTTPS"
     },
 
     {
         level: 5,
+
         question:
             "Which OSI layer is responsible for routing?",
+
         options: [
             "Physical Layer",
             "Data Link Layer",
             "Network Layer",
             "Application Layer"
         ],
+
         answer: "Network Layer"
     },
 
     {
         level: 5,
+
         question:
             "Which protocol is commonly used for secure remote login?",
+
         options: [
             "FTP",
             "HTTP",
             "SSH",
             "SMTP"
         ],
+
         answer: "SSH"
     },
 
     {
         level: 5,
+
         question:
             "Which device primarily works at OSI Layer 2?",
+
         options: [
             "Router",
             "Switch",
             "Modem",
             "Firewall"
         ],
+
         answer: "Switch"
     }
 
@@ -458,15 +475,17 @@ const questions = [
    GAME VARIABLES
 ========================================== */
 
+let gameQuestions = [];
+
 let currentQuestion = 0;
 
 let score = 0;
 
 let lives = 3;
 
-let timeLeft = 30;
-
 let combo = 0;
+
+let timeLeft = 30;
 
 let timer = null;
 
@@ -476,15 +495,15 @@ let answered = false;
 
 
 /* ==========================================
-   RANDOMIZE ARRAY
+   SHUFFLE
 ========================================== */
 
 function shuffle(array) {
 
-    const newArray = [...array];
+    const copy = [...array];
 
     for (
-        let i = newArray.length - 1;
+        let i = copy.length - 1;
         i > 0;
         i--
     ) {
@@ -495,91 +514,90 @@ function shuffle(array) {
             );
 
         [
-            newArray[i],
-            newArray[j]
+            copy[i],
+            copy[j]
         ] = [
-            newArray[j],
-            newArray[i]
+            copy[j],
+            copy[i]
         ];
-
     }
 
-    return newArray;
+    return copy;
 }
 
 
 /* ==========================================
-   QUESTION ORDER
-========================================== */
-
-let gameQuestions = [];
-
-
-/* ==========================================
-   SOUND EFFECT
+   SOUND
 ========================================== */
 
 function playSound(type) {
 
-    const audioContext =
-        new (
+    try {
+
+        const AudioContext =
             window.AudioContext ||
-            window.webkitAudioContext
-        )();
+            window.webkitAudioContext;
 
-    const oscillator =
-        audioContext.createOscillator();
+        if (!AudioContext) return;
 
-    const gain =
-        audioContext.createGain();
+        const audio =
+            new AudioContext();
 
+        const oscillator =
+            audio.createOscillator();
 
-    oscillator.connect(gain);
+        const gain =
+            audio.createGain();
 
-    gain.connect(audioContext.destination);
+        oscillator.connect(gain);
 
-
-    if (type === "correct") {
-
-        oscillator.frequency.value = 700;
-
-        gain.gain.value = 0.08;
-
-        oscillator.start();
-
-        oscillator.stop(
-            audioContext.currentTime + 0.12
-        );
-
-    }
+        gain.connect(audio.destination);
 
 
-    if (type === "wrong") {
+        if (type === "correct") {
 
-        oscillator.frequency.value = 180;
+            oscillator.frequency.value = 700;
 
-        gain.gain.value = 0.08;
+            gain.gain.value = 0.08;
 
-        oscillator.start();
+            oscillator.start();
 
-        oscillator.stop(
-            audioContext.currentTime + 0.18
-        );
+            oscillator.stop(
+                audio.currentTime + 0.12
+            );
+        }
 
-    }
+
+        if (type === "wrong") {
+
+            oscillator.frequency.value = 180;
+
+            gain.gain.value = 0.08;
+
+            oscillator.start();
+
+            oscillator.stop(
+                audio.currentTime + 0.18
+            );
+        }
 
 
-    if (type === "level") {
+        if (type === "complete") {
 
-        oscillator.frequency.value = 1000;
+            oscillator.frequency.value = 1000;
 
-        gain.gain.value = 0.08;
+            gain.gain.value = 0.08;
 
-        oscillator.start();
+            oscillator.start();
 
-        oscillator.stop(
-            audioContext.currentTime + 0.25
-        );
+            oscillator.stop(
+                audio.currentTime + 0.25
+            );
+        }
+
+    } catch (error) {
+
+        console.log("Sound unavailable.");
 
     }
 
@@ -593,9 +611,7 @@ function playSound(type) {
 function screenShake() {
 
     const game =
-        document.getElementById(
-            "routing-game"
-        );
+        document.getElementById("routing-game");
 
     if (!game) return;
 
@@ -615,49 +631,52 @@ function screenShake() {
 function updateGameUI() {
 
     if (livesElement) {
-
-        livesElement.textContent =
-            lives;
-
+        livesElement.textContent = lives;
     }
 
     if (scoreElement) {
-
-        scoreElement.textContent =
-            score;
-
+        scoreElement.textContent = score;
     }
 
     if (timerElement) {
-
-        timerElement.textContent =
-            timeLeft;
-
+        timerElement.textContent = timeLeft;
     }
 
     if (levelElement) {
 
-        const level =
-            gameQuestions[currentQuestion]
-                ?.level || 1;
+        if (gameQuestions.length > 0) {
 
-        levelElement.textContent =
-            level;
+            const current =
+                gameQuestions[currentQuestion];
+
+            levelElement.textContent =
+                current ? current.level : 1;
+
+        } else {
+
+            levelElement.textContent = 1;
+
+        }
 
     }
 
 
-    const progress =
-        (
-            currentQuestion /
-            gameQuestions.length
-        ) * 100;
-
-
     if (progressBar) {
 
-        progressBar.style.width =
-            progress + "%";
+        if (gameQuestions.length > 0) {
+
+            const progress =
+                (currentQuestion /
+                    gameQuestions.length) * 100;
+
+            progressBar.style.width =
+                progress + "%";
+
+        } else {
+
+            progressBar.style.width = "0%";
+
+        }
 
     }
 
@@ -670,9 +689,9 @@ function updateGameUI() {
 
 function loadQuestion() {
 
-    answered = false;
-
     clearInterval(timer);
+
+    answered = false;
 
     timeLeft = 30;
 
@@ -690,20 +709,19 @@ function loadQuestion() {
     }
 
 
-    if (questionElement) {
+    /* Question */
 
-        questionElement.textContent =
-            question.question;
-
-    }
+    questionElement.textContent =
+        question.question;
 
 
-    if (optionsElement) {
+    /* Clear old options ONLY
+       when loading a NEW question */
 
-        optionsElement.innerHTML = "";
+    optionsElement.innerHTML = "";
 
-    }
 
+    /* Randomize options */
 
     const shuffledOptions =
         shuffle(question.options);
@@ -712,9 +730,7 @@ function loadQuestion() {
     shuffledOptions.forEach(option => {
 
         const button =
-            document.createElement(
-                "button"
-            );
+            document.createElement("button");
 
         button.className =
             "game-option";
@@ -725,7 +741,7 @@ function loadQuestion() {
 
         button.addEventListener(
             "click",
-            () => {
+            function () {
 
                 checkAnswer(
                     button,
@@ -736,30 +752,24 @@ function loadQuestion() {
         );
 
 
-        optionsElement.appendChild(
-            button
-        );
+        optionsElement.appendChild(button);
 
     });
 
 
-    if (gameStatus) {
+    /* Status */
 
-        gameStatus.textContent =
-            "🎯 Choose the correct answer.";
+    gameStatus.textContent =
+        "🎯 Choose the correct answer.";
 
-        gameStatus.style.color =
-            "#38bdf8";
-
-    }
+    gameStatus.style.color =
+        "#38bdf8";
 
 
-    if (nextQuestion) {
+    /* Hide Next */
 
-        nextQuestion.style.display =
-            "none";
-
-    }
+    nextQuestion.style.display =
+        "none";
 
 
     updateGameUI();
@@ -772,98 +782,136 @@ function loadQuestion() {
 /* ==========================================
    CHECK ANSWER
 ========================================== */
-function checkAnswer(button, selectedAnswer) {
 
-    if (!gameStarted || answered) {
-        return;
-    }
+function checkAnswer(
+    button,
+    selectedAnswer
+) {
+
+    if (!gameStarted) return;
+
+    if (answered) return;
+
 
     answered = true;
 
     clearInterval(timer);
 
+
     const question =
         gameQuestions[currentQuestion];
 
+
     const buttons =
-        document.querySelectorAll(".game-option");
+        document.querySelectorAll(
+            ".game-option"
+        );
 
 
-    /* ==========================
-       CORRECT ANSWER
-    ========================== */
+    /* ======================================
+       CORRECT
+    ====================================== */
 
-    if (selectedAnswer === question.answer) {
+    if (
+        selectedAnswer ===
+        question.answer
+    ) {
 
-        button.classList.add("correct");
+        button.classList.add(
+            "correct"
+        );
+
 
         combo++;
 
+
         let points = 100;
 
+
         if (combo >= 2) {
-            points += combo * 25;
+
+            points +=
+                combo * 25;
+
         }
 
+
         score += points;
+
 
         playSound("correct");
 
 
-        if (gameStatus) {
+        gameStatus.textContent =
+            `✅ Correct! +${points} points 🔥 Combo x${combo}`;
 
-            gameStatus.textContent =
-                `✅ Correct! +${points} points 🔥 Combo x${combo}`;
-
-            gameStatus.style.color =
-                "#22c55e";
-        }
+        gameStatus.style.color =
+            "#22c55e";
 
 
         buttons.forEach(btn => {
+
             btn.disabled = true;
+
         });
 
 
         updateGameUI();
 
 
+        /* Last question */
+
         if (
-            currentQuestion >=
+            currentQuestion ===
             gameQuestions.length - 1
         ) {
 
+            nextQuestion.style.display =
+                "none";
+
+
             setTimeout(() => {
+
                 finishGame();
+
             }, 700);
 
-        } else {
+        }
+
+        /* More questions */
+
+        else {
 
             nextQuestion.style.display =
                 "inline-block";
+
         }
 
     }
 
 
-    /* ==========================
-       WRONG ANSWER
-    ========================== */
+    /* ======================================
+       WRONG
+    ====================================== */
 
     else {
 
-        button.classList.add("wrong");
+        button.classList.add(
+            "wrong"
+        );
+
 
         lives--;
 
         combo = 0;
+
 
         playSound("wrong");
 
         screenShake();
 
 
-        /* Correct answer দেখাবে */
+        /* Show correct answer */
 
         buttons.forEach(btn => {
 
@@ -872,7 +920,9 @@ function checkAnswer(button, selectedAnswer) {
                 question.answer
             ) {
 
-                btn.classList.add("correct");
+                btn.classList.add(
+                    "correct"
+                );
 
             }
 
@@ -881,52 +931,47 @@ function checkAnswer(button, selectedAnswer) {
         });
 
 
-        /* Status */
+        /* IMPORTANT:
+           Question stays visible.
+           Options stay visible.
+           Nothing is removed here. */
 
-        if (gameStatus) {
 
-            gameStatus.textContent =
-                `❌ Wrong! Correct Answer: ${question.answer}`;
+        gameStatus.textContent =
+            `❌ Wrong! Correct Answer: ${question.answer}`;
 
-            gameStatus.style.color =
-                "#ef4444";
-        }
+        gameStatus.style.color =
+            "#ef4444";
 
 
         updateGameUI();
 
 
-        /*
-        IMPORTANT:
-        Game এখানেই শেষ হবে না।
-        Question এবং options screen-এ থাকবে।
-        */
-
+        /* Lives finished */
 
         if (lives <= 0) {
 
             gameStatus.textContent =
-                `💀 No Lives Left! Correct Answer: ${question.answer}`;
+                `💀 Game Over! Correct Answer: ${question.answer}`;
 
             gameStatus.style.color =
                 "#ef4444";
 
-            /*
-            Next Question না দেখিয়ে
-            Restart option থাকবে।
-            */
 
             nextQuestion.style.display =
                 "none";
 
-        }
-
-        else {
 
             /*
-            Life থাকলে Next Question
-            দেখাবে
+              Question এবং options
+              এখানেই থাকবে।
             */
+
+        }
+
+        /* Still have lives */
+
+        else {
 
             nextQuestion.style.display =
                 "inline-block";
@@ -936,6 +981,7 @@ function checkAnswer(button, selectedAnswer) {
     }
 
 }
+
 
 /* ==========================================
    TIMER
@@ -948,23 +994,29 @@ function startTimer() {
 
     timer = setInterval(() => {
 
+        if (!gameStarted) {
+
+            clearInterval(timer);
+
+            return;
+
+        }
+
+
         timeLeft--;
+
 
         updateGameUI();
 
 
-        if (timeLeft <= 5) {
+        if (timerElement) {
 
-            if (timerElement) {
+            if (timeLeft <= 5) {
 
                 timerElement.style.color =
                     "#ef4444";
 
-            }
-
-        } else {
-
-            if (timerElement) {
+            } else {
 
                 timerElement.style.color =
                     "#38bdf8";
@@ -995,11 +1047,13 @@ function timeOut() {
 
     if (answered) return;
 
+
     answered = true;
 
     lives--;
 
     combo = 0;
+
 
     playSound("wrong");
 
@@ -1034,15 +1088,11 @@ function timeOut() {
     });
 
 
-    if (gameStatus) {
+    gameStatus.textContent =
+        `⏰ Time's Up! Correct Answer: ${question.answer}`;
 
-        gameStatus.textContent =
-            `⏰ Time's Up! Answer: ${question.answer}`;
-
-        gameStatus.style.color =
-            "#ef4444";
-
-    }
+    gameStatus.style.color =
+        "#ef4444";
 
 
     updateGameUI();
@@ -1050,10 +1100,11 @@ function timeOut() {
 
     if (lives <= 0) {
 
-        setTimeout(
-            endGame,
-            800
-        );
+        gameStatus.textContent =
+            `💀 Game Over! Correct Answer: ${question.answer}`;
+
+        nextQuestion.style.display =
+            "none";
 
     } else {
 
@@ -1073,9 +1124,25 @@ if (nextQuestion) {
 
     nextQuestion.addEventListener(
         "click",
-        () => {
+        function () {
+
+            if (!gameStarted) return;
+
 
             currentQuestion++;
+
+
+            if (
+                currentQuestion >=
+                gameQuestions.length
+            ) {
+
+                finishGame();
+
+                return;
+
+            }
+
 
             loadQuestion();
 
@@ -1093,9 +1160,14 @@ if (startGame) {
 
     startGame.addEventListener(
         "click",
-        () => {
+        function () {
+
+            clearInterval(timer);
+
 
             gameStarted = true;
+
+            currentQuestion = 0;
 
             score = 0;
 
@@ -1103,10 +1175,12 @@ if (startGame) {
 
             combo = 0;
 
-            currentQuestion = 0;
+            timeLeft = 30;
 
 
-            /* Random Questions */
+            /*
+              সব প্রশ্ন random order
+            */
 
             gameQuestions =
                 shuffle(questions);
@@ -1116,12 +1190,12 @@ if (startGame) {
                 "none";
 
 
-            if (gameResult) {
+            resetGame.style.display =
+                "inline-block";
 
-                gameResult.style.display =
-                    "none";
 
-            }
+            gameResult.style.display =
+                "none";
 
 
             loadQuestion();
@@ -1142,169 +1216,65 @@ function finishGame() {
 
     gameStarted = false;
 
-    playSound("level");
 
+    playSound("complete");
 
-    if (optionsElement) {
 
-        optionsElement.innerHTML =
-            "";
+    optionsElement.innerHTML = "";
 
-    }
 
+    questionElement.textContent =
+        "🏆 Network Challenge Complete!";
 
-    if (questionElement) {
 
-        questionElement.textContent =
-            "🏆 Network Challenge Complete!";
+    gameStatus.textContent =
+        "🔥 Excellent Networking Skills!";
 
-    }
+    gameStatus.style.color =
+        "#22c55e";
 
 
-    if (gameStatus) {
+    nextQuestion.style.display =
+        "none";
 
-        gameStatus.textContent =
-            "🔥 Excellent Networking Skills!";
 
-        gameStatus.style.color =
-            "#22c55e";
+    progressBar.style.width =
+        "100%";
 
-    }
 
+    gameResult.style.display =
+        "block";
 
-    if (progressBar) {
 
-        progressBar.style.width =
-            "100%";
+    finalScore.textContent =
+        score;
 
-    }
 
-
-    if (nextQuestion) {
-
-        nextQuestion.style.display =
-            "none";
-
-    }
-
-
-    if (gameResult) {
-
-        gameResult.style.display =
-            "block";
-
-    }
-
-
-    if (finalScore) {
-
-        finalScore.textContent =
-            score;
-
-    }
-
-
-    if (finalMessage) {
-
-        if (score >= 1500) {
-
-            finalMessage.textContent =
-                "🏆 Legendary Network Engineer!";
-
-        }
-
-        else if (score >= 1000) {
-
-            finalMessage.textContent =
-                "🔥 Excellent! Your networking knowledge is strong.";
-
-        }
-
-        else if (score >= 600) {
-
-            finalMessage.textContent =
-                "👍 Great job! Keep practicing.";
-
-        }
-
-        else {
-
-            finalMessage.textContent =
-                "💪 Good attempt! Try again for a higher score.";
-
-        }
-
-    }
-
-}
-
-
-/* ==========================================
-   GAME OVER
-========================================== */
-
-function endGame() {
-
-    clearInterval(timer);
-
-    gameStarted = false;
-
-
-    if (gameStatus) {
-
-        gameStatus.textContent =
-            "💀 Game Over!";
-
-        gameStatus.style.color =
-            "#ef4444";
-
-    }
-
-
-    if (optionsElement) {
-
-        optionsElement.innerHTML =
-            "";
-
-    }
-
-
-    if (questionElement) {
-
-        questionElement.textContent =
-            "You ran out of lives.";
-
-    }
-
-
-    if (nextQuestion) {
-
-        nextQuestion.style.display =
-            "none";
-
-    }
-
-
-    if (gameResult) {
-
-        gameResult.style.display =
-            "block";
-
-    }
-
-
-    if (finalScore) {
-
-        finalScore.textContent =
-            score;
-
-    }
-
-
-    if (finalMessage) {
+    if (score >= 1500) {
 
         finalMessage.textContent =
-            "💪 Don't give up! Try again and beat your score.";
+            "🏆 Legendary Network Engineer!";
+
+    }
+
+    else if (score >= 1000) {
+
+        finalMessage.textContent =
+            "🔥 Excellent! Your networking knowledge is strong.";
+
+    }
+
+    else if (score >= 600) {
+
+        finalMessage.textContent =
+            "👍 Great job! Keep practicing.";
+
+    }
+
+    else {
+
+        finalMessage.textContent =
+            "💪 Good attempt! Try again and beat your score.";
 
     }
 
@@ -1318,6 +1288,7 @@ function endGame() {
 function resetGameFunction() {
 
     clearInterval(timer);
+
 
     currentQuestion = 0;
 
@@ -1397,6 +1368,9 @@ function resetGameFunction() {
 
     if (timerElement) {
 
+        timerElement.textContent =
+            "30";
+
         timerElement.style.color =
             "#38bdf8";
 
@@ -1430,19 +1404,23 @@ if (playAgain) {
 
     playAgain.addEventListener(
         "click",
-        resetGameFunction
+        function () {
+
+            resetGameFunction();
+
+        }
     );
 
 }
 
 
 /* ==========================================
-   START WEBSITE
+   WEBSITE LOAD
 ========================================== */
 
 window.addEventListener(
     "load",
-    () => {
+    function () {
 
         typing();
 
