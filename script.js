@@ -1742,7 +1742,7 @@ if (navbar && menuToggle) {
 
 }
 /* ==========================================
-   BOOK BLOG
+   BOOK BLOG - FIXED
 ========================================== */
 
 const blogBook = document.getElementById("blogBook");
@@ -1751,11 +1751,16 @@ const nextPage = document.getElementById("nextPage");
 const bookPageNumber = document.getElementById("bookPageNumber");
 
 let currentBookPage = 1;
+
 const totalBookPages = 6;
+
 
 function updateBook() {
 
     if (!blogBook) return;
+
+
+    // পুরোনো page class remove
 
     blogBook.classList.remove(
         "page-2",
@@ -1765,6 +1770,9 @@ function updateBook() {
         "page-6"
     );
 
+
+    // নতুন page class
+
     if (currentBookPage > 1) {
 
         blogBook.classList.add(
@@ -1773,12 +1781,18 @@ function updateBook() {
 
     }
 
+
+    // Page number
+
     if (bookPageNumber) {
 
         bookPageNumber.textContent =
             currentBookPage + " / " + totalBookPages;
 
     }
+
+
+    // Previous button
 
     if (prevPage) {
 
@@ -1787,12 +1801,16 @@ function updateBook() {
 
     }
 
+
+    // Next button
+
     if (nextPage) {
 
         nextPage.disabled =
             currentBookPage === totalBookPages;
 
     }
+
 }
 
 
@@ -1800,7 +1818,7 @@ function updateBook() {
 
 if (nextPage) {
 
-    nextPage.addEventListener("click", () => {
+    nextPage.addEventListener("click", function () {
 
         if (currentBookPage < totalBookPages) {
 
@@ -1819,7 +1837,7 @@ if (nextPage) {
 
 if (prevPage) {
 
-    prevPage.addEventListener("click", () => {
+    prevPage.addEventListener("click", function () {
 
         if (currentBookPage > 1) {
 
@@ -1833,5 +1851,7 @@ if (prevPage) {
 
 }
 
+
+/* START */
 
 updateBook();
