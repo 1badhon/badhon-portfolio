@@ -81,9 +81,11 @@ if (typeof particlesJS !== "undefined") {
    TYPING EFFECT
 ========================================== */
 
-const typingElement = document.getElementById("typing");
+const typingElement =
+    document.getElementById("typing");
 
-const typingText = "Aspiring Network Engineer";
+const typingText =
+    "Aspiring Network Engineer";
 
 let typingIndex = 0;
 
@@ -107,16 +109,21 @@ function typing() {
    BACK TO TOP
 ========================================== */
 
-const topBtn = document.getElementById("topBtn");
+const topBtn =
+    document.getElementById("topBtn");
 
 window.addEventListener("scroll", () => {
 
     if (!topBtn) return;
 
     if (window.scrollY > 300) {
+
         topBtn.style.display = "block";
+
     } else {
+
         topBtn.style.display = "none";
+
     }
 
 });
@@ -141,40 +148,53 @@ const powerSwitch =
 
 if (powerSwitch) {
 
-    powerSwitch.addEventListener("click", () => {
+    powerSwitch.addEventListener(
+        "click",
+        () => {
 
-        document.body.classList.toggle("lights-off");
+            document.body.classList.toggle(
+                "lights-off"
+            );
 
-        const particles =
-            document.getElementById("particles-js");
+            const particles =
+                document.getElementById(
+                    "particles-js"
+                );
 
-        if (
-            document.body.classList.contains("lights-off")
-        ) {
+            if (
+                document.body.classList.contains(
+                    "lights-off"
+                )
+            ) {
 
-            if (particles) {
-                particles.style.display = "none";
-            }
+                if (particles) {
+                    particles.style.display =
+                        "none";
+                }
 
-        } else {
+            } else {
 
-            if (particles) {
-                particles.style.display = "block";
+                if (particles) {
+                    particles.style.display =
+                        "block";
+                }
+
             }
 
         }
-
-    });
+    );
 
 }
 
 
 /* ==========================================
-   NETWORK TROUBLESHOOTER
+   NETWORK TROUBLESHOOTER GAME
 ========================================== */
 
 
-/* ---------- HTML Elements ---------- */
+/* ==========================================
+   HTML ELEMENTS
+========================================== */
 
 const livesElement =
     document.getElementById("lives");
@@ -189,37 +209,59 @@ const timerElement =
     document.getElementById("gameTimer");
 
 const progressBar =
-    document.getElementById("gameProgressBar");
+    document.getElementById(
+        "gameProgressBar"
+    );
 
 const questionElement =
-    document.getElementById("gameQuestion");
+    document.getElementById(
+        "gameQuestion"
+    );
 
 const optionsElement =
-    document.getElementById("gameOptions");
+    document.getElementById(
+        "gameOptions"
+    );
 
 const gameStatus =
-    document.getElementById("gameStatus");
+    document.getElementById(
+        "gameStatus"
+    );
 
 const startGame =
-    document.getElementById("startGame");
+    document.getElementById(
+        "startGame"
+    );
 
 const nextQuestion =
-    document.getElementById("nextQuestion");
+    document.getElementById(
+        "nextQuestion"
+    );
 
 const resetGame =
-    document.getElementById("resetGame");
+    document.getElementById(
+        "resetGame"
+    );
 
 const gameResult =
-    document.getElementById("gameResult");
+    document.getElementById(
+        "gameResult"
+    );
 
 const finalScore =
-    document.getElementById("finalScore");
+    document.getElementById(
+        "finalScore"
+    );
 
 const finalMessage =
-    document.getElementById("finalMessage");
+    document.getElementById(
+        "finalMessage"
+    );
 
 const playAgain =
-    document.getElementById("playAgain");
+    document.getElementById(
+        "playAgain"
+    );
 
 
 /* ==========================================
@@ -520,6 +562,7 @@ function shuffle(array) {
             copy[j],
             copy[i]
         ];
+
     }
 
     return copy;
@@ -556,9 +599,11 @@ function playSound(type) {
 
         if (type === "correct") {
 
-            oscillator.frequency.value = 700;
+            oscillator.frequency.value =
+                700;
 
-            gain.gain.value = 0.08;
+            gain.gain.value =
+                0.08;
 
             oscillator.start();
 
@@ -570,9 +615,11 @@ function playSound(type) {
 
         if (type === "wrong") {
 
-            oscillator.frequency.value = 180;
+            oscillator.frequency.value =
+                180;
 
-            gain.gain.value = 0.08;
+            gain.gain.value =
+                0.08;
 
             oscillator.start();
 
@@ -584,9 +631,11 @@ function playSound(type) {
 
         if (type === "complete") {
 
-            oscillator.frequency.value = 1000;
+            oscillator.frequency.value =
+                1000;
 
-            gain.gain.value = 0.08;
+            gain.gain.value =
+                0.08;
 
             oscillator.start();
 
@@ -597,7 +646,9 @@ function playSound(type) {
 
     } catch (error) {
 
-        console.log("Sound unavailable.");
+        console.log(
+            "Sound unavailable."
+        );
 
     }
 
@@ -611,50 +662,71 @@ function playSound(type) {
 function screenShake() {
 
     const game =
-        document.getElementById("routing-game");
+        document.getElementById(
+            "routing-game"
+        );
 
     if (!game) return;
 
-    game.classList.remove("game-shake");
+    game.classList.remove(
+        "game-shake"
+    );
 
     void game.offsetWidth;
 
-    game.classList.add("game-shake");
+    game.classList.add(
+        "game-shake"
+    );
 
 }
 
 
 /* ==========================================
-   UPDATE UI
+   UPDATE GAME UI
 ========================================== */
 
 function updateGameUI() {
 
     if (livesElement) {
-        livesElement.textContent = lives;
+
+        livesElement.textContent =
+            lives;
+
     }
 
     if (scoreElement) {
-        scoreElement.textContent = score;
+
+        scoreElement.textContent =
+            score;
+
     }
 
     if (timerElement) {
-        timerElement.textContent = timeLeft;
+
+        timerElement.textContent =
+            timeLeft;
+
     }
+
 
     if (levelElement) {
 
         if (gameQuestions.length > 0) {
 
             const current =
-                gameQuestions[currentQuestion];
+                gameQuestions[
+                    currentQuestion
+                ];
 
             levelElement.textContent =
-                current ? current.level : 1;
+                current
+                    ? current.level
+                    : 1;
 
         } else {
 
-            levelElement.textContent = 1;
+            levelElement.textContent =
+                1;
 
         }
 
@@ -666,15 +738,18 @@ function updateGameUI() {
         if (gameQuestions.length > 0) {
 
             const progress =
-                (currentQuestion /
-                    gameQuestions.length) * 100;
+                (
+                    currentQuestion /
+                    gameQuestions.length
+                ) * 100;
 
             progressBar.style.width =
                 progress + "%";
 
         } else {
 
-            progressBar.style.width = "0%";
+            progressBar.style.width =
+                "0%";
 
         }
 
@@ -697,7 +772,9 @@ function loadQuestion() {
 
 
     const question =
-        gameQuestions[currentQuestion];
+        gameQuestions[
+            currentQuestion
+        ];
 
 
     if (!question) {
@@ -709,55 +786,72 @@ function loadQuestion() {
     }
 
 
-    /* Question */
+    /* -------------------------------
+       Show Question
+    ------------------------------- */
 
     questionElement.textContent =
         question.question;
 
 
-    /* Clear old options ONLY
-       when loading a NEW question */
+    /* -------------------------------
+       Clear ONLY when loading
+       a NEW question
+    ------------------------------- */
 
-    optionsElement.innerHTML = "";
+    optionsElement.innerHTML =
+        "";
 
 
-    /* Randomize options */
+    /* -------------------------------
+       Random Options
+    ------------------------------- */
 
     const shuffledOptions =
-        shuffle(question.options);
-
-
-    shuffledOptions.forEach(option => {
-
-        const button =
-            document.createElement("button");
-
-        button.className =
-            "game-option";
-
-        button.textContent =
-            option;
-
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                checkAnswer(
-                    button,
-                    option
-                );
-
-            }
+        shuffle(
+            question.options
         );
 
 
-        optionsElement.appendChild(button);
+    shuffledOptions.forEach(
+        option => {
 
-    });
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "game-option";
+
+            button.textContent =
+                option;
 
 
-    /* Status */
+            button.addEventListener(
+                "click",
+                () => {
+
+                    checkAnswer(
+                        button,
+                        option
+                    );
+
+                }
+            );
+
+
+            optionsElement.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    /* -------------------------------
+       Status
+    ------------------------------- */
 
     gameStatus.textContent =
         "🎯 Choose the correct answer.";
@@ -766,10 +860,16 @@ function loadQuestion() {
         "#38bdf8";
 
 
-    /* Hide Next */
+    /* -------------------------------
+       Hide Next
+    ------------------------------- */
 
-    nextQuestion.style.display =
-        "none";
+    if (nextQuestion) {
+
+        nextQuestion.style.display =
+            "none";
+
+    }
 
 
     updateGameUI();
@@ -788,6 +888,8 @@ function checkAnswer(
     selectedAnswer
 ) {
 
+    /* Prevent double click */
+
     if (!gameStarted) return;
 
     if (answered) return;
@@ -799,17 +901,19 @@ function checkAnswer(
 
 
     const question =
-        gameQuestions[currentQuestion];
+        gameQuestions[
+            currentQuestion
+        ];
 
 
     const buttons =
-        document.querySelectorAll(
+        optionsElement.querySelectorAll(
             ".game-option"
         );
 
 
     /* ======================================
-       CORRECT
+       CORRECT ANSWER
     ====================================== */
 
     if (
@@ -839,7 +943,9 @@ function checkAnswer(
         score += points;
 
 
-        playSound("correct");
+        playSound(
+            "correct"
+        );
 
 
         gameStatus.textContent =
@@ -849,11 +955,16 @@ function checkAnswer(
             "#22c55e";
 
 
-        buttons.forEach(btn => {
+        /* Disable buttons */
 
-            btn.disabled = true;
+        buttons.forEach(
+            btn => {
 
-        });
+                btn.disabled =
+                    true;
+
+            }
+        );
 
 
         updateGameUI();
@@ -866,21 +977,19 @@ function checkAnswer(
             gameQuestions.length - 1
         ) {
 
+            /*
+              এখানে সঙ্গে সঙ্গে
+              question remove করা হবে না।
+            */
+
+            gameStatus.textContent =
+                "🎉 Final Question Complete!";
+
             nextQuestion.style.display =
-                "none";
+                "inline-block";
 
 
-            setTimeout(() => {
-
-                finishGame();
-
-            }, 700);
-
-        }
-
-        /* More questions */
-
-        else {
+        } else {
 
             nextQuestion.style.display =
                 "inline-block";
@@ -891,88 +1000,125 @@ function checkAnswer(
 
 
     /* ======================================
-       WRONG
+       WRONG ANSWER
     ====================================== */
-else {
 
-    // Wrong answer
-    button.classList.add("wrong");
+    else {
 
-    lives--;
-
-    combo = 0;
-
-    playSound("wrong");
-
-    screenShake();
+        button.classList.add(
+            "wrong"
+        );
 
 
-    // Current question এবং options
-    // screen-এ থাকবে
-    buttons.forEach(btn => {
+        lives--;
 
-        if (
-            btn.textContent.trim() ===
-            question.answer.trim()
-        ) {
+        combo = 0;
 
-            btn.classList.add("correct");
+
+        playSound(
+            "wrong"
+        );
+
+        screenShake();
+
+
+        /*
+          IMPORTANT:
+
+          এখানে কোনো HTML clear করা হবে না।
+
+          Question থাকবে।
+          Options থাকবে।
+        */
+
+
+        buttons.forEach(
+            btn => {
+
+                /*
+                  Correct answer সবুজ
+                */
+
+                if (
+                    btn.textContent.trim() ===
+                    question.answer.trim()
+                ) {
+
+                    btn.classList.add(
+                        "correct"
+                    );
+
+                }
+
+
+                /*
+                  সব options disable
+                */
+
+                btn.disabled =
+                    true;
+
+            }
+        );
+
+
+        updateGameUI();
+
+
+        /* --------------------------------
+           Lives আছে
+        -------------------------------- */
+
+        if (lives > 0) {
+
+            gameStatus.textContent =
+                `❌ Wrong Answer! Correct Answer: ${question.answer}`;
+
+            gameStatus.style.color =
+                "#ef4444";
+
+
+            /*
+              Next Question এখন visible
+            */
+
+            nextQuestion.style.display =
+                "inline-block";
 
         }
 
-        btn.disabled = true;
 
-    });
+        /* --------------------------------
+           Lives শেষ
+        -------------------------------- */
 
+        else {
 
-    // Status message
-    if (lives > 0) {
+            gameStatus.textContent =
+                `💀 Game Over! Correct Answer: ${question.answer}`;
 
-        gameStatus.textContent =
-            `❌ Wrong Answer! Correct Answer: ${question.answer}`;
-
-    } else {
-
-        gameStatus.textContent =
-            `💀 No Lives Left! Correct Answer: ${question.answer}`;
-
-    }
-
-    gameStatus.style.color =
-        "#ef4444";
+            gameStatus.style.color =
+                "#ef4444";
 
 
-    updateGameUI();
+            /*
+              IMPORTANT:
+
+              Question/options থাকবে।
+              শুধু Next Question hide হবে।
+            */
+
+            nextQuestion.style.display =
+                "none";
 
 
-    /*
-    IMPORTANT:
+            /*
+              Result screen এখনই
+              show করা হবে না।
+            */
 
-    এখানে কোনোভাবেই এগুলো করা যাবে না:
+        }
 
-    optionsElement.innerHTML = "";
-    questionElement.innerHTML = "";
-    questionElement.textContent = "";
-    gameResult.style.display = "block";
-    finishGame();
-
-    কারণ এগুলো করলে current question disappear করবে।
-    */
-
-
-    // Life থাকলে Next Question দেখাবে
-    if (lives > 0) {
-
-        nextQuestion.style.display =
-            "inline-block";
-
-    } else {
-
-        // সব life শেষ হলে Next বন্ধ থাকবে
-        nextQuestion.style.display =
-            "none";
-
-        // কিন্তু বর্তমান question/options থাকবে
     }
 
 }
@@ -987,49 +1133,70 @@ function startTimer() {
     clearInterval(timer);
 
 
-    timer = setInterval(() => {
+    timer =
+        setInterval(
+            () => {
 
-        if (!gameStarted) {
+                if (!gameStarted) {
 
-            clearInterval(timer);
+                    clearInterval(
+                        timer
+                    );
 
-            return;
+                    return;
 
-        }
-
-
-        timeLeft--;
-
-
-        updateGameUI();
+                }
 
 
-        if (timerElement) {
+                if (answered) {
 
-            if (timeLeft <= 5) {
+                    clearInterval(
+                        timer
+                    );
 
-                timerElement.style.color =
-                    "#ef4444";
+                    return;
 
-            } else {
-
-                timerElement.style.color =
-                    "#38bdf8";
-
-            }
-
-        }
+                }
 
 
-        if (timeLeft <= 0) {
+                timeLeft--;
 
-            clearInterval(timer);
 
-            timeOut();
+                updateGameUI();
 
-        }
 
-    }, 1000);
+                if (timerElement) {
+
+                    if (
+                        timeLeft <= 5
+                    ) {
+
+                        timerElement.style.color =
+                            "#ef4444";
+
+                    } else {
+
+                        timerElement.style.color =
+                            "#38bdf8";
+
+                    }
+
+                }
+
+
+                if (timeLeft <= 0) {
+
+                    clearInterval(
+                        timer
+                    );
+
+                    timeOut();
+
+                }
+
+            },
+            1000
+        );
 
 }
 
@@ -1045,66 +1212,87 @@ function timeOut() {
 
     answered = true;
 
+    clearInterval(timer);
+
+
     lives--;
 
     combo = 0;
 
 
-    playSound("wrong");
+    playSound(
+        "wrong"
+    );
 
     screenShake();
 
 
     const question =
-        gameQuestions[currentQuestion];
+        gameQuestions[
+            currentQuestion
+        ];
 
 
     const buttons =
-        document.querySelectorAll(
+        optionsElement.querySelectorAll(
             ".game-option"
         );
 
 
-    buttons.forEach(button => {
+    /*
+      Correct answer show
+    */
 
-        if (
-            button.textContent ===
-            question.answer
-        ) {
+    buttons.forEach(
+        button => {
 
-            button.classList.add(
-                "correct"
-            );
+            if (
+                button.textContent.trim() ===
+                question.answer.trim()
+            ) {
+
+                button.classList.add(
+                    "correct"
+                );
+
+            }
+
+            button.disabled =
+                true;
 
         }
-
-        button.disabled = true;
-
-    });
-
-
-    gameStatus.textContent =
-        `⏰ Time's Up! Correct Answer: ${question.answer}`;
-
-    gameStatus.style.color =
-        "#ef4444";
+    );
 
 
     updateGameUI();
 
 
-    if (lives <= 0) {
+    if (lives > 0) {
+
+        gameStatus.textContent =
+            `⏰ Time's Up! Correct Answer: ${question.answer}`;
+
+        gameStatus.style.color =
+            "#ef4444";
+
+
+        nextQuestion.style.display =
+            "inline-block";
+
+    }
+
+
+    else {
 
         gameStatus.textContent =
             `💀 Game Over! Correct Answer: ${question.answer}`;
 
+        gameStatus.style.color =
+            "#ef4444";
+
+
         nextQuestion.style.display =
             "none";
-
-    } else {
-
-        nextQuestion.style.display =
-            "inline-block";
 
     }
 
@@ -1119,13 +1307,29 @@ if (nextQuestion) {
 
     nextQuestion.addEventListener(
         "click",
-        function () {
+        () => {
 
             if (!gameStarted) return;
 
 
+            /*
+              যদি lives শেষ হয়ে যায়
+              তাহলে next question যাবে না।
+            */
+
+            if (lives <= 0) {
+
+                return;
+
+            }
+
+
             currentQuestion++;
 
+
+            /*
+              সব প্রশ্ন শেষ
+            */
 
             if (
                 currentQuestion >=
@@ -1138,6 +1342,10 @@ if (nextQuestion) {
 
             }
 
+
+            /*
+              নতুন question
+            */
 
             loadQuestion();
 
@@ -1155,42 +1363,61 @@ if (startGame) {
 
     startGame.addEventListener(
         "click",
-        function () {
+        () => {
 
             clearInterval(timer);
 
 
-            gameStarted = true;
+            gameStarted =
+                true;
 
-            currentQuestion = 0;
+            currentQuestion =
+                0;
 
-            score = 0;
+            score =
+                0;
 
-            lives = 3;
+            lives =
+                3;
 
-            combo = 0;
+            combo =
+                0;
 
-            timeLeft = 30;
+            timeLeft =
+                30;
+
+            answered =
+                false;
 
 
             /*
-              সব প্রশ্ন random order
+              Questions random
             */
 
             gameQuestions =
-                shuffle(questions);
+                shuffle(
+                    questions
+                );
 
 
             startGame.style.display =
                 "none";
 
 
-            resetGame.style.display =
-                "inline-block";
+            if (resetGame) {
+
+                resetGame.style.display =
+                    "inline-block";
+
+            }
 
 
-            gameResult.style.display =
-                "none";
+            if (gameResult) {
+
+                gameResult.style.display =
+                    "none";
+
+            }
 
 
             loadQuestion();
@@ -1209,13 +1436,22 @@ function finishGame() {
 
     clearInterval(timer);
 
-    gameStarted = false;
+    gameStarted =
+        false;
 
 
-    playSound("complete");
+    playSound(
+        "complete"
+    );
 
 
-    optionsElement.innerHTML = "";
+    /*
+      ONLY HERE
+      question/options clear হবে।
+    */
+
+    optionsElement.innerHTML =
+        "";
 
 
     questionElement.textContent =
@@ -1233,43 +1469,59 @@ function finishGame() {
         "none";
 
 
-    progressBar.style.width =
-        "100%";
+    if (progressBar) {
 
-
-    gameResult.style.display =
-        "block";
-
-
-    finalScore.textContent =
-        score;
-
-
-    if (score >= 1500) {
-
-        finalMessage.textContent =
-            "🏆 Legendary Network Engineer!";
+        progressBar.style.width =
+            "100%";
 
     }
 
-    else if (score >= 1000) {
 
-        finalMessage.textContent =
-            "🔥 Excellent! Your networking knowledge is strong.";
+    if (gameResult) {
 
-    }
-
-    else if (score >= 600) {
-
-        finalMessage.textContent =
-            "👍 Great job! Keep practicing.";
+        gameResult.style.display =
+            "block";
 
     }
 
-    else {
 
-        finalMessage.textContent =
-            "💪 Good attempt! Try again and beat your score.";
+    if (finalScore) {
+
+        finalScore.textContent =
+            score;
+
+    }
+
+
+    if (finalMessage) {
+
+        if (score >= 1500) {
+
+            finalMessage.textContent =
+                "🏆 Legendary Network Engineer!";
+
+        }
+
+        else if (score >= 1000) {
+
+            finalMessage.textContent =
+                "🔥 Excellent! Your networking knowledge is strong.";
+
+        }
+
+        else if (score >= 600) {
+
+            finalMessage.textContent =
+                "👍 Great job! Keep practicing.";
+
+        }
+
+        else {
+
+            finalMessage.textContent =
+                "💪 Good attempt! Try again and beat your score.";
+
+        }
 
     }
 
@@ -1285,21 +1537,29 @@ function resetGameFunction() {
     clearInterval(timer);
 
 
-    currentQuestion = 0;
+    currentQuestion =
+        0;
 
-    score = 0;
+    score =
+        0;
 
-    lives = 3;
+    lives =
+        3;
 
-    combo = 0;
+    combo =
+        0;
 
-    timeLeft = 30;
+    timeLeft =
+        30;
 
-    gameStarted = false;
+    gameStarted =
+        false;
 
-    answered = false;
+    answered =
+        false;
 
-    gameQuestions = [];
+    gameQuestions =
+        [];
 
 
     if (gameResult) {
@@ -1314,6 +1574,14 @@ function resetGameFunction() {
 
         startGame.style.display =
             "inline-block";
+
+    }
+
+
+    if (resetGame) {
+
+        resetGame.style.display =
+            "none";
 
     }
 
@@ -1399,7 +1667,7 @@ if (playAgain) {
 
     playAgain.addEventListener(
         "click",
-        function () {
+        () => {
 
             resetGameFunction();
 
@@ -1415,7 +1683,7 @@ if (playAgain) {
 
 window.addEventListener(
     "load",
-    function () {
+    () => {
 
         typing();
 
