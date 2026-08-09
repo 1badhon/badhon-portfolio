@@ -1879,16 +1879,15 @@ nav.menu-open .menu-toggle span:nth-child(3) {
 /* OTHER PAGES */
 
 /* ==========================================
-   BOOK PAGE SYSTEM
+   BOOK BLOG - FIXED PAGE SYSTEM
 ========================================== */
 
 .book {
     position: relative;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    transform-style: preserve-3d;
+    min-height: 500px;
+    perspective: 2000px;
 }
 
 
@@ -1896,64 +1895,197 @@ nav.menu-open .menu-toggle span:nth-child(3) {
 
 .book-page {
     position: absolute;
+
     top: 0;
+    right: 2%;
+
     width: 48%;
     height: 100%;
 
-    background:
-        linear-gradient(
-            90deg,
-            rgba(15, 23, 42, 0.98),
-            rgba(30, 41, 59, 0.98)
-        );
+    box-sizing: border-box;
 
-    border: 1px solid rgba(56, 189, 248, 0.35);
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+
+    border: 1px solid rgba(56,189,248,0.4);
+
+    border-radius: 4px 12px 12px 4px;
+
+    padding: 0;
 
     box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.45);
-
-    transition:
-        transform 0.8s ease,
-        opacity 0.5s ease;
-
-    transform-style: preserve-3d;
-
-    backface-visibility: hidden;
-}
-
-
-/* Page 1 */
-
-.left-page {
-    left: 2%;
-    opacity: 1;
-    visibility: visible;
-}
-
-
-/* Page 2 */
-
-.right-page {
-    right: 2%;
-    opacity: 1;
-    visibility: visible;
-}
-
-
-/* Page 3-6 শুরুতে hidden */
-
-.page-3,
-.page-4,
-.page-5,
-.page-6 {
-    right: 2%;
+        0 15px 40px rgba(0,0,0,0.45);
 
     opacity: 0;
     visibility: hidden;
 
     pointer-events: none;
+
+    transform: none;
+
+    z-index: 1;
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.8s ease;
 }
 
+
+/* LEFT PAGE */
+
+.book .left-page {
+    left: 2%;
+    right: auto;
+
+    opacity: 1;
+    visibility: visible;
+
+    pointer-events: auto;
+
+    z-index: 2;
+
+    border-radius: 12px 4px 4px 12px;
+}
+
+
+/* RIGHT PAGE */
+
+.book .right-page {
+    opacity: 1;
+    visibility: visible;
+
+    pointer-events: auto;
+
+    z-index: 3;
+}
+
+
+/* PAGE 3 */
+
+.book.page-2 .right-page {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.book.page-2 .page-3 {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 4;
+}
+
+
+/* PAGE 4 */
+
+.book.page-3 .page-3 {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
+}
+
+.book.page-3 .page-4 {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 5;
+}
+
+
+/* PAGE 5 */
+
+.book.page-4 .page-4 {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
+}
+
+.book.page-4 .page-5 {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 6;
+}
+
+
+/* PAGE 6 */
+
+.book.page-5 .page-5 {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
+}
+
+.book.page-5 .page-6 {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 7;
+}
+
+
+/* শেষ page */
+
+.book.page-6 .page-6 {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 8;
+}
+
+
+/* CONTENT */
+
+.page-content {
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    padding: 45px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: left;
+}
+
+.page-content h3 {
+    color: #38bdf8;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.page-content p {
+    color: #cbd5e1;
+    line-height: 1.8;
+}
+
+.page-number {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    color: #64748b;
+}
+
+.page-topic {
+    margin-top: 20px;
+
+    color: #38bdf8;
+
+    border: 1px solid rgba(56,189,248,0.4);
+
+    padding: 8px 14px;
+
+    border-radius: 20px;
+
+    width: fit-content;
+}
 
 /* ==========================================
    PAGE 2
