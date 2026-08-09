@@ -1245,3 +1245,418 @@ body.lights-off .power-switch {
 #nextLevel{
     margin-left:15px;
 }
+/* ==========================================
+   NETWORK TROUBLESHOOTER GAME
+========================================== */
+
+#routing-game {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-subtitle {
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+
+/* ==========================================
+   GAME INFO
+========================================== */
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 25px auto;
+    max-width: 850px;
+}
+
+.game-stat {
+    min-width: 130px;
+    padding: 12px 18px;
+
+    background: rgba(15, 23, 42, 0.75);
+
+    border: 1px solid rgba(56, 189, 248, 0.25);
+
+    border-radius: 12px;
+
+    color: #cbd5e1;
+
+    box-shadow:
+        0 0 15px rgba(56, 189, 248, 0.08);
+
+    transition: 0.3s;
+}
+
+.game-stat:hover {
+    transform: translateY(-3px);
+
+    border-color: #38bdf8;
+
+    box-shadow:
+        0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+.game-stat span {
+    color: #38bdf8;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+.game-progress {
+    width: 90%;
+    max-width: 800px;
+
+    height: 8px;
+
+    margin: 20px auto 30px;
+
+    background: rgba(148, 163, 184, 0.15);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+#gameProgressBar {
+    width: 0%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #38bdf8,
+        #22c55e
+    );
+
+    border-radius: 20px;
+
+    transition: width 0.5s ease;
+
+    box-shadow:
+        0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+
+/* ==========================================
+   QUESTION BOX
+========================================== */
+
+.game-question {
+    width: 90%;
+    max-width: 800px;
+
+    margin: 0 auto 25px;
+
+    padding: 25px;
+
+    background: rgba(15, 23, 42, 0.8);
+
+    border: 1px solid rgba(56, 189, 248, 0.25);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 25px rgba(56, 189, 248, 0.08);
+
+    animation: questionAppear 0.4s ease;
+}
+
+.game-question h3 {
+    margin: 0;
+
+    color: #e2e8f0;
+
+    font-size: 20px;
+
+    line-height: 1.6;
+}
+
+@keyframes questionAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ==========================================
+   ANSWER OPTIONS
+========================================== */
+
+.game-options {
+    width: 90%;
+    max-width: 800px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.game-option {
+    padding: 17px 20px;
+
+    border-radius: 12px;
+
+    border: 1px solid
+        rgba(56, 189, 248, 0.25);
+
+    background: rgba(15, 23, 42, 0.75);
+
+    color: #e2e8f0;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.game-option:hover {
+    transform: translateY(-4px);
+
+    border-color: #38bdf8;
+
+    background: rgba(56, 189, 248, 0.12);
+
+    box-shadow:
+        0 0 20px rgba(56, 189, 248, 0.2);
+}
+
+
+/* ==========================================
+   CORRECT ANSWER
+========================================== */
+
+.game-option.correct {
+    background: rgba(34, 197, 94, 0.15);
+
+    border-color: #22c55e;
+
+    color: #22c55e;
+
+    box-shadow:
+        0 0 20px rgba(34, 197, 94, 0.25);
+
+    animation: correctAnswer 0.4s ease;
+}
+
+@keyframes correctAnswer {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+/* ==========================================
+   WRONG ANSWER
+========================================== */
+
+.game-option.wrong {
+    background: rgba(239, 68, 68, 0.15);
+
+    border-color: #ef4444;
+
+    color: #ef4444;
+
+    animation: wrongAnswer 0.4s ease;
+}
+
+@keyframes wrongAnswer {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
+
+}
+
+
+/* ==========================================
+   DISABLED OPTIONS
+========================================== */
+
+.game-option:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.75;
+}
+
+
+/* ==========================================
+   GAME STATUS
+========================================== */
+
+#gameStatus {
+    min-height: 28px;
+
+    margin: 22px auto;
+
+    color: #38bdf8;
+
+    font-weight: bold;
+
+    font-size: 17px;
+
+    transition: 0.3s;
+}
+
+
+/* ==========================================
+   GAME BUTTONS
+========================================== */
+
+.game-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 15px;
+}
+
+
+/* ==========================================
+   FINAL RESULT
+========================================== */
+
+#gameResult {
+    width: 90%;
+    max-width: 600px;
+
+    margin: 35px auto 10px;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 23, 42, 0.95),
+            rgba(30, 41, 59, 0.85)
+        );
+
+    border: 1px solid
+        rgba(34, 197, 94, 0.35);
+
+    box-shadow:
+        0 0 35px
+        rgba(34, 197, 94, 0.12);
+
+    animation: resultAppear 0.6s ease;
+}
+
+#gameResult h2 {
+    color: #22c55e;
+
+    margin-bottom: 15px;
+}
+
+#gameResult p {
+    color: #cbd5e1;
+
+    font-size: 17px;
+}
+
+#finalScore {
+    color: #38bdf8;
+
+    font-size: 25px;
+}
+
+@keyframes resultAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .game-info {
+        gap: 10px;
+    }
+
+    .game-stat {
+        min-width: 110px;
+
+        padding: 10px;
+
+        font-size: 14px;
+    }
+
+    .game-options {
+        grid-template-columns: 1fr;
+    }
+
+    .game-question {
+        padding: 20px 15px;
+    }
+
+    .game-question h3 {
+        font-size: 17px;
+    }
+
+    .game-option {
+        font-size: 15px;
+        padding: 15px;
+    }
+
+}
