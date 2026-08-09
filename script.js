@@ -1741,3 +1741,154 @@ if (navbar && menuToggle) {
     });
 
 }
+/* ==========================================
+   BOOK BLOG PAGE TURN
+========================================== */
+
+const blogBook =
+    document.getElementById("blogBook");
+
+const prevPage =
+    document.getElementById("prevPage");
+
+const nextPage =
+    document.getElementById("nextPage");
+
+const bookPageNumber =
+    document.getElementById(
+        "bookPageNumber"
+    );
+
+
+let currentBookPage = 1;
+
+const totalBookPages = 6;
+
+
+/* UPDATE BOOK */
+
+function updateBook() {
+
+    if (!blogBook) return;
+
+
+    /*
+       Remove old page classes
+    */
+
+    blogBook.classList.remove(
+        "page-2",
+        "page-3",
+        "page-4",
+        "page-5"
+    );
+
+
+    /*
+       Add current page
+    */
+
+    if (currentBookPage > 1) {
+
+        blogBook.classList.add(
+            "page-" +
+            currentBookPage
+        );
+
+    }
+
+
+    /*
+       Page number
+    */
+
+    if (bookPageNumber) {
+
+        bookPageNumber.textContent =
+            currentBookPage +
+            " / " +
+            totalBookPages;
+
+    }
+
+
+    /*
+       Previous button
+    */
+
+    if (prevPage) {
+
+        prevPage.disabled =
+            currentBookPage === 1;
+
+    }
+
+
+    /*
+       Next button
+    */
+
+    if (nextPage) {
+
+        nextPage.disabled =
+            currentBookPage ===
+            totalBookPages;
+
+    }
+
+}
+
+
+/* NEXT */
+
+if (nextPage) {
+
+    nextPage.addEventListener(
+        "click",
+        () => {
+
+            if (
+                currentBookPage <
+                totalBookPages
+            ) {
+
+                currentBookPage++;
+
+                updateBook();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* PREVIOUS */
+
+if (prevPage) {
+
+    prevPage.addEventListener(
+        "click",
+        () => {
+
+            if (
+                currentBookPage > 1
+            ) {
+
+                currentBookPage--;
+
+                updateBook();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* INITIAL */
+
+updateBook();
+
