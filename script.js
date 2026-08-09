@@ -893,8 +893,7 @@ function checkAnswer(
     /* ======================================
        WRONG
     ====================================== */
-
-  else {
+else {
 
     // Wrong answer
     button.classList.add("wrong");
