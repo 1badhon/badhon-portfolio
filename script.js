@@ -1741,9 +1741,9 @@ if (navbar && menuToggle) {
     });
 
 }
-/* ==================================================
-   BOOK BLOG - FINAL PAGE SYSTEM
-================================================== */
+/* =========================================
+   REALISTIC BOOK PAGE TURN
+========================================= */
 
 const blogBook = document.getElementById("blogBook");
 const prevPage = document.getElementById("prevPage");
@@ -1751,165 +1751,347 @@ const nextPage = document.getElementById("nextPage");
 const bookPageNumber = document.getElementById("bookPageNumber");
 
 let currentSpread = 1;
+let isTurning = false;
 
 const totalSpreads = 3;
 
 
-/* ==========================================
-   GET ALL BOOK PAGES
-========================================== */
+/* =========================================
+   GET PAGE
+========================================= */
 
-const bookPages = blogBook
-    ? blogBook.querySelectorAll(".book-page")
-    : [];
+function getPage(number) {
+
+    if (number === 1) {
+        return blogBook.querySelector(".left-page");
+    }
+
+    if (number === 2) {
+        return blogBook.querySelector(".right-page");
+    }
+
+    return blogBook.querySelector(`.page-${number}`);
+}
 
 
-/* ==========================================
-   HIDE ALL
-========================================== */
+/* =========================================
+   CLEAR
+========================================= */
 
-function hideBookPages() {
+function clearPages() {
 
-    bookPages.forEach(page => {
+    blogBook.querySelectorAll(".book-page").forEach(page => {
 
-        page.classList.remove("book-visible");
-        page.classList.remove("book-left");
-        page.classList.remove("book-right");
+        page.classList.remove(
+            "book-visible",
+            "book-left",
+            "book-right",
+            "flip-forward",
+            "flip-backward"
+        );
 
     });
 
 }
 
 
-/* ==========================================
+/* =========================================
    SHOW SPREAD
-========================================== */
+========================================= */
 
-function showSpread(leftNumber, rightNumber) {
+function showSpread(spread) {
 
-    hideBookPages();
-
-
-    const leftPage =
-        blogBook.querySelector(`.page-${leftNumber}`) ||
-        blogBook.querySelector(".left-page");
+    clearPages();
 
 
-    const rightPage =
-        blogBook.querySelector(`.page-${rightNumber}`) ||
-        blogBook.querySelector(".right-page");
+    let leftNumber;
+    let rightNumber;
 
 
-    /* LEFT */
+    if (spread === 1) {
+
+        leftNumber = 1;
+        rightNumber = 2;
+
+    }
+
+    if (spread === 2) {
+
+        leftNumber = 3;
+        rightNumber = 4;
+
+    }
+
+    if (spread === 3) {
+
+        leftNumber = 5;
+        rightNumber = 6;
+
+    }
+
+
+    const leftPage = getPage(leftNumber);
+    const rightPage = getPage(rightNumber);
+
 
     if (leftPage) {
 
-        leftPage.classList.add("book-left");
-        leftPage.classList.add("book-visible");
+        leftPage.classList.add(
+            "book-left",
+            "book-visible"
+        );
 
     }
 
-
-    /* RIGHT */
 
     if (rightPage) {
 
-        rightPage.classList.add("book-right");
-        rightPage.classList.add("book-visible");
+        rightPage.classList.add(
+            "book-right",
+            "book-visible"
+        );
 
     }
 
+
+    bookPageNumber.textContent =
+        `${leftNumber}–${rightNumber} / 6`;
+
+
+    prevPage.disabled =
+        spread === 1;
+
+    nextPage.disabled =
+        spread === totalSpreads;
 }
 
 
-/* ==========================================
-   UPDATE
-========================================== */
+/* =========================================
+   NEXT PAGE
+========================================= */
 
-function updateBook() {
+nextPage.addEventListener("click", () => {
 
-    if (!blogBook) return;
+    if (
+        isTurning ||
+        currentSpread >= totalSpreads
+    ) return;
 
 
-    if (currentSpread === 1) {
+    isTurning = true;
 
-        showSpread(1, 2);
 
-        bookPageNumber.textContent = "1–2 / 6";
+    const oldLeft =
+        getPage(
+            currentSpread === 1
+                ? 1
+                : currentSpread === 2
+                    ? 3
+                    : 5
+        );
+
+
+    const oldRight =
+        getPage(
+            currentSpread === 1
+                ? 2
+                : currentSpread === 2
+                    ? 4
+                    : 6
+        );
+
+
+    /* নতুন page আগে দেখাও */
+
+    currentSpread++;
+
+    const newLeft =
+        getPage(
+            currentSpread === 2
+                ? 3
+                : 5
+        );
+
+
+    const newRight =
+        getPage(
+            currentSpread === 2
+                ? 4
+                : 6
+        );
+
+
+    if (newLeft) {
+
+        newLeft.classList.add(
+            "book-left",
+            "book-visible"
+        );
 
     }
 
 
-    if (currentSpread === 2) {
+    if (newRight) {
 
-        showSpread(3, 4);
+        newRight.classList.add(
+            "book-right",
+            "book-visible"
+        );
 
-        bookPageNumber.textContent = "3–4 / 6";
+    }
+
+
+    /* পুরোনো ডান পাতা উল্টাবে */
+
+    if (oldRight) {
+
+        oldRight.classList.add(
+            "flip-forward"
+        );
 
     }
 
 
-    if (currentSpread === 3) {
+    /* Page number */
 
-        showSpread(5, 6);
+    bookPageNumber.textContent =
+        `${
+            currentSpread === 2 ? "3–4" : "5–6"
+        } / 6`;
 
-        bookPageNumber.textContent = "5–6 / 6";
+
+    prevPage.disabled = false;
+
+    nextPage.disabled =
+        currentSpread === totalSpreads;
+
+
+    setTimeout(() => {
+
+        clearPages();
+
+        showSpread(currentSpread);
+
+        isTurning = false;
+
+    }, 1250);
+
+});
+
+
+/* =========================================
+   PREVIOUS PAGE
+========================================= */
+
+prevPage.addEventListener("click", () => {
+
+    if (
+        isTurning ||
+        currentSpread <= 1
+    ) return;
+
+
+    isTurning = true;
+
+
+    const oldSpread = currentSpread;
+
+
+    /* আগের spread */
+
+    currentSpread--;
+
+
+    const oldLeft =
+        getPage(
+            oldSpread === 2
+                ? 3
+                : 5
+        );
+
+
+    const oldRight =
+        getPage(
+            oldSpread === 2
+                ? 4
+                : 6
+        );
+
+
+    const previousLeft =
+        getPage(
+            currentSpread === 1
+                ? 1
+                : 3
+        );
+
+
+    const previousRight =
+        getPage(
+            currentSpread === 1
+                ? 2
+                : 4
+        );
+
+
+    if (previousLeft) {
+
+        previousLeft.classList.add(
+            "book-left",
+            "book-visible"
+        );
 
     }
 
+
+    if (previousRight) {
+
+        previousRight.classList.add(
+            "book-right",
+            "book-visible"
+        );
+
+    }
+
+
+    /* পুরোনো পাতা reverse animation */
+
+    if (oldLeft) {
+
+        oldLeft.classList.add(
+            "flip-backward"
+        );
+
+    }
+
+
+    bookPageNumber.textContent =
+        `${
+            currentSpread === 1 ? "1–2" : "3–4"
+        } / 6`;
+
+
+    nextPage.disabled = false;
 
     prevPage.disabled =
         currentSpread === 1;
 
 
-    nextPage.disabled =
-        currentSpread === totalSpreads;
+    setTimeout(() => {
 
-}
+        clearPages();
 
+        showSpread(currentSpread);
 
-/* ==========================================
-   NEXT
-========================================== */
+        isTurning = false;
 
-if (nextPage) {
+    }, 1250);
 
-    nextPage.addEventListener("click", () => {
-
-        if (currentSpread < totalSpreads) {
-
-            currentSpread++;
-
-            updateBook();
-
-        }
-
-    });
-
-}
+});
 
 
-/* ==========================================
-   PREVIOUS
-========================================== */
+/* =========================================
+   START
+========================================= */
 
-if (prevPage) {
-
-    prevPage.addEventListener("click", () => {
-
-        if (currentSpread > 1) {
-
-            currentSpread--;
-
-            updateBook();
-
-        }
-
-    });
-
-}
-
-
-/* START */
-
-updateBook();
+showSpread(1);
