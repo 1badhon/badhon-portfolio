@@ -1691,3 +1691,53 @@ window.addEventListener(
 
     }
 );
+/* ==========================================
+   SCROLL HAMBURGER MENU
+========================================== */
+
+const navbar = document.querySelector("nav");
+const menuToggle = document.getElementById("menuToggle");
+
+if (navbar && menuToggle) {
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 100) {
+
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
+            navbar.classList.remove("menu-open");
+
+        }
+
+    });
+
+
+    menuToggle.addEventListener("click", () => {
+
+        navbar.classList.toggle("menu-open");
+
+    });
+
+
+    /* Menu option click করলে menu বন্ধ */
+
+    const menuLinks =
+        navbar.querySelectorAll("ul a");
+
+    menuLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navbar.classList.remove(
+                "menu-open"
+            );
+
+        });
+
+    });
+
+}
