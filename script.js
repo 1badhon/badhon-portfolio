@@ -1742,104 +1742,155 @@ if (navbar && menuToggle) {
 
 }
 /* =========================================
-   REALISTIC BOOK PAGE TURN
+   REALISTIC BOOK PAGE FLIP
 ========================================= */
 
-const blogBook = document.getElementById("blogBook");
-const prevPage = document.getElementById("prevPage");
-const nextPage = document.getElementById("nextPage");
-const bookPageNumber = document.getElementById("bookPageNumber");
+const bookPages =
+    document.getElementById("bookPages");
+
+const nextPage =
+    document.getElementById("nextPage");
+
+const prevPage =
+    document.getElementById("prevPage");
+
+const bookPageNumber =
+    document.getElementById("bookPageNumber");
+
 
 let currentSpread = 1;
-let isTurning = false;
+
+let bookTurning = false;
 
 const totalSpreads = 3;
+
+
+/* =========================================
+   PAGE SET
+========================================= */
+
+const spreads = {
+
+    1: {
+        left: 1,
+        right: 2
+    },
+
+    2: {
+        left: 3,
+        right: 4
+    },
+
+    3: {
+        left: 5,
+        right: 6
+    }
+
+};
 
 
 /* =========================================
    GET PAGE
 ========================================= */
 
-function getPage(number) {
-
-    if (!blogBook) return null;
+function getBookPage(number) {
 
     if (number === 1) {
-        return blogBook.querySelector(".left-page");
+
+        return document.querySelector(
+            ".page-left"
+        );
+
     }
+
 
     if (number === 2) {
-        return blogBook.querySelector(".right-page");
-    }
 
-    return blogBook.querySelector(`.page-${number}`);
-}
-
-
-/* =========================================
-   SPREAD DATA
-========================================= */
-
-function getSpreadPages(spread) {
-
-    const pages = {
-        1: [1, 2],
-        2: [3, 4],
-        3: [5, 6]
-    };
-
-    return pages[spread];
-}
-
-
-/* =========================================
-   SHOW CURRENT SPREAD
-========================================= */
-
-function showSpread(spread) {
-
-    if (!blogBook) return;
-
-    blogBook.querySelectorAll(".book-page").forEach(page => {
-
-        page.classList.remove(
-            "book-visible",
-            "book-left",
-            "book-right",
-            "turn-next",
-            "turn-prev"
-        );
-
-    });
-
-
-    const [leftNumber, rightNumber] =
-        getSpreadPages(spread);
-
-
-    const leftPage =
-        getPage(leftNumber);
-
-    const rightPage =
-        getPage(rightNumber);
-
-
-    if (leftPage) {
-
-        leftPage.classList.add(
-            "book-visible",
-            "book-left"
+        return document.querySelector(
+            ".page-right"
         );
 
     }
 
 
-    if (rightPage) {
+    return document.querySelector(
+        `.page-${number}`
+    );
 
-        rightPage.classList.add(
-            "book-visible",
-            "book-right"
-        );
+}
+
+
+/* =========================================
+   HIDE ALL
+========================================= */
+
+function hideAllBookPages() {
+
+    document
+        .querySelectorAll(".flip-page")
+        .forEach(page => {
+
+            page.style.opacity = "0";
+
+            page.style.visibility =
+                "hidden";
+
+            page.classList.remove(
+                "flip-next",
+                "flip-prev"
+            );
+
+        });
+
+}
+
+
+/* =========================================
+   SHOW SPREAD
+========================================= */
+
+function showBookSpread(spread) {
+
+    hideAllBookPages();
+
+
+    const data =
+        spreads[spread];
+
+
+    const left =
+        getBookPage(data.left);
+
+    const right =
+        getBookPage(data.right);
+
+
+    if (left) {
+
+        left.style.opacity = "1";
+
+        left.style.visibility =
+            "visible";
+
+        left.style.transform =
+            "rotateY(0deg)";
+
+        left.style.zIndex = "10";
+
+    }
+
+
+    if (right) {
+
+        right.style.opacity = "1";
+
+        right.style.visibility =
+            "visible";
+
+        right.style.transform =
+            "rotateY(0deg)";
+
+        right.style.zIndex = "9";
 
     }
 
@@ -1847,7 +1898,7 @@ function showSpread(spread) {
     if (bookPageNumber) {
 
         bookPageNumber.textContent =
-            `${leftNumber}–${rightNumber} / 6`;
+            `${data.left}–${data.right} / 6`;
 
     }
 
@@ -1871,201 +1922,256 @@ function showSpread(spread) {
 
 
 /* =========================================
-   NEXT PAGE
+   NEXT
 ========================================= */
 
 if (nextPage) {
 
-    nextPage.addEventListener("click", () => {
+    nextPage.addEventListener(
+        "click",
+        () => {
 
-        if (isTurning) return;
+            if (bookTurning) return;
 
-        if (currentSpread >= totalSpreads) return;
-
-
-        isTurning = true;
-
-
-        const oldSpread =
-            currentSpread;
-
-        const oldPages =
-            getSpreadPages(oldSpread);
+            if (
+                currentSpread >=
+                totalSpreads
+            ) return;
 
 
-        const oldRight =
-            getPage(oldPages[1]);
+            bookTurning = true;
 
 
-        /* নতুন spread */
-
-        currentSpread++;
-
-
-        const newPages =
-            getSpreadPages(currentSpread);
+            const oldSpread =
+                spreads[currentSpread];
 
 
-        const newLeft =
-            getPage(newPages[0]);
+            const oldRight =
+                getBookPage(
+                    oldSpread.right
+                );
 
-        const newRight =
-            getPage(newPages[1]);
+
+            const nextSpread =
+                currentSpread + 1;
 
 
-        /*
-           নতুন পাতা নিচে থাকবে
-        */
+            const newSpread =
+                spreads[nextSpread];
 
-        if (newLeft) {
 
-            newLeft.classList.add(
-                "book-visible",
-                "book-left"
-            );
+            const newLeft =
+                getBookPage(
+                    newSpread.left
+                );
+
+
+            const newRight =
+                getBookPage(
+                    newSpread.right
+                );
+
+
+            /*
+             নতুন পাতা আগে নিচে রাখি
+            */
+
+            if (newLeft) {
+
+                newLeft.style.opacity =
+                    "1";
+
+                newLeft.style.visibility =
+                    "visible";
+
+                newLeft.style.zIndex =
+                    "5";
+
+            }
+
+
+            if (newRight) {
+
+                newRight.style.opacity =
+                    "1";
+
+                newRight.style.visibility =
+                    "visible";
+
+                newRight.style.zIndex =
+                    "4";
+
+            }
+
+
+            /*
+             পুরোনো ডান পাতা
+             আস্তে আস্তে উল্টাবে
+            */
+
+            if (oldRight) {
+
+                oldRight.style.zIndex =
+                    "20";
+
+                oldRight.classList.add(
+                    "flip-next"
+                );
+
+            }
+
+
+            currentSpread =
+                nextSpread;
+
+
+            if (bookPageNumber) {
+
+                bookPageNumber.textContent =
+                    `${newSpread.left}–${newSpread.right} / 6`;
+
+            }
+
+
+            setTimeout(() => {
+
+                showBookSpread(
+                    currentSpread
+                );
+
+                bookTurning = false;
+
+            }, 1500);
 
         }
-
-
-        if (newRight) {
-
-            newRight.classList.add(
-                "book-visible",
-                "book-right"
-            );
-
-        }
-
-
-        /*
-           পুরোনো ডান পাতা উল্টাবে
-        */
-
-        if (oldRight) {
-
-            oldRight.classList.add(
-                "turn-next"
-            );
-
-        }
-
-
-        if (bookPageNumber) {
-
-            bookPageNumber.textContent =
-                `${newPages[0]}–${newPages[1]} / 6`;
-
-        }
-
-
-        setTimeout(() => {
-
-            showSpread(currentSpread);
-
-            isTurning = false;
-
-        }, 1000);
-
-    });
+    );
 
 }
 
 
 /* =========================================
-   PREVIOUS PAGE
+   PREVIOUS
 ========================================= */
 
 if (prevPage) {
 
-    prevPage.addEventListener("click", () => {
+    prevPage.addEventListener(
+        "click",
+        () => {
 
-        if (isTurning) return;
+            if (bookTurning) return;
 
-        if (currentSpread <= 1) return;
-
-
-        isTurning = true;
-
-
-        const oldSpread =
-            currentSpread;
-
-        const oldPages =
-            getSpreadPages(oldSpread);
+            if (currentSpread <= 1)
+                return;
 
 
-        const oldLeft =
-            getPage(oldPages[0]);
+            bookTurning = true;
 
 
-        currentSpread--;
+            const oldSpread =
+                spreads[currentSpread];
 
 
-        const newPages =
-            getSpreadPages(currentSpread);
+            const oldLeft =
+                getBookPage(
+                    oldSpread.left
+                );
 
 
-        const newLeft =
-            getPage(newPages[0]);
-
-        const newRight =
-            getPage(newPages[1]);
+            const previousSpread =
+                currentSpread - 1;
 
 
-        /*
-           আগের spread দেখানো
-        */
+            const previousData =
+                spreads[
+                    previousSpread
+                ];
 
-        if (newLeft) {
 
-            newLeft.classList.add(
-                "book-visible",
-                "book-left"
-            );
+            const newLeft =
+                getBookPage(
+                    previousData.left
+                );
+
+
+            const newRight =
+                getBookPage(
+                    previousData.right
+                );
+
+
+            if (newLeft) {
+
+                newLeft.style.opacity =
+                    "1";
+
+                newLeft.style.visibility =
+                    "visible";
+
+                newLeft.style.zIndex =
+                    "5";
+
+            }
+
+
+            if (newRight) {
+
+                newRight.style.opacity =
+                    "1";
+
+                newRight.style.visibility =
+                    "visible";
+
+                newRight.style.zIndex =
+                    "4";
+
+            }
+
+
+            /*
+             পুরোনো বাম পাতা
+             reverse হয়ে আসবে
+            */
+
+            if (oldLeft) {
+
+                oldLeft.style.zIndex =
+                    "20";
+
+                oldLeft.style.transform =
+                    "rotateY(180deg)";
+
+                oldLeft.classList.add(
+                    "flip-prev"
+                );
+
+            }
+
+
+            currentSpread =
+                previousSpread;
+
+
+            if (bookPageNumber) {
+
+                bookPageNumber.textContent =
+                    `${previousData.left}–${previousData.right} / 6`;
+
+            }
+
+
+            setTimeout(() => {
+
+                showBookSpread(
+                    currentSpread
+                );
+
+                bookTurning = false;
+
+            }, 1500);
 
         }
-
-
-        if (newRight) {
-
-            newRight.classList.add(
-                "book-visible",
-                "book-right"
-            );
-
-        }
-
-
-        /*
-           পুরোনো বাম পাতা উল্টাবে
-        */
-
-        if (oldLeft) {
-
-            oldLeft.classList.add(
-                "turn-prev"
-            );
-
-        }
-
-
-        if (bookPageNumber) {
-
-            bookPageNumber.textContent =
-                `${newPages[0]}–${newPages[1]} / 6`;
-
-        }
-
-
-        setTimeout(() => {
-
-            showSpread(currentSpread);
-
-            isTurning = false;
-
-        }, 1000);
-
-    });
+    );
 
 }
 
@@ -2074,4 +2180,4 @@ if (prevPage) {
    START BOOK
 ========================================= */
 
-showSpread(1);
+showBookSpread(1);
