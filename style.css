@@ -1660,3 +1660,33 @@ body.lights-off .power-switch {
     }
 
 }
+/* Game Shake */
+
+.game-shake {
+    animation: gameShake 0.4s ease;
+}
+
+@keyframes gameShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-8px);
+    }
+
+    40% {
+        transform: translateX(8px);
+    }
+
+    60% {
+        transform: translateX(-6px);
+    }
+
+    80% {
+        transform: translateX(6px);
+    }
+
+}
