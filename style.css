@@ -301,21 +301,9 @@ body{
     }
 }
 section{
-opacity:0;
-transform:translateY(50px);
-animation:show 1s forwards;
+    opacity:1;
+    transform:none;
 }
-
-@keyframes show{
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
 }
 nav a{
 position:relative;
