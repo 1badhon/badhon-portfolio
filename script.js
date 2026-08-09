@@ -1741,161 +1741,129 @@ if (navbar && menuToggle) {
     });
 
 }
-/* ==========================================
-   BOOK BLOG - REAL PAGE TURN
-========================================== */
+/* ==================================================
+   BOOK BLOG - FINAL PAGE SYSTEM
+================================================== */
 
 const blogBook = document.getElementById("blogBook");
 const prevPage = document.getElementById("prevPage");
 const nextPage = document.getElementById("nextPage");
 const bookPageNumber = document.getElementById("bookPageNumber");
 
-
-/*
-   3টি spread:
-
-   Spread 1 = Page 1 + Page 2
-   Spread 2 = Page 3 + Page 4
-   Spread 3 = Page 5 + Page 6
-*/
-
 let currentSpread = 1;
 
 const totalSpreads = 3;
 
 
-/* সব page hide */
+/* ==========================================
+   GET ALL BOOK PAGES
+========================================== */
 
-function hideAllBookPages() {
+const bookPages = blogBook
+    ? blogBook.querySelectorAll(".book-page")
+    : [];
 
-    if (!blogBook) return;
 
-    const pages =
-        blogBook.querySelectorAll(".book-page");
+/* ==========================================
+   HIDE ALL
+========================================== */
 
-    pages.forEach(page => {
+function hideBookPages() {
 
-        page.classList.remove("book-active");
+    bookPages.forEach(page => {
+
+        page.classList.remove("book-visible");
+        page.classList.remove("book-left");
+        page.classList.remove("book-right");
 
     });
 
 }
 
 
-/* নির্দিষ্ট page show */
+/* ==========================================
+   SHOW SPREAD
+========================================== */
 
-function showPage(selector) {
+function showSpread(leftNumber, rightNumber) {
 
-    const page =
-        blogBook.querySelector(selector);
+    hideBookPages();
 
-    if (page) {
 
-        page.classList.add("book-active");
+    const leftPage =
+        blogBook.querySelector(`.page-${leftNumber}`) ||
+        blogBook.querySelector(".left-page");
+
+
+    const rightPage =
+        blogBook.querySelector(`.page-${rightNumber}`) ||
+        blogBook.querySelector(".right-page");
+
+
+    /* LEFT */
+
+    if (leftPage) {
+
+        leftPage.classList.add("book-left");
+        leftPage.classList.add("book-visible");
+
+    }
+
+
+    /* RIGHT */
+
+    if (rightPage) {
+
+        rightPage.classList.add("book-right");
+        rightPage.classList.add("book-visible");
 
     }
 
 }
 
 
-/* Book update */
+/* ==========================================
+   UPDATE
+========================================== */
 
 function updateBook() {
 
     if (!blogBook) return;
 
 
-    hideAllBookPages();
-
-
-    /* =========================
-       SPREAD 1
-       Page 1 + Page 2
-    ========================= */
-
     if (currentSpread === 1) {
 
-        showPage(".left-page");
+        showSpread(1, 2);
 
-        showPage(".right-page");
+        bookPageNumber.textContent = "1–2 / 6";
 
     }
 
-
-    /* =========================
-       SPREAD 2
-       Page 3 + Page 4
-    ========================= */
 
     if (currentSpread === 2) {
 
-        showPage(".page-3");
+        showSpread(3, 4);
 
-        showPage(".page-4");
+        bookPageNumber.textContent = "3–4 / 6";
 
     }
 
-
-    /* =========================
-       SPREAD 3
-       Page 5 + Page 6
-    ========================= */
 
     if (currentSpread === 3) {
 
-        showPage(".page-5");
+        showSpread(5, 6);
 
-        showPage(".page-6");
-
-    }
-
-
-    /* Page counter */
-
-    if (bookPageNumber) {
-
-        if (currentSpread === 1) {
-
-            bookPageNumber.textContent =
-                "1–2 / 6";
-
-        }
-
-        if (currentSpread === 2) {
-
-            bookPageNumber.textContent =
-                "3–4 / 6";
-
-        }
-
-        if (currentSpread === 3) {
-
-            bookPageNumber.textContent =
-                "5–6 / 6";
-
-        }
+        bookPageNumber.textContent = "5–6 / 6";
 
     }
 
 
-    /* Previous */
-
-    if (prevPage) {
-
-        prevPage.disabled =
-            currentSpread === 1;
-
-    }
+    prevPage.disabled =
+        currentSpread === 1;
 
 
-    /* Next */
-
-    if (nextPage) {
-
-        nextPage.disabled =
-            currentSpread === totalSpreads;
-
-    }
+    nextPage.disabled =
+        currentSpread === totalSpreads;
 
 }
 
@@ -1906,7 +1874,7 @@ function updateBook() {
 
 if (nextPage) {
 
-    nextPage.addEventListener("click", function () {
+    nextPage.addEventListener("click", () => {
 
         if (currentSpread < totalSpreads) {
 
@@ -1927,7 +1895,7 @@ if (nextPage) {
 
 if (prevPage) {
 
-    prevPage.addEventListener("click", function () {
+    prevPage.addEventListener("click", () => {
 
         if (currentSpread > 1) {
 
@@ -1942,6 +1910,6 @@ if (prevPage) {
 }
 
 
-/* Start */
+/* START */
 
 updateBook();
