@@ -3381,172 +3381,231 @@ nav.menu-open .menu-toggle span:nth-child(3) {
     }
 }
 /* =========================================
-   REALISTIC BOOK PAGE TURN ANIMATION
+   📖 REALISTIC BOOK PAGE TURN
 ========================================= */
+
+.book-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1800px;
+    margin-top: 40px;
+}
 
 .book {
     position: relative;
-    width: 100%;
-    height: 100%;
-    perspective: 2200px;
+    width: 900px;
+    height: 560px;
     transform-style: preserve-3d;
+    perspective: 1800px;
 }
 
+/* Every page */
 .book-page {
-    position: absolute !important;
-    top: 0 !important;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
 
-    width: 47% !important;
-    height: 100% !important;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.04),
+            transparent 15%,
+            transparent 85%,
+            rgba(0,0,0,0.08)
+        ),
+        #172235;
 
-    box-sizing: border-box !important;
+    border: 1px solid #258bc1;
 
-    background: linear-gradient(
-        135deg,
-        #1d293d,
-        #111a2b
-    ) !important;
+    box-sizing: border-box;
+    padding: 55px 50px;
 
-    border: 1px solid rgba(56,189,248,.4) !important;
-
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.45);
+    color: #d9e4f2;
 
     overflow: hidden;
 
-    opacity: 0 !important;
-    visibility: hidden !important;
-
-    pointer-events: none;
-
+    backface-visibility: hidden;
     transform-style: preserve-3d;
 
-    backface-visibility: hidden;
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.35);
 
     transition:
-        transform 1.2s cubic-bezier(.65,.05,.36,1),
-        opacity .4s ease;
+        transform 1.4s cubic-bezier(.65,.05,.36,1),
+        opacity 0.3s ease;
 }
 
 
 /* LEFT PAGE */
+.left-page {
+    left: 0;
 
-.book-page.book-left {
-    left: 3% !important;
-    right: auto !important;
+    border-radius: 18px 0 0 18px;
 
     transform-origin: right center;
 
-    border-radius: 14px 0 0 14px !important;
+    z-index: 6;
 }
 
 
 /* RIGHT PAGE */
+.right-page {
+    right: 0;
 
-.book-page.book-right {
-    right: 3% !important;
-    left: auto !important;
-
-    transform-origin: left center;
-
-    border-radius: 0 14px 14px 0 !important;
-}
-
-
-/* VISIBLE PAGE */
-
-.book-page.book-visible {
-    opacity: 1 !important;
-
-    visibility: visible !important;
-
-    pointer-events: auto;
-
-    z-index: 10;
-
-    transform: rotateY(0deg);
-}
-
-
-/* FORWARD PAGE TURN */
-
-.book-page.flip-forward {
-
-    z-index: 100;
+    border-radius: 0 18px 18px 0;
 
     transform-origin: left center;
 
-    animation:
-        pageFlipForward
-        1.2s
-        cubic-bezier(.65,.05,.36,1)
-        forwards;
+    z-index: 5;
 }
 
 
-@keyframes pageFlipForward {
+/* Other pages */
+.page-3,
+.page-4,
+.page-5,
+.page-6 {
+    left: 50%;
+    width: 50%;
 
-    0% {
-        transform: rotateY(0deg);
-    }
+    border-radius: 0 18px 18px 0;
 
-    30% {
-        box-shadow:
-            -15px 15px 30px rgba(0,0,0,.5);
-    }
+    transform-origin: left center;
 
-    50% {
-        transform: rotateY(-90deg);
-    }
+    opacity: 0;
 
-    75% {
-        box-shadow:
-            15px 15px 35px rgba(0,0,0,.35);
-    }
+    pointer-events: none;
 
-    100% {
-        transform: rotateY(-180deg);
-        opacity: 0;
-    }
+    z-index: 1;
 }
 
 
-/* BACKWARD PAGE TURN */
+/* =========================================
+   PAGE CONTENT
+========================================= */
 
-.book-page.flip-backward {
+.page-content {
+    height: 100%;
 
-    z-index: 100;
+    display: flex;
+    flex-direction: column;
 
-    transform-origin: right center;
+    justify-content: flex-start;
+}
 
-    animation:
-        pageFlipBackward
-        1.2s
-        cubic-bezier(.65,.05,.36,1)
-        forwards;
+.page-number {
+    display: block;
+
+    font-size: 15px;
+
+    color: #38bdf8;
+
+    margin-bottom: 25px;
+
+    letter-spacing: 1px;
+}
+
+.page-content h3 {
+    font-size: 32px;
+
+    color: #38bdf8;
+
+    margin-bottom: 25px;
+}
+
+.page-content p {
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    margin-bottom: 15px;
+}
+
+.page-topic {
+    display: inline-block;
+
+    width: fit-content;
+
+    margin-top: 20px;
+
+    padding: 10px 20px;
+
+    border: 1px solid #258bc1;
+
+    border-radius: 30px;
+
+    color: #38bdf8;
+
+    font-size: 16px;
 }
 
 
-@keyframes pageFlipBackward {
+/* =========================================
+   REAL PAGE TURN
+========================================= */
 
-    0% {
-        transform: rotateY(-180deg);
-        opacity: 0;
-    }
+.book-page.turning-forward {
 
-    50% {
-        transform: rotateY(-90deg);
-        opacity: 1;
-    }
+    transform:
+        rotateY(-180deg);
 
-    100% {
-        transform: rotateY(0deg);
-        opacity: 1;
-    }
+    box-shadow:
+        -20px 20px 40px rgba(0,0,0,0.4);
+
+    opacity: 0;
 }
 
 
-/* PAGE SHADOW */
+.book-page.turning-back {
+
+    transform:
+        rotateY(180deg);
+
+    box-shadow:
+        20px 20px 40px rgba(0,0,0,0.4);
+
+    opacity: 0;
+}
+
+
+/* =========================================
+   BOOK CENTER
+========================================= */
+
+.book::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    width: 4px;
+    height: 100%;
+
+    transform: translateX(-50%);
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(0,0,0,0.35),
+            rgba(255,255,255,0.08),
+            rgba(0,0,0,0.35)
+        );
+
+    z-index: 50;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   PAGE SHADOW
+========================================= */
 
 .book-page::after {
 
@@ -3557,60 +3616,130 @@ nav.menu-open .menu-toggle span:nth-child(3) {
     top: 0;
     bottom: 0;
 
-    width: 45px;
+    width: 35px;
 
     pointer-events: none;
 
-    opacity: .7;
+    opacity: 0.5;
 }
 
-
-.book-page.book-right::after {
-
-    left: 0;
-
-    background:
-        linear-gradient(
-            to right,
-            rgba(0,0,0,.35),
-            transparent
-        );
-}
-
-
-.book-page.book-left::after {
-
+.left-page::after {
     right: 0;
 
     background:
         linear-gradient(
             to left,
-            rgba(0,0,0,.35),
+            rgba(0,0,0,0.25),
+            transparent
+        );
+}
+
+.right-page::after,
+.page-3::after,
+.page-4::after,
+.page-5::after,
+.page-6::after {
+    left: 0;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(0,0,0,0.25),
             transparent
         );
 }
 
 
-/* MOBILE */
+/* =========================================
+   BOOK BUTTONS
+========================================= */
 
-@media (max-width: 700px) {
+.book-controls {
 
-    .book-wrapper {
-        height: 520px;
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 55px;
+
+    margin-top: 35px;
+}
+
+.book-btn {
+
+    padding: 14px 30px;
+
+    border: 1px solid #38bdf8;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #38bdf8;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.book-btn:hover {
+
+    background: #38bdf8;
+
+    color: #08111f;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 0 20px rgba(56,189,248,0.5);
+}
+
+#bookPageNumber {
+
+    min-width: 70px;
+
+    text-align: center;
+
+    color: #9fb0c7;
+
+    font-size: 20px;
+}
+
+
+/* =========================================
+   📱 MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .book {
+        width: 94vw;
+        height: 500px;
     }
 
     .book-page {
-        width: 100% !important;
-
-        left: 0 !important;
-        right: auto !important;
-
-        border-radius: 14px !important;
+        padding: 35px 25px;
     }
 
-    .book-page.book-left,
-    .book-page.book-right {
-        left: 0 !important;
-        right: auto !important;
+    .page-content h3 {
+        font-size: 24px;
+    }
+
+    .page-content p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .book-controls {
+        gap: 20px;
+    }
+
+    .book-btn {
+        padding: 11px 18px;
+        font-size: 15px;
     }
 }
