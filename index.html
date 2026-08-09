@@ -263,117 +263,126 @@
     </section>
 
 
-    <!-- =========================
-         PACKET ROUTING GAME
-    ========================== -->
+   <!-- =========================
+     NETWORK TROUBLESHOOTER
+========================= -->
 
-    <section id="routing-game">
+<section id="routing-game">
 
-        <h2>🎮 Packet Routing Challenge</h2>
+    <h2>🎮 Network Troubleshooter</h2>
 
-        <p>
-            Click the devices in the correct order
-            to deliver the packet.
-        </p>
+    <p class="game-subtitle">
+        Test your networking knowledge and fix the network!
+    </p>
+
+    <!-- Game Info -->
+
+    <div class="game-info">
+
+        <div class="game-stat">
+            ❤️ Lives:
+            <span id="lives">3</span>
+        </div>
+
+        <div class="game-stat">
+            ⭐ Score:
+            <span id="score">0</span>
+        </div>
+
+        <div class="game-stat">
+            🏆 Level:
+            <span id="gameLevel">1</span>/5
+        </div>
+
+        <div class="game-stat">
+            ⏱️ Time:
+            <span id="gameTimer">30</span>s
+        </div>
+
+    </div>
 
 
-        <!-- Level -->
+    <!-- Progress -->
 
-        <h3 id="levelTitle">
-            Level 1
+    <div class="game-progress">
+
+        <div id="gameProgressBar"></div>
+
+    </div>
+
+
+    <!-- Question -->
+
+    <div class="game-question">
+
+        <h3 id="gameQuestion">
+            Loading Question...
         </h3>
 
-
-        <!-- Question -->
-
-        <p id="questionText">
-            Question: PC → Router → Switch → Server
-        </p>
+    </div>
 
 
-        <!-- Devices -->
+    <!-- Options -->
 
-        <div class="routing-container">
-
-
-            <div class="route-device"
-                 data-order="1">
-
-                💻
-
-                <span>
-                    PC
-                </span>
-
-            </div>
+    <div id="gameOptions" class="game-options">
+    </div>
 
 
-            <div class="route-device"
-                 data-order="2">
+    <!-- Status -->
 
-                📡
-
-                <span>
-                    Router
-                </span>
-
-            </div>
+    <div id="gameStatus">
+        Ready?
+    </div>
 
 
-            <div class="route-device"
-                 data-order="3">
+    <!-- Buttons -->
 
-                🔀
+    <div class="game-buttons">
 
-                <span>
-                    Switch
-                </span>
-
-            </div>
-
-
-            <div class="route-device"
-                 data-order="4">
-
-                🖥️
-
-                <span>
-                    Server
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- Game Status -->
-
-        <div id="gameStatus">
-            Waiting...
-        </div>
-
-
-        <!-- Game Buttons -->
-
-        <button class="btn"
-                id="resetGame">
-
-            Reset Game
-
+        <button class="btn" id="startGame">
+            🚀 Start Game
         </button>
 
-
-        <button class="btn"
-                id="nextLevel"
+        <button class="btn" id="nextQuestion"
                 style="display:none;">
 
-            Next Level →
+            Next Question →
 
         </button>
 
-    </section>
+        <button class="btn2" id="resetGame">
 
+            🔄 Restart
+
+        </button>
+
+    </div>
+
+
+    <!-- Final Result -->
+
+    <div id="gameResult"
+         style="display:none;">
+
+        <h2>🏆 Challenge Complete!</h2>
+
+        <p>
+            Your Score:
+            <strong id="finalScore">0</strong>
+        </p>
+
+        <p id="finalMessage"></p>
+
+        <button class="btn"
+                id="playAgain">
+
+            🎮 Play Again
+
+        </button>
+
+    </div>
+
+</section>
 
     <!-- =========================
          CONTACT
