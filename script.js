@@ -894,90 +894,86 @@ function checkAnswer(
        WRONG
     ====================================== */
 
-    else {
+  else {
 
-        button.classList.add(
-            "wrong"
-        );
+    // Wrong answer
+    button.classList.add("wrong");
 
+    lives--;
 
-        lives--;
+    combo = 0;
 
-        combo = 0;
+    playSound("wrong");
 
-
-        playSound("wrong");
-
-        screenShake();
+    screenShake();
 
 
-        /* Show correct answer */
+    // Current question এবং options
+    // screen-এ থাকবে
+    buttons.forEach(btn => {
 
-        buttons.forEach(btn => {
+        if (
+            btn.textContent.trim() ===
+            question.answer.trim()
+        ) {
 
-            if (
-                btn.textContent ===
-                question.answer
-            ) {
+            btn.classList.add("correct");
 
-                btn.classList.add(
-                    "correct"
-                );
+        }
 
-            }
+        btn.disabled = true;
 
-            btn.disabled = true;
-
-        });
+    });
 
 
-        /* IMPORTANT:
-           Question stays visible.
-           Options stay visible.
-           Nothing is removed here. */
-
+    // Status message
+    if (lives > 0) {
 
         gameStatus.textContent =
-            `❌ Wrong! Correct Answer: ${question.answer}`;
+            `❌ Wrong Answer! Correct Answer: ${question.answer}`;
 
-        gameStatus.style.color =
-            "#ef4444";
+    } else {
 
+        gameStatus.textContent =
+            `💀 No Lives Left! Correct Answer: ${question.answer}`;
 
-        updateGameUI();
+    }
 
-
-        /* Lives finished */
-
-        if (lives <= 0) {
-
-            gameStatus.textContent =
-                `💀 Game Over! Correct Answer: ${question.answer}`;
-
-            gameStatus.style.color =
-                "#ef4444";
+    gameStatus.style.color =
+        "#ef4444";
 
 
-            nextQuestion.style.display =
-                "none";
+    updateGameUI();
 
 
-            /*
-              Question এবং options
-              এখানেই থাকবে।
-            */
+    /*
+    IMPORTANT:
 
-        }
+    এখানে কোনোভাবেই এগুলো করা যাবে না:
 
-        /* Still have lives */
+    optionsElement.innerHTML = "";
+    questionElement.innerHTML = "";
+    questionElement.textContent = "";
+    gameResult.style.display = "block";
+    finishGame();
 
-        else {
+    কারণ এগুলো করলে current question disappear করবে।
+    */
 
-            nextQuestion.style.display =
-                "inline-block";
 
-        }
+    // Life থাকলে Next Question দেখাবে
+    if (lives > 0) {
 
+        nextQuestion.style.display =
+            "inline-block";
+
+    } else {
+
+        // সব life শেষ হলে Next বন্ধ থাকবে
+        nextQuestion.style.display =
+            "none";
+
+        // কিন্তু বর্তমান question/options থাকবে
     }
 
 }
