@@ -2919,3 +2919,273 @@ nav.menu-open .menu-toggle span:nth-child(3) {
     }
 
 }
+/* ==========================================
+   MOBILE NAVBAR - DEFINITIVE FIX
+========================================== */
+
+@media (max-width: 600px) {
+
+    nav {
+        position: sticky !important;
+        top: 0 !important;
+
+        width: 100% !important;
+        height: 70px !important;
+        min-height: 70px !important;
+
+        padding: 0 18px !important;
+        margin: 0 !important;
+
+        box-sizing: border-box !important;
+
+        display: block !important;
+
+        z-index: 99999 !important;
+    }
+
+    /* Logo */
+
+    nav h2 {
+        position: absolute !important;
+
+        left: 18px !important;
+        top: 50% !important;
+
+        transform: translateY(-50%) !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        font-size: 24px !important;
+        line-height: 1 !important;
+
+        z-index: 100001 !important;
+    }
+
+    /* Hamburger */
+
+    nav .menu-toggle {
+        position: absolute !important;
+
+        left: 50% !important;
+        top: 50% !important;
+
+        transform: translate(-50%, -50%) !important;
+
+        width: 48px !important;
+        height: 48px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        z-index: 100002 !important;
+    }
+
+    /* Power */
+
+    nav .power-switch {
+        position: absolute !important;
+
+        right: 18px !important;
+        top: 50% !important;
+
+        transform: translateY(-50%) !important;
+
+        width: 44px !important;
+        height: 44px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        z-index: 100002 !important;
+    }
+
+    /* Menu */
+
+    nav ul {
+        display: none !important;
+
+        position: absolute !important;
+
+        top: 70px !important;
+        left: 0 !important;
+
+        width: 100% !important;
+
+        margin: 0 !important;
+        padding: 20px 0 !important;
+
+        box-sizing: border-box !important;
+
+        flex-direction: column !important;
+        align-items: center !important;
+
+        gap: 12px !important;
+
+        background: rgba(8, 15, 32, 0.98) !important;
+
+        z-index: 100000 !important;
+    }
+
+    nav.menu-open ul {
+        display: flex !important;
+    }
+}
+
+
+/* Small phone */
+
+@media (max-width: 400px) {
+
+    nav {
+        height: 65px !important;
+        min-height: 65px !important;
+    }
+
+    nav h2 {
+        left: 15px !important;
+        font-size: 21px !important;
+    }
+
+    nav .menu-toggle {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    nav .power-switch {
+        right: 15px !important;
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    nav ul {
+        top: 65px !important;
+    }
+}
+/* ==========================================
+   BOOK BLOG - REAL TWO PAGE SPREAD
+========================================== */
+
+.book {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: stretch;
+}
+
+
+/* সব page */
+
+.book-page {
+    position: absolute !important;
+
+    top: 0 !important;
+
+    width: 48% !important;
+    height: 100% !important;
+
+    box-sizing: border-box;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+
+    pointer-events: none !important;
+
+    transform: none !important;
+
+    transition:
+        transform 0.7s ease,
+        opacity 0.5s ease;
+
+    z-index: 1;
+}
+
+
+/* ==========================================
+   LEFT SIDE
+========================================== */
+
+.book .left-page {
+    left: 2% !important;
+    right: auto !important;
+}
+
+
+/* ==========================================
+   RIGHT SIDE
+========================================== */
+
+.book .right-page {
+    right: 2% !important;
+    left: auto !important;
+}
+
+
+/* ==========================================
+   ACTIVE PAGES
+========================================== */
+
+.book-page.book-active {
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+
+    z-index: 10 !important;
+}
+
+
+/* ==========================================
+   MOBILE BOOK
+========================================== */
+
+@media (max-width: 600px) {
+
+    .book-wrapper {
+        width: 100%;
+
+        height: 520px;
+
+        overflow: hidden;
+    }
+
+    .book-page {
+        width: 90% !important;
+
+        left: 5% !important;
+        right: auto !important;
+
+        height: 100% !important;
+    }
+
+    .page-content {
+        padding: 28px 22px;
+    }
+
+    .page-content h3 {
+        font-size: 22px;
+    }
+
+    .page-content p {
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+}
