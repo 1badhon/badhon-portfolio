@@ -1742,153 +1742,93 @@ if (navbar && menuToggle) {
 
 }
 /* ==========================================
-   BOOK BLOG PAGE TURN
+   BOOK BLOG - PAGE TURN
 ========================================== */
 
-const blogBook =
-    document.getElementById("blogBook");
-
-const prevPage =
-    document.getElementById("prevPage");
-
-const nextPage =
-    document.getElementById("nextPage");
-
-const bookPageNumber =
-    document.getElementById(
-        "bookPageNumber"
-    );
-
+const blogBook = document.getElementById("blogBook");
+const prevPage = document.getElementById("prevPage");
+const nextPage = document.getElementById("nextPage");
+const bookPageNumber = document.getElementById("bookPageNumber");
 
 let currentBookPage = 1;
-
 const totalBookPages = 6;
-
-
-/* UPDATE BOOK */
 
 function updateBook() {
 
     if (!blogBook) return;
 
-
-    /*
-       Remove old page classes
-    */
-
+    // সব page class remove
     blogBook.classList.remove(
         "page-2",
         "page-3",
         "page-4",
-        "page-5"
+        "page-5",
+        "page-6"
     );
 
-
-    /*
-       Add current page
-    */
-
-    if (currentBookPage > 1) {
-
+    // বর্তমান page অনুযায়ী class
+    if (currentBookPage >= 2) {
         blogBook.classList.add(
-            "page-" +
-            currentBookPage
+            "page-" + currentBookPage
         );
-
     }
 
-
-    /*
-       Page number
-    */
-
+    // Page number
     if (bookPageNumber) {
-
         bookPageNumber.textContent =
-            currentBookPage +
-            " / " +
-            totalBookPages;
-
+            currentBookPage + " / " + totalBookPages;
     }
 
-
-    /*
-       Previous button
-    */
-
+    // Previous
     if (prevPage) {
-
         prevPage.disabled =
             currentBookPage === 1;
-
     }
 
-
-    /*
-       Next button
-    */
-
+    // Next
     if (nextPage) {
-
         nextPage.disabled =
-            currentBookPage ===
-            totalBookPages;
-
+            currentBookPage === totalBookPages;
     }
-
 }
 
 
-/* NEXT */
+/* NEXT PAGE */
 
 if (nextPage) {
 
-    nextPage.addEventListener(
-        "click",
-        () => {
+    nextPage.addEventListener("click", function () {
 
-            if (
-                currentBookPage <
-                totalBookPages
-            ) {
+        if (currentBookPage < totalBookPages) {
 
-                currentBookPage++;
+            currentBookPage++;
 
-                updateBook();
-
-            }
-
+            updateBook();
         }
-    );
+
+    });
 
 }
 
 
-/* PREVIOUS */
+/* PREVIOUS PAGE */
 
 if (prevPage) {
 
-    prevPage.addEventListener(
-        "click",
-        () => {
+    prevPage.addEventListener("click", function () {
 
-            if (
-                currentBookPage > 1
-            ) {
+        if (currentBookPage > 1) {
 
-                currentBookPage--;
+            currentBookPage--;
 
-                updateBook();
-
-            }
-
+            updateBook();
         }
-    );
+
+    });
 
 }
 
 
-/* INITIAL */
+/* Start */
 
 updateBook();
-
