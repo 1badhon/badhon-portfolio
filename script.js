@@ -1742,7 +1742,7 @@ if (navbar && menuToggle) {
 
 }
 /* ==========================================
-   BOOK BLOG - PAGE TURN
+   BOOK BLOG
 ========================================== */
 
 const blogBook = document.getElementById("blogBook");
@@ -1757,7 +1757,6 @@ function updateBook() {
 
     if (!blogBook) return;
 
-    // সব page class remove
     blogBook.classList.remove(
         "page-2",
         "page-3",
@@ -1766,44 +1765,49 @@ function updateBook() {
         "page-6"
     );
 
-    // বর্তমান page অনুযায়ী class
-    if (currentBookPage >= 2) {
+    if (currentBookPage > 1) {
+
         blogBook.classList.add(
             "page-" + currentBookPage
         );
+
     }
 
-    // Page number
     if (bookPageNumber) {
+
         bookPageNumber.textContent =
             currentBookPage + " / " + totalBookPages;
+
     }
 
-    // Previous
     if (prevPage) {
+
         prevPage.disabled =
             currentBookPage === 1;
+
     }
 
-    // Next
     if (nextPage) {
+
         nextPage.disabled =
             currentBookPage === totalBookPages;
+
     }
 }
 
 
-/* NEXT PAGE */
+/* NEXT */
 
 if (nextPage) {
 
-    nextPage.addEventListener("click", function () {
+    nextPage.addEventListener("click", () => {
 
         if (currentBookPage < totalBookPages) {
 
             currentBookPage++;
 
             updateBook();
+
         }
 
     });
@@ -1811,24 +1815,23 @@ if (nextPage) {
 }
 
 
-/* PREVIOUS PAGE */
+/* PREVIOUS */
 
 if (prevPage) {
 
-    prevPage.addEventListener("click", function () {
+    prevPage.addEventListener("click", () => {
 
         if (currentBookPage > 1) {
 
             currentBookPage--;
 
             updateBook();
+
         }
 
     });
 
 }
 
-
-/* Start */
 
 updateBook();
