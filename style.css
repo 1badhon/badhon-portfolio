@@ -1678,3 +1678,108 @@ body.lights-off .power-switch {
     }
 
 }
+/* ==========================================
+   SCROLL HAMBURGER NAVBAR
+========================================== */
+
+.menu-toggle {
+    display: none;
+    width: 48px;
+    height: 42px;
+    border: 1px solid #38bdf8;
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.9);
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #38bdf8;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+
+/* যখন scroll হবে */
+
+nav.scrolled {
+    padding: 10px 5%;
+    background: rgba(5, 10, 25, 0.96);
+    backdrop-filter: blur(15px);
+}
+
+
+/* Scroll অবস্থায় menu links hide */
+
+nav.scrolled ul {
+    display: none;
+}
+
+
+/* Scroll অবস্থায় 3-line দেখাবে */
+
+nav.scrolled .menu-toggle {
+    display: flex;
+}
+
+
+/* Menu open */
+
+nav.menu-open ul {
+    display: flex;
+}
+
+
+/* Mobile / scroll menu */
+
+@media (max-width: 900px) {
+
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+    }
+
+    nav ul {
+        gap: 15px;
+    }
+
+}
+
+
+/* Scroll অবস্থায় dropdown */
+
+nav.menu-open {
+    flex-wrap: wrap;
+}
+
+nav.menu-open ul {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+
+/* Hamburger animation */
+
+nav.menu-open .menu-toggle span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+nav.menu-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+nav.menu-open .menu-toggle span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
