@@ -772,63 +772,40 @@ function loadQuestion() {
 /* ==========================================
    CHECK ANSWER
 ========================================== */
-
-function checkAnswer(
-    button,
-    selectedAnswer
-) {
+function checkAnswer(button, selectedAnswer) {
 
     if (!gameStarted || answered) {
         return;
     }
 
-
     answered = true;
 
     clearInterval(timer);
 
-
     const question =
         gameQuestions[currentQuestion];
 
-
     const buttons =
-        document.querySelectorAll(
-            ".game-option"
-        );
+        document.querySelectorAll(".game-option");
 
 
     /* ==========================
-       CORRECT
+       CORRECT ANSWER
     ========================== */
 
-    if (
-        selectedAnswer ===
-        question.answer
-    ) {
+    if (selectedAnswer === question.answer) {
 
-        button.classList.add(
-            "correct"
-        );
-
+        button.classList.add("correct");
 
         combo++;
 
-
         let points = 100;
 
-
-        /* Combo Bonus */
-
         if (combo >= 2) {
-
             points += combo * 25;
-
         }
 
-
         score += points;
-
 
         playSound("correct");
 
@@ -840,62 +817,53 @@ function checkAnswer(
 
             gameStatus.style.color =
                 "#22c55e";
-
         }
 
 
         buttons.forEach(btn => {
-
             btn.disabled = true;
-
         });
 
 
         updateGameUI();
 
 
-        /* Last question */
-
         if (
             currentQuestion >=
             gameQuestions.length - 1
         ) {
 
-            setTimeout(
-                finishGame,
-                700
-            );
+            setTimeout(() => {
+                finishGame();
+            }, 700);
 
         } else {
 
             nextQuestion.style.display =
                 "inline-block";
-
         }
 
     }
 
 
     /* ==========================
-       WRONG
+       WRONG ANSWER
     ========================== */
 
     else {
 
-        button.classList.add(
-            "wrong"
-        );
-
+        button.classList.add("wrong");
 
         lives--;
 
         combo = 0;
 
-
         playSound("wrong");
 
         screenShake();
 
+
+        /* Correct answer দেখাবে */
 
         buttons.forEach(btn => {
 
@@ -904,9 +872,7 @@ function checkAnswer(
                 question.answer
             ) {
 
-                btn.classList.add(
-                    "correct"
-                );
+                btn.classList.add("correct");
 
             }
 
@@ -915,28 +881,52 @@ function checkAnswer(
         });
 
 
+        /* Status */
+
         if (gameStatus) {
 
             gameStatus.textContent =
-                `❌ Wrong! Correct answer: ${question.answer}`;
+                `❌ Wrong! Correct Answer: ${question.answer}`;
 
             gameStatus.style.color =
                 "#ef4444";
-
         }
 
 
         updateGameUI();
 
 
+        /*
+        IMPORTANT:
+        Game এখানেই শেষ হবে না।
+        Question এবং options screen-এ থাকবে।
+        */
+
+
         if (lives <= 0) {
 
-            setTimeout(
-                endGame,
-                800
-            );
+            gameStatus.textContent =
+                `💀 No Lives Left! Correct Answer: ${question.answer}`;
 
-        } else {
+            gameStatus.style.color =
+                "#ef4444";
+
+            /*
+            Next Question না দেখিয়ে
+            Restart option থাকবে।
+            */
+
+            nextQuestion.style.display =
+                "none";
+
+        }
+
+        else {
+
+            /*
+            Life থাকলে Next Question
+            দেখাবে
+            */
 
             nextQuestion.style.display =
                 "inline-block";
@@ -946,7 +936,6 @@ function checkAnswer(
     }
 
 }
-
 
 /* ==========================================
    TIMER
