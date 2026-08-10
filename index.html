@@ -6,19 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Badhon Biswas | Network Engineer</title>
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="new.png">
 
+    <!-- Font Awesome -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
+    <!-- =====================================================
          BACKGROUND
-    ========================== -->
+    ====================================================== -->
 
     <div class="grid-bg"></div>
     <div class="glow glow1"></div>
@@ -26,78 +30,110 @@
     <div id="particles-js"></div>
 
 
-    <!-- =========================
+    <!-- =====================================================
          NAVBAR
-    ========================== -->
+    ====================================================== -->
 
-  <nav>
+    <nav id="navbar">
 
-    <!-- BRAND WITH LAMP -->
-    <div class="brand-area">
+        <!-- BRAND WITH LAMP -->
+        <div class="brand-area">
 
-        <div class="brand-lamp">
+            <div class="brand-lamp">
 
-            <div class="lamp-wire"></div>
+                <div class="lamp-wire"></div>
 
-            <div class="lamp-shade">
-                <div class="lamp-bulb"></div>
+                <div class="lamp-shade">
+                    <div class="lamp-bulb"></div>
+                </div>
+
+                <div class="lamp-light"></div>
+
             </div>
 
-            <div class="lamp-light"></div>
+            <h2>Badhon.</h2>
 
         </div>
 
-        <h2>Badhon.</h2>
 
-    </div>
+        <!-- MOBILE MENU BUTTON -->
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open Menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
 
 
-    <!-- MOBILE MENU -->
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open Menu">
+        <!-- NAVIGATION LINKS -->
+        <ul id="navLinks">
 
-        <span></span>
-        <span></span>
-        <span></span>
+            <li>
+                <a href="#about">About</a>
+            </li>
 
-    </button>
+            <li>
+                <a href="#skills">Skills</a>
+            </li>
 
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#routing-game">Network Lab</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li>
+                <a href="#education">Education</a>
+            </li>
+
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+
+            <li>
+                <a href="#routing-game">Network Lab</a>
+            </li>
+
+            <li>
+                <a href="#blog">Blog</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
         </ul>
 
-       <!-- UNIQUE POWER BUTTON -->
 
-<div class="power-switch"
-     id="powerSwitch"
-     title="Toggle Lights">
+        <!-- UNIQUE POWER BUTTON -->
+        <div
+            class="power-switch"
+            id="powerSwitch"
+            role="button"
+            tabindex="0"
+            aria-label="Toggle lights">
 
-    <div class="power-ring ring-one"></div>
-    <div class="power-ring ring-two"></div>
+            <div class="power-ring ring-one"></div>
+            <div class="power-ring ring-two"></div>
 
-    <div class="power-core">
+            <div class="power-core">
 
-        <i class="fa-solid fa-power-off"></i>
+                <i class="fa-solid fa-power-off"></i>
 
-    </div>
+            </div>
 
-    <span class="power-status"></span>
+            <span class="power-status"></span>
 
-</div>
+        </div>
+
+    </nav>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          HERO
-    ========================== -->
+    ====================================================== -->
 
-    <header class="hero">
+    <header class="hero" id="home">
 
         <div class="hero-text">
 
@@ -112,48 +148,65 @@
                 building secure computer networks.
             </p>
 
-            <a class="btn"
-               href="Badhon_Biswas_CV.pdf"
-               target="_blank"
-               rel="noopener noreferrer">
 
+            <!-- CV BUTTON -->
+            <a
+                class="btn"
+                href="Badhon_Biswas_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                <i class="fa-solid fa-file-pdf"></i>
                 Download CV
 
             </a>
 
-            <a class="btn2"
-               href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
-               target="_blank"
-               rel="noopener noreferrer">
 
+            <!-- LINKEDIN BUTTON -->
+            <a
+                class="btn2"
+                href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
+                target="_blank"
+                rel="noopener noreferrer">
+
+                <i class="fa-brands fa-linkedin"></i>
                 LinkedIn
 
             </a>
 
-            <a href="https://github.com/1badhon"
-               target="_blank"
-               rel="noopener noreferrer">
 
-                <i class="fa-brands fa-github"></i>
+            <!-- GITHUB -->
+            <a
+                href="https://github.com/1badhon"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub">
+
+                <i class="fa-brands fa-github"
+                   style="font-size: 30px; color: #38bdf8;">
+                </i>
 
             </a>
 
         </div>
 
 
+        <!-- PROFILE IMAGE -->
         <div class="hero-image">
 
-            <img src="new.png"
-                 alt="Badhon Biswas">
+            <img
+                src="new.png"
+                alt="Badhon Biswas">
 
         </div>
 
     </header>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          ABOUT
-    ========================== -->
+    ====================================================== -->
 
     <section id="about">
 
@@ -175,56 +228,71 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          SKILLS
-    ========================== -->
+    ====================================================== -->
 
     <section id="skills">
 
         <h2>Technical Skills</h2>
 
-        <div class="card">
-            ✔ Networking Fundamentals
-        </div>
+        <div class="skills-container">
 
-        <div class="card">
-            ✔ Cisco Packet Tracer
-        </div>
+            <div class="card">
+                <i class="fa-solid fa-network-wired"></i>
+                Networking Fundamentals
+            </div>
 
-        <div class="card">
-            ✔ MikroTik Basics
-        </div>
+            <div class="card">
+                <i class="fa-solid fa-server"></i>
+                Cisco Packet Tracer
+            </div>
 
-        <div class="card">
-            ✔ Windows Installation
-        </div>
+            <div class="card">
+                <i class="fa-solid fa-router"></i>
+                MikroTik Basics
+            </div>
 
-        <div class="card">
-            ✔ Ubuntu Linux
-        </div>
+            <div class="card">
+                <i class="fa-brands fa-windows"></i>
+                Windows Installation
+            </div>
 
-        <div class="card">
-            ✔ HTML
-        </div>
+            <div class="card">
+                <i class="fa-brands fa-linux"></i>
+                Ubuntu Linux
+            </div>
 
-        <div class="card">
-            ✔ CSS
-        </div>
+            <div class="card">
+                <i class="fa-brands fa-html5"></i>
+                HTML
+            </div>
 
-        <div class="card">
-            ✔ Git & GitHub
+            <div class="card">
+                <i class="fa-brands fa-css3-alt"></i>
+                CSS
+            </div>
+
+            <div class="card">
+                <i class="fa-brands fa-github"></i>
+                Git & GitHub
+            </div>
+
         </div>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          EDUCATION
-    ========================== -->
+    ====================================================== -->
 
     <section id="education">
 
         <h2>Education</h2>
+
 
         <div class="box">
 
@@ -258,441 +326,730 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          PROJECTS
-    ========================== -->
+    ====================================================== -->
 
     <section id="projects">
 
         <h2>Projects</h2>
 
-        <div class="box">
 
-            <h3>Portfolio Website</h3>
+        <div class="projects-container">
 
-            <p>
-                Personal Portfolio using HTML & CSS.
-            </p>
+            <div class="box">
 
-        </div>
+                <h3>
+                    <i class="fa-solid fa-globe"></i>
+                    Portfolio Website
+                </h3>
 
+                <p>
+                    Personal Portfolio Website using
+                    HTML, CSS and JavaScript.
+                </p>
 
-        <div class="box">
-
-            <h3>Cisco Packet Tracer Lab</h3>
-
-            <p>
-                Basic Networking Topology Design.
-            </p>
-
-        </div>
+            </div>
 
 
-        <div class="box">
+            <div class="box">
 
-            <h3>IP Addressing Practice</h3>
+                <h3>
+                    <i class="fa-solid fa-network-wired"></i>
+                    Cisco Packet Tracer Lab
+                </h3>
 
-            <p>
-                Subnetting & IP Configuration.
-            </p>
+                <p>
+                    Basic Networking Topology Design
+                    and device configuration practice.
+                </p>
+
+            </div>
+
+
+            <div class="box">
+
+                <h3>
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    IP Addressing Practice
+                </h3>
+
+                <p>
+                    Subnetting and IP Configuration
+                    practice.
+                </p>
+
+            </div>
 
         </div>
 
     </section>
-<!-- =========================
-     REALISTIC NETWORKING BOOK
-========================= -->
 
-<section id="blog">
 
-    <h2>📖 My Networking Blog</h2>
 
-    <p class="blog-intro">
-        Turn the pages and explore my networking notes.
-    </p>
+    <!-- =====================================================
+         NETWORK LAB
+    ====================================================== -->
 
-    <div class="real-book">
+    <section id="lab">
 
-        <div class="book-pages" id="bookPages">
+        <h2>🌐 Network Lab</h2>
 
-            <!-- PAGE 1 -->
-            <div class="flip-page page-left active-page">
-
-                <div class="page-front">
-
-                    <span class="page-number">
-                        Page 01
-                    </span>
-
-                    <h3>What is Computer Networking?</h3>
-
-                    <p>
-                        Computer networking is the process
-                        of connecting computers and other
-                        devices so they can communicate
-                        and share information.
-                    </p>
-
-                    <p>
-                        A network can contain computers,
-                        switches, routers, servers and
-                        other networking devices.
-                    </p>
-
-                    <div class="page-topic">
-                        🌐 Networking Basics
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PAGE 2 -->
-            <div class="flip-page page-right active-page">
-
-                <div class="page-front">
-
-                    <span class="page-number">
-                        Page 02
-                    </span>
-
-                    <h3>IP Address</h3>
-
-                    <p>
-                        An IP address is a logical address
-                        used to identify a device on a
-                        network.
-                    </p>
-
-                    <p>
-                        IPv4 addresses are written using
-                        four decimal numbers separated
-                        by dots.
-                    </p>
-
-                    <div class="page-topic">
-                        💻 IPv4 • Addressing
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PAGE 3 -->
-            <div class="flip-page page-3">
-
-                <div class="page-front">
-
-                    <span class="page-number">
-                        Page 03
-                    </span>
-
-                    <h3>Router vs Switch</h3>
-
-                    <p>
-                        A switch mainly connects devices
-                        inside a local network.
-                    </p>
-
-                    <p>
-                        A router connects different
-                        networks and forwards packets
-                        between them.
-                    </p>
-
-                    <div class="page-topic">
-                        📡 Router • 🔀 Switch
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PAGE 4 -->
-            <div class="flip-page page-4">
-
-                <div class="page-front">
-
-                    <span class="page-number">
-                        Page 04
-                    </span>
-
-                    <h3>Subnetting</h3>
-
-                    <p>
-                        Subnetting divides a network into
-                        smaller logical networks.
-                    </p>
-
-                    <p>
-                        It helps improve network organization,
-                        address management and security.
-                    </p>
-
-                    <div class="page-topic">
-                        🧮 Subnetting
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PAGE 5 -->
-            <div class="flip-page page-5">
-
-                <div class="page-front">
-
-                    <span class="page-number">
-                        Page 05
-                    </span>
-
-                    <h3>DHCP & DNS</h3>
-
-                    <p>
-                        DHCP can automatically provide
-                        network configuration such as
-                        IP addresses.
-                    </p>
-
-                    <p>
-                        DNS translates domain names into
-                        IP addresses so devices can locate
-                        services on a network.
-                    </p>
-
-                    <div class="page-topic">
-                        ⚙️ DHCP • 🌍 DNS
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PAGE 6 -->
-            <div class="flip-page page-6">
-
-                <div class="page-front">
-
-                    <span class="page-number">
-                        Page 06
-                    </span>
-
-                    <h3>Cisco Packet Tracer</h3>
-
-                    <p>
-                        Cisco Packet Tracer is useful for
-                        practicing network topologies
-                        and basic device configuration.
-                    </p>
-
-                    <p>
-                        It allows students to experiment
-                        with networking concepts without
-                        physical equipment.
-                    </p>
-
-                    <div class="page-topic">
-                        🖥️ Cisco Lab
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- BOOK CONTROLS -->
-
-    <div class="book-controls">
-
-        <button
-            class="book-btn"
-            id="prevPage">
-
-            ← Previous
-
-        </button>
-
-
-        <span id="bookPageNumber">
-            1–2 / 6
-        </span>
-
-
-        <button
-            class="book-btn"
-            id="nextPage">
-
-            Next →
-
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     NETWORK TROUBLESHOOTER
-========================== -->
-
-<section id="routing-game">
-
-    <h2>🎮 Network Troubleshooter</h2>
-
-    <p class="game-subtitle">
-        Test your networking knowledge and fix the network!
-    </p>
-
-    <!-- GAME INFO -->
-
-    <div class="game-info">
-
-        <div class="game-stat">
-            ❤️ Lives:
-            <span id="lives">3</span>
-        </div>
-
-        <div class="game-stat">
-            ⭐ Score:
-            <span id="score">0</span>
-        </div>
-
-        <div class="game-stat">
-            🏆 Level:
-            <span id="gameLevel">1</span>/5
-        </div>
-
-        <div class="game-stat">
-            ⏱️ Time:
-            <span id="gameTimer">30</span>s
-        </div>
-
-    </div>
-
-
-    <!-- PROGRESS -->
-
-    <div class="game-progress">
-
-        <div id="gameProgressBar"></div>
-
-    </div>
-
-
-    <!-- QUESTION -->
-
-    <div class="game-question">
-
-        <h3 id="gameQuestion">
-            Click Start Game to begin!
-        </h3>
-
-    </div>
-
-
-    <!-- OPTIONS -->
-
-    <div id="gameOptions" class="game-options">
-    </div>
-
-
-    <!-- STATUS -->
-
-    <div id="gameStatus">
-        Ready?
-    </div>
-
-
-    <!-- BUTTONS -->
-
-    <div class="game-buttons">
-
-   <button
-    type="button"
-    id="startGame"
-    class="btn">
-
-    🚀 Start Game
-
-</button>
-
-
-        <button
-            type="button"
-            class="btn"
-            id="nextQuestion"
-            style="display:none;">
-
-            Next Question →
-
-        </button>
-
-
-        <button
-            type="button"
-            class="btn2"
-            id="resetGame">
-
-            🔄 Restart
-
-        </button>
-
-    </div>
-
-
-    <!-- FINAL RESULT -->
-
-    <div
-        id="gameResult"
-        style="display:none;">
-
-        <h2>🏆 Challenge Complete!</h2>
-
-        <p>
-            Your Score:
-            <strong id="finalScore">0</strong>
+        <p class="lab-text">
+            Interactive network simulation — send a packet
+            through the network.
         </p>
 
-        <p id="finalMessage"></p>
 
-        <button
-            type="button"
-            class="btn"
-            id="playAgain">
+        <div class="network">
 
-            🎮 Play Again
+            <!-- PC -->
+            <div class="device">
 
-        </button>
+                <i class="fa-solid fa-computer"></i>
 
-    </div>
+                <span>PC</span>
 
-</section>
+            </div>
 
-    <!-- =========================
+
+            <!-- LINE -->
+            <div class="line">
+
+                <div class="packet"></div>
+
+            </div>
+
+
+            <!-- SWITCH -->
+            <div class="device">
+
+                <i class="fa-solid fa-network-wired"></i>
+
+                <span>Switch</span>
+
+            </div>
+
+
+            <!-- LINE -->
+            <div class="line">
+
+                <div class="packet"></div>
+
+            </div>
+
+
+            <!-- ROUTER -->
+            <div class="device">
+
+                <i class="fa-solid fa-router"></i>
+
+                <span>Router</span>
+
+            </div>
+
+
+            <!-- LINE -->
+            <div class="line">
+
+                <div class="packet"></div>
+
+            </div>
+
+
+            <!-- SERVER -->
+            <div class="device">
+
+                <i class="fa-solid fa-server"></i>
+
+                <span>Server</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="status" id="networkStatus">
+            Network Ready
+        </div>
+
+
+        <div class="lab-buttons">
+
+            <button
+                type="button"
+                class="btn"
+                id="startNetwork">
+
+                🚀 Send Packet
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn2"
+                id="resetNetwork">
+
+                🔄 Reset
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ROUTING GAME
+    ====================================================== -->
+
+    <section id="routing-game">
+
+        <h2>🎮 Network Routing Challenge</h2>
+
+        <p class="game-subtitle">
+            Choose the correct networking device and
+            troubleshoot the route.
+        </p>
+
+
+        <!-- ROUTING DEVICES -->
+
+        <div class="routing-container">
+
+            <div
+                class="route-device"
+                data-device="pc">
+
+                <i class="fa-solid fa-computer"></i>
+
+                <span>PC</span>
+
+            </div>
+
+
+            <div
+                class="route-device"
+                data-device="switch">
+
+                <i class="fa-solid fa-network-wired"></i>
+
+                <span>Switch</span>
+
+            </div>
+
+
+            <div
+                class="route-device"
+                data-device="router">
+
+                <i class="fa-solid fa-router"></i>
+
+                <span>Router</span>
+
+            </div>
+
+
+            <div
+                class="route-device"
+                data-device="server">
+
+                <i class="fa-solid fa-server"></i>
+
+                <span>Server</span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             GAME INFO
+        ================================================== -->
+
+        <div class="game-info">
+
+            <div class="game-stat">
+
+                ❤️ Lives:
+
+                <span id="lives">
+                    3
+                </span>
+
+            </div>
+
+
+            <div class="game-stat">
+
+                ⭐ Score:
+
+                <span id="score">
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="game-stat">
+
+                🏆 Level:
+
+                <span id="gameLevel">
+                    1
+                </span>/5
+
+            </div>
+
+
+            <div class="game-stat">
+
+                ⏱️ Time:
+
+                <span id="gameTimer">
+                    30
+                </span>s
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             GAME PROGRESS
+        ================================================== -->
+
+        <div class="game-progress">
+
+            <div id="gameProgressBar"></div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             GAME QUESTION
+        ================================================== -->
+
+        <div class="game-question">
+
+            <h3 id="gameQuestion">
+                Click Start Game to begin!
+            </h3>
+
+        </div>
+
+
+
+        <!-- =================================================
+             GAME OPTIONS
+        ================================================== -->
+
+        <div
+            id="gameOptions"
+            class="game-options">
+
+        </div>
+
+
+
+        <!-- GAME STATUS -->
+
+        <div id="gameStatus">
+            Ready?
+        </div>
+
+
+
+        <!-- =================================================
+             GAME BUTTONS
+        ================================================== -->
+
+        <div class="game-buttons">
+
+            <button
+                type="button"
+                class="btn"
+                id="startGame">
+
+                🚀 Start Game
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn"
+                id="nextQuestion"
+                style="display: none;">
+
+                Next Question →
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn2"
+                id="resetGame">
+
+                🔄 Restart
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FINAL RESULT
+        ================================================== -->
+
+        <div
+            id="gameResult"
+            style="display: none;">
+
+            <h2>
+                🏆 Challenge Complete!
+            </h2>
+
+
+            <p>
+
+                Your Score:
+
+                <strong id="finalScore">
+                    0
+                </strong>
+
+            </p>
+
+
+            <p id="finalMessage"></p>
+
+
+            <button
+                type="button"
+                class="btn"
+                id="playAgain">
+
+                🎮 Play Again
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         NETWORKING BLOG
+    ====================================================== -->
+
+    <section id="blog">
+
+        <h2>
+            📖 My Networking Blog
+        </h2>
+
+        <p class="blog-intro">
+            Turn the pages and explore my networking notes.
+        </p>
+
+
+        <!-- BOOK -->
+
+        <div class="real-book">
+
+            <div
+                class="book-pages"
+                id="bookPages">
+
+
+                <!-- ================= PAGE 1 ================= -->
+
+                <div class="flip-page page-left active-page">
+
+                    <div class="page-front">
+
+                        <span class="page-number">
+                            Page 01
+                        </span>
+
+                        <h3>
+                            What is Computer Networking?
+                        </h3>
+
+                        <p>
+                            Computer networking is the process
+                            of connecting computers and other
+                            devices so they can communicate
+                            and share information.
+                        </p>
+
+                        <p>
+                            A network can contain computers,
+                            switches, routers, servers and
+                            other networking devices.
+                        </p>
+
+                        <div class="page-topic">
+                            🌐 Networking Basics
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= PAGE 2 ================= -->
+
+                <div class="flip-page page-right active-page">
+
+                    <div class="page-front">
+
+                        <span class="page-number">
+                            Page 02
+                        </span>
+
+                        <h3>
+                            IP Address
+                        </h3>
+
+                        <p>
+                            An IP address is a logical address
+                            used to identify a device on a
+                            network.
+                        </p>
+
+                        <p>
+                            IPv4 addresses are written using
+                            four decimal numbers separated
+                            by dots.
+                        </p>
+
+                        <div class="page-topic">
+                            💻 IPv4 • Addressing
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= PAGE 3 ================= -->
+
+                <div class="flip-page page-3">
+
+                    <div class="page-front">
+
+                        <span class="page-number">
+                            Page 03
+                        </span>
+
+                        <h3>
+                            Router vs Switch
+                        </h3>
+
+                        <p>
+                            A switch mainly connects devices
+                            inside a local network.
+                        </p>
+
+                        <p>
+                            A router connects different
+                            networks and forwards packets
+                            between them.
+                        </p>
+
+                        <div class="page-topic">
+                            📡 Router • 🔀 Switch
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= PAGE 4 ================= -->
+
+                <div class="flip-page page-4">
+
+                    <div class="page-front">
+
+                        <span class="page-number">
+                            Page 04
+                        </span>
+
+                        <h3>
+                            Subnetting
+                        </h3>
+
+                        <p>
+                            Subnetting divides a network into
+                            smaller logical networks.
+                        </p>
+
+                        <p>
+                            It helps improve network organization,
+                            address management and security.
+                        </p>
+
+                        <div class="page-topic">
+                            🧮 Subnetting
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= PAGE 5 ================= -->
+
+                <div class="flip-page page-5">
+
+                    <div class="page-front">
+
+                        <span class="page-number">
+                            Page 05
+                        </span>
+
+                        <h3>
+                            DHCP & DNS
+                        </h3>
+
+                        <p>
+                            DHCP can automatically provide
+                            network configuration such as
+                            IP addresses.
+                        </p>
+
+                        <p>
+                            DNS translates domain names into
+                            IP addresses so devices can locate
+                            services on a network.
+                        </p>
+
+                        <div class="page-topic">
+                            ⚙️ DHCP • 🌍 DNS
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= PAGE 6 ================= -->
+
+                <div class="flip-page page-6">
+
+                    <div class="page-front">
+
+                        <span class="page-number">
+                            Page 06
+                        </span>
+
+                        <h3>
+                            Cisco Packet Tracer
+                        </h3>
+
+                        <p>
+                            Cisco Packet Tracer is useful for
+                            practicing network topologies
+                            and basic device configuration.
+                        </p>
+
+                        <p>
+                            It allows students to experiment
+                            with networking concepts without
+                            physical equipment.
+                        </p>
+
+                        <div class="page-topic">
+                            🖥️ Cisco Lab
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             BOOK CONTROLS
+        ================================================== -->
+
+        <div class="book-controls">
+
+            <button
+                class="book-btn"
+                id="prevPage"
+                type="button">
+
+                ← Previous
+
+            </button>
+
+
+            <span id="bookPageNumber">
+                1–2 / 6
+            </span>
+
+
+            <button
+                class="book-btn"
+                id="nextPage"
+                type="button">
+
+                Next →
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
          CONTACT
-    ========================== -->
+    ====================================================== -->
 
     <section id="contact">
 
-        <h2>Contact</h2>
+        <h2>
+            Contact
+        </h2>
 
 
         <p>
-            📧 badhonbiswas.1.bd@gmail.com
+            📧
+            <a href="mailto:badhonbiswas.1.bd@gmail.com">
+                badhonbiswas.1.bd@gmail.com
+            </a>
         </p>
 
 
         <p>
-            📱 01866314941
+            📱
+            <a href="tel:+8801866314941">
+                01866314941
+            </a>
         </p>
 
 
@@ -701,12 +1058,16 @@
         </p>
 
 
+        <!-- LINKEDIN -->
+
         <p>
 
-            <a href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
-               target="_blank"
-               rel="noopener noreferrer">
+            <a
+                href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
+                target="_blank"
+                rel="noopener noreferrer">
 
+                <i class="fa-brands fa-linkedin"></i>
                 Visit My LinkedIn
 
             </a>
@@ -714,15 +1075,46 @@
         </p>
 
 
+        <!-- GITHUB -->
+
         <div class="contact-item">
 
             <i class="fa-brands fa-github"></i>
 
-            <a href="https://github.com/1badhon"
-               target="_blank"
-               rel="noopener noreferrer">
+            <a
+                href="https://github.com/1badhon"
+                target="_blank"
+                rel="noopener noreferrer">
 
                 github.com/1badhon
+
+            </a>
+
+        </div>
+
+
+        <!-- SOCIAL LINKS -->
+
+        <div class="social-links">
+
+            <a
+                href="https://github.com/1badhon"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub">
+
+                <i class="fa-brands fa-github"></i>
+
+            </a>
+
+
+            <a
+                href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn">
+
+                <i class="fa-brands fa-linkedin"></i>
 
             </a>
 
@@ -731,38 +1123,54 @@
     </section>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          FOOTER
-    ========================== -->
+    ====================================================== -->
 
     <footer>
 
         <p>
-            © 2026 Badhon Biswas version 1.1
+            © 2026 Badhon Biswas | Network Engineer
+        </p>
+
+        <p>
+            Version 1.1
         </p>
 
     </footer>
 
 
-    <!-- =========================
-         BACK TO TOP
-    ========================== -->
 
-    <button id="topBtn"
-            onclick="topFunction()">
+    <!-- =====================================================
+         BACK TO TOP
+    ====================================================== -->
+
+    <button
+        id="topBtn"
+        type="button"
+        onclick="topFunction()"
+        aria-label="Back to top">
 
         ↑
 
     </button>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- =====================================================
+         PARTICLES.JS
+    ====================================================== -->
 
-<script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js">
+    </script>
+
+
+    <!-- =====================================================
+         MAIN JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
 
 </body>
 
