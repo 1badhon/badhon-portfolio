@@ -6,7 +6,80 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
-       TYPING ANIMATION
+       POWER SWITCH
+    ===================================================== */
+
+    const powerSwitch = document.getElementById("powerSwitch");
+
+    if (powerSwitch) {
+        powerSwitch.addEventListener("click", function () {
+            document.body.classList.toggle("lights-off");
+
+            const isOff = document.body.classList.contains("lights-off");
+
+            powerSwitch.setAttribute(
+                "title",
+                isOff ? "Turn Lights On" : "Turn Lights Off"
+            );
+        });
+    }
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    const menuToggle = document.getElementById("menuToggle");
+    const nav = document.querySelector("nav");
+    const navLinks = document.querySelectorAll("nav ul li a");
+
+    if (menuToggle && nav) {
+
+        menuToggle.addEventListener("click", function () {
+            nav.classList.toggle("menu-open");
+
+            const isOpen = nav.classList.contains("menu-open");
+
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close Menu" : "Open Menu"
+            );
+        });
+
+        navLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                nav.classList.remove("menu-open");
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    "Open Menu"
+                );
+            });
+        });
+    }
+
+
+    /* =====================================================
+       NAVBAR SCROLL EFFECT
+    ===================================================== */
+
+    window.addEventListener("scroll", function () {
+
+        const navBar = document.querySelector("nav");
+
+        if (navBar) {
+            if (window.scrollY > 50) {
+                navBar.classList.add("scrolled");
+            } else {
+                navBar.classList.remove("scrolled");
+            }
+        }
+
+    });
+
+
+    /* =====================================================
+       TYPING EFFECT
     ===================================================== */
 
     const typingElement = document.getElementById("typing");
@@ -40,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     deleting = true;
 
                     setTimeout(typeEffect, 1800);
+
                     return;
                 }
 
@@ -59,10 +133,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (textIndex >= texts.length) {
                         textIndex = 0;
                     }
+
                 }
             }
 
-            setTimeout(typeEffect, deleting ? 60 : 100);
+            setTimeout(
+                typeEffect,
+                deleting ? 60 : 100
+            );
         }
 
         typeEffect();
@@ -70,348 +148,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       MOBILE NAVBAR
-    ===================================================== */
-
-    const menuToggle = document.getElementById("menuToggle");
-    const nav = document.querySelector("nav");
-
-    if (menuToggle && nav) {
-
-        menuToggle.addEventListener("click", function () {
-
-            nav.classList.toggle("menu-open");
-
-            const isOpen =
-                nav.classList.contains("menu-open");
-
-            menuToggle.setAttribute(
-                "aria-label",
-                isOpen ? "Close Menu" : "Open Menu"
-            );
-        });
-
-
-        /* Close menu after clicking a link */
-
-        const navLinks =
-            nav.querySelectorAll("ul li a");
-
-        navLinks.forEach(function (link) {
-
-            link.addEventListener("click", function () {
-
-                nav.classList.remove("menu-open");
-
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Open Menu"
-                );
-            });
-
-        });
-
-    }
-
-
-    /* =====================================================
-       SCROLLED NAVBAR
-    ===================================================== */
-
-    if (nav) {
-
-        window.addEventListener("scroll", function () {
-
-            if (window.scrollY > 50) {
-
-                nav.classList.add("scrolled");
-
-            } else {
-
-                nav.classList.remove("scrolled");
-
-            }
-
-        });
-
-    }
-
-
-    /* =====================================================
-       POWER SWITCH
-    ===================================================== */
-
-    const powerSwitch =
-        document.getElementById("powerSwitch");
-
-    if (powerSwitch) {
-
-        powerSwitch.addEventListener("click", function () {
-
-            document.body.classList.toggle("lights-off");
-
-        });
-
-    }
-
-
-    /* =====================================================
        BACK TO TOP BUTTON
     ===================================================== */
 
-    const topBtn =
-        document.getElementById("topBtn");
+    const topBtn = document.getElementById("topBtn");
 
     if (topBtn) {
 
         window.addEventListener("scroll", function () {
 
-            if (window.scrollY > 400) {
-
+            if (window.scrollY > 300) {
                 topBtn.style.display = "block";
-
             } else {
-
                 topBtn.style.display = "none";
-
             }
 
         });
 
-    }
+        topBtn.addEventListener("click", function () {
 
-
-    window.topFunction = function () {
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    };
-
-
-    /* =====================================================
-       PARTICLES.JS
-    ===================================================== */
-
-    if (
-        typeof particlesJS !== "undefined" &&
-        document.getElementById("particles-js")
-    ) {
-
-        particlesJS("particles-js", {
-
-            particles: {
-
-                number: {
-                    value: 60,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-
-                color: {
-                    value: "#38bdf8"
-                },
-
-                shape: {
-                    type: "circle"
-                },
-
-                opacity: {
-                    value: 0.5
-                },
-
-                size: {
-                    value: 3,
-                    random: true
-                },
-
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#38bdf8",
-                    opacity: 0.25,
-                    width: 1
-                },
-
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    out_mode: "out"
-                }
-
-            },
-
-            interactivity: {
-
-                detect_on: "canvas",
-
-                events: {
-
-                    onhover: {
-                        enable: true,
-                        mode: "grab"
-                    },
-
-                    onclick: {
-                        enable: true,
-                        mode: "push"
-                    },
-
-                    resize: true
-                },
-
-                modes: {
-
-                    grab: {
-                        distance: 140,
-                        line_linked: {
-                            opacity: 0.5
-                        }
-                    },
-
-                    push: {
-                        particles_nb: 4
-                    }
-
-                }
-
-            },
-
-            retina_detect: true
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
         });
-
-    }
-
-
-    /* =====================================================
-       NETWORKING BLOG BOOK
-    ===================================================== */
-
-    const pages = document.querySelectorAll(".flip-page");
-
-    const prevPage =
-        document.getElementById("prevPage");
-
-    const nextPage =
-        document.getElementById("nextPage");
-
-    const bookPageNumber =
-        document.getElementById("bookPageNumber");
-
-
-    let currentBookPage = 0;
-
-
-    function updateBook() {
-
-        pages.forEach(function (page) {
-
-            page.classList.remove(
-                "flip-next",
-                "flip-prev"
-            );
-
-            page.style.opacity = "0";
-            page.style.visibility = "hidden";
-
-        });
-
-
-        if (pages[currentBookPage]) {
-
-            pages[currentBookPage].style.opacity = "1";
-            pages[currentBookPage].style.visibility = "visible";
-
-        }
-
-
-        if (pages[currentBookPage + 1]) {
-
-            pages[currentBookPage + 1].style.opacity = "1";
-            pages[currentBookPage + 1].style.visibility = "visible";
-
-        }
-
-
-        if (bookPageNumber) {
-
-            const start = currentBookPage + 1;
-
-            const end = Math.min(
-                currentBookPage + 2,
-                pages.length
-            );
-
-            bookPageNumber.textContent =
-                `${start}–${end} / ${pages.length}`;
-
-        }
-
-
-        if (prevPage) {
-
-            prevPage.disabled =
-                currentBookPage === 0;
-
-        }
-
-
-        if (nextPage) {
-
-            nextPage.disabled =
-                currentBookPage >= pages.length - 2;
-
-        }
-
-    }
-
-
-    if (nextPage) {
-
-        nextPage.addEventListener("click", function () {
-
-            if (currentBookPage < pages.length - 2) {
-
-                currentBookPage += 2;
-
-                updateBook();
-
-            }
-
-        });
-
-    }
-
-
-    if (prevPage) {
-
-        prevPage.addEventListener("click", function () {
-
-            if (currentBookPage > 0) {
-
-                currentBookPage -= 2;
-
-                updateBook();
-
-            }
-
-        });
-
-    }
-
-
-    if (pages.length > 0) {
-
-        updateBook();
-
     }
 
 
@@ -419,38 +180,19 @@ document.addEventListener("DOMContentLoaded", function () {
        NETWORK TROUBLESHOOTER GAME
     ===================================================== */
 
-    const startGame =
-        document.getElementById("startLab");
+    const startGameBtn = document.getElementById("startGame");
+    const nextQuestionBtn = document.getElementById("nextQuestion");
+    const resetGameBtn = document.getElementById("resetGame");
+    const playAgainBtn = document.getElementById("playAgain");
 
-    const nextQuestion =
-        document.getElementById("nextQuestion");
+    const gameQuestion = document.getElementById("gameQuestion");
+    const gameOptions = document.getElementById("gameOptions");
+    const gameStatus = document.getElementById("gameStatus");
 
-    const resetGame =
-        document.getElementById("resetGame");
-
-    const playAgain =
-        document.getElementById("playAgain");
-
-    const gameQuestion =
-        document.getElementById("gameQuestion");
-
-    const gameOptions =
-        document.getElementById("gameOptions");
-
-    const gameStatus =
-        document.getElementById("gameStatus");
-
-    const livesElement =
-        document.getElementById("lives");
-
-    const scoreElement =
-        document.getElementById("score");
-
-    const levelElement =
-        document.getElementById("gameLevel");
-
-    const timerElement =
-        document.getElementById("gameTimer");
+    const livesDisplay = document.getElementById("lives");
+    const scoreDisplay = document.getElementById("score");
+    const levelDisplay = document.getElementById("gameLevel");
+    const timerDisplay = document.getElementById("gameTimer");
 
     const progressBar =
         document.getElementById("gameProgressBar");
@@ -466,11 +208,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       CHECK GAME HTML
+       CHECK GAME ELEMENTS
     ===================================================== */
 
     if (
-        startGame &&
+        startGameBtn &&
+        nextQuestionBtn &&
+        resetGameBtn &&
         gameQuestion &&
         gameOptions
     ) {
@@ -493,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             {
                 question:
-                    "Which protocol automatically assigns IP addresses?",
+                    "Which protocol automatically assigns IP addresses to devices?",
 
                 options: [
                     "DNS",
@@ -521,41 +265,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             {
                 question:
-                    "Which device mainly connects devices inside a LAN?",
+                    "Which device is commonly used to connect devices inside a LAN?",
 
                 options: [
-                    "Router",
                     "Switch",
+                    "Router",
                     "Modem",
                     "Firewall"
-                ],
-
-                answer: 1
-            },
-
-            {
-                question:
-                    "How many bits are in an IPv4 address?",
-
-                options: [
-                    "16 bits",
-                    "32 bits",
-                    "64 bits",
-                    "128 bits"
-                ],
-
-                answer: 1
-            },
-
-            {
-                question:
-                    "Which command is commonly used to test network connectivity?",
-
-                options: [
-                    "ping",
-                    "mkdir",
-                    "format",
-                    "rename"
                 ],
 
                 answer: 0
@@ -563,55 +279,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             {
                 question:
-                    "Which protocol is commonly used for secure remote login?",
+                    "Which command is commonly used to test network connectivity?",
 
                 options: [
-                    "HTTP",
-                    "FTP",
-                    "SSH",
-                    "SMTP"
-                ],
-
-                answer: 2
-            },
-
-            {
-                question:
-                    "What does LAN stand for?",
-
-                options: [
-                    "Large Area Network",
-                    "Local Area Network",
-                    "Logical Access Network",
-                    "Linked Area Node"
-                ],
-
-                answer: 1
-            },
-
-            {
-                question:
-                    "Which address identifies a network interface at Layer 2?",
-
-                options: [
-                    "IP Address",
-                    "Port Number",
-                    "MAC Address",
-                    "URL"
-                ],
-
-                answer: 2
-            },
-
-            {
-                question:
-                    "Which protocol is used to securely browse websites?",
-
-                options: [
-                    "HTTP",
-                    "HTTPS",
-                    "FTP",
-                    "Telnet"
+                    "mkdir",
+                    "ping",
+                    "cd",
+                    "copy"
                 ],
 
                 answer: 1
@@ -620,325 +294,106 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
 
-        /* =================================================
-           GAME VARIABLES
-        ================================================= */
-
-        let lives = 3;
-
+        let currentQuestion = 0;
         let score = 0;
-
-        let level = 1;
-
-        let questionIndex = 0;
-
+        let lives = 3;
+        let gameStarted = false;
+        let answered = false;
         let timer = 30;
-
         let timerInterval = null;
-
-        let gameRunning = false;
-
-        let questionAnswered = false;
-
-
-        /* =================================================
-           SHUFFLE QUESTIONS
-        ================================================= */
-
-        let gameQuestions = [];
-
-
-        function shuffle(array) {
-
-            return array
-                .map(value => ({
-                    value,
-                    sort: Math.random()
-                }))
-                .sort((a, b) => a.sort - b.sort)
-                .map(item => item.value);
-
-        }
 
 
         /* =================================================
            START GAME
         ================================================= */
 
-        function startNetworkGame() {
+        function startGame() {
 
-            lives = 3;
-
+            currentQuestion = 0;
             score = 0;
+            lives = 3;
+            gameStarted = true;
+            answered = false;
 
-            level = 1;
-
-            questionIndex = 0;
-
-            timer = 30;
-
-            gameRunning = true;
-
-            questionAnswered = false;
-
-            gameQuestions =
-                shuffle(questions).slice(0, 5);
-
+            clearInterval(timerInterval);
 
             if (gameResult) {
-
                 gameResult.style.display = "none";
-
             }
 
-
-            if (startGame) {
-
-                startGame.style.display = "none";
-
-            }
-
-
-            if (nextQuestion) {
-
-                nextQuestion.style.display = "none";
-
-            }
-
+            startGameBtn.style.display = "none";
+            nextQuestionBtn.style.display = "none";
 
             updateGameInfo();
 
-            startTimer();
-
-            showQuestion();
+            loadQuestion();
 
         }
 
 
         /* =================================================
-           SHOW QUESTION
+           LOAD QUESTION
         ================================================= */
 
-        function showQuestion() {
+        function loadQuestion() {
 
-            if (!gameRunning) {
-                return;
-            }
-
-
-            questionAnswered = false;
-
-
-            const current =
-                gameQuestions[questionIndex];
-
-
-            if (!current) {
-
+            if (currentQuestion >= questions.length) {
                 finishGame();
-
                 return;
-
             }
 
+            answered = false;
 
-            gameQuestion.textContent =
-                current.question;
+            const q = questions[currentQuestion];
 
+            gameQuestion.textContent = q.question;
 
             gameOptions.innerHTML = "";
 
+            gameStatus.textContent = "Choose the correct answer!";
 
-            current.options.forEach(
-                function (option, index) {
+            gameStatus.style.color = "#38bdf8";
 
-                    const button =
-                        document.createElement("button");
+            timer = 30;
 
-                    button.className =
-                        "game-option";
+            if (timerDisplay) {
+                timerDisplay.textContent = timer;
+            }
 
-                    button.textContent =
-                        option;
+            const progress =
+                (currentQuestion / questions.length) * 100;
 
-                    button.type =
-                        "button";
-
-
-                    button.addEventListener(
-                        "click",
-                        function () {
-
-                            checkAnswer(
-                                index,
-                                button
-                            );
-
-                        }
-                    );
-
-
-                    gameOptions.appendChild(button);
-
-                }
-            );
-
-
-            if (gameStatus) {
-
-                gameStatus.textContent =
-                    "Choose the correct answer!";
-
+            if (progressBar) {
+                progressBar.style.width = progress + "%";
             }
 
 
-            updateProgress();
+            q.options.forEach(function (option, index) {
 
-        }
+                const button =
+                    document.createElement("button");
 
+                button.className = "game-option";
 
-        /* =================================================
-           CHECK ANSWER
-        ================================================= */
+                button.textContent = option;
 
-        function checkAnswer(
-            selectedIndex,
-            selectedButton
-        ) {
+                button.type = "button";
 
-            if (
-                questionAnswered ||
-                !gameRunning
-            ) {
-                return;
-            }
+                button.addEventListener(
+                    "click",
+                    function () {
 
+                        checkAnswer(index, button);
 
-            questionAnswered = true;
-
-
-            const current =
-                gameQuestions[questionIndex];
-
-
-            const optionButtons =
-                gameOptions.querySelectorAll(
-                    ".game-option"
+                    }
                 );
 
+                gameOptions.appendChild(button);
 
-            optionButtons.forEach(
-                function (button) {
-
-                    button.disabled = true;
-
-                }
-            );
+            });
 
 
-            if (
-                selectedIndex ===
-                current.answer
-            ) {
-
-                selectedButton.classList.add(
-                    "correct"
-                );
-
-
-                score += 20;
-
-
-                if (gameStatus) {
-
-                    gameStatus.textContent =
-                        "✅ Correct! +20 points";
-
-                }
-
-            } else {
-
-                selectedButton.classList.add(
-                    "wrong"
-                );
-
-
-                optionButtons[
-                    current.answer
-                ].classList.add("correct");
-
-
-                lives--;
-
-
-                if (gameStatus) {
-
-                    gameStatus.textContent =
-                        "❌ Wrong answer! Life lost.";
-
-                }
-
-
-                if (lives <= 0) {
-
-                    setTimeout(
-                        finishGame,
-                        900
-                    );
-
-                    return;
-
-                }
-
-            }
-
-
-            updateGameInfo();
-
-
-            if (nextQuestion) {
-
-                nextQuestion.style.display =
-                    "inline-block";
-
-            }
-
-        }
-
-
-        /* =================================================
-           NEXT QUESTION
-        ================================================= */
-
-        function goNextQuestion() {
-
-            if (!gameRunning) {
-                return;
-            }
-
-
-            questionIndex++;
-
-            level =
-                questionIndex + 1;
-
-
-            if (
-                questionIndex >=
-                gameQuestions.length
-            ) {
-
-                finishGame();
-
-                return;
-
-            }
-
-
-            updateGameInfo();
-
-            showQuestion();
-
+            startTimer();
         }
 
 
@@ -950,104 +405,161 @@ document.addEventListener("DOMContentLoaded", function () {
 
             clearInterval(timerInterval);
 
+            timerInterval = setInterval(function () {
 
-            timer = 30;
+                timer--;
 
+                if (timerDisplay) {
+                    timerDisplay.textContent = timer;
+                }
 
-            if (timerElement) {
+                if (timer <= 0) {
 
-                timerElement.textContent =
-                    timer;
+                    clearInterval(timerInterval);
 
-            }
+                    if (!answered) {
 
-
-            timerInterval =
-                setInterval(function () {
-
-                    if (!gameRunning) {
-
-                        clearInterval(
-                            timerInterval
-                        );
-
-                        return;
-
-                    }
-
-
-                    timer--;
-
-
-                    if (timerElement) {
-
-                        timerElement.textContent =
-                            timer;
-
-                    }
-
-
-                    if (timer <= 0) {
-
-                        clearInterval(
-                            timerInterval
-                        );
-
+                        answered = true;
 
                         lives--;
 
-
                         updateGameInfo();
 
+                        gameStatus.textContent =
+                            "⏰ Time's up!";
 
-                        if (gameStatus) {
+                        gameStatus.style.color =
+                            "#ef4444";
 
-                            gameStatus.textContent =
-                                "⏰ Time's up!";
+                        disableOptions();
 
-                        }
-
+                        nextQuestionBtn.style.display =
+                            "inline-block";
 
                         if (lives <= 0) {
 
-                            finishGame();
-
-                        } else {
-
-                            setTimeout(
-                                function () {
-
-                                    questionIndex++;
-
-                                    if (
-                                        questionIndex >=
-                                        gameQuestions.length
-                                    ) {
-
-                                        finishGame();
-
-                                    } else {
-
-                                        level =
-                                            questionIndex + 1;
-
-                                        timer = 30;
-
-                                        showQuestion();
-
-                                        startTimer();
-
-                                    }
-
-                                },
-                                900
-                            );
+                            setTimeout(function () {
+                                finishGame();
+                            }, 700);
 
                         }
 
                     }
 
-                }, 1000);
+                }
+
+            }, 1000);
+        }
+
+
+        /* =================================================
+           CHECK ANSWER
+        ================================================= */
+
+        function checkAnswer(selectedIndex, selectedButton) {
+
+            if (answered) {
+                return;
+            }
+
+            answered = true;
+
+            clearInterval(timerInterval);
+
+            const correctIndex =
+                questions[currentQuestion].answer;
+
+            const allOptions =
+                gameOptions.querySelectorAll(".game-option");
+
+            allOptions.forEach(function (button) {
+
+                button.disabled = true;
+
+            });
+
+
+            if (selectedIndex === correctIndex) {
+
+                score += 10;
+
+                selectedButton.classList.add("correct");
+
+                gameStatus.textContent =
+                    "✅ Correct! Great job!";
+
+                gameStatus.style.color =
+                    "#22c55e";
+
+            } else {
+
+                lives--;
+
+                selectedButton.classList.add("wrong");
+
+                allOptions[correctIndex].classList.add(
+                    "correct"
+                );
+
+                gameStatus.textContent =
+                    "❌ Wrong answer!";
+
+                gameStatus.style.color =
+                    "#ef4444";
+            }
+
+
+            updateGameInfo();
+
+
+            if (lives <= 0) {
+
+                setTimeout(function () {
+
+                    finishGame();
+
+                }, 900);
+
+            } else {
+
+                nextQuestionBtn.style.display =
+                    "inline-block";
+            }
+
+        }
+
+
+        /* =================================================
+           DISABLE OPTIONS
+        ================================================= */
+
+        function disableOptions() {
+
+            const allOptions =
+                gameOptions.querySelectorAll(
+                    ".game-option"
+                );
+
+            allOptions.forEach(function (button) {
+
+                button.disabled = true;
+
+            });
+        }
+
+
+        /* =================================================
+           NEXT QUESTION
+        ================================================= */
+
+        function nextQuestion() {
+
+            currentQuestion++;
+
+            nextQuestionBtn.style.display =
+                "none";
+
+            loadQuestion();
 
         }
 
@@ -1058,65 +570,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function updateGameInfo() {
 
-            if (livesElement) {
-
-                livesElement.textContent =
-                    lives;
-
+            if (livesDisplay) {
+                livesDisplay.textContent = lives;
             }
 
-
-            if (scoreElement) {
-
-                scoreElement.textContent =
-                    score;
-
+            if (scoreDisplay) {
+                scoreDisplay.textContent = score;
             }
 
+            if (levelDisplay) {
 
-            if (levelElement) {
+                const level =
+                    Math.min(
+                        currentQuestion + 1,
+                        questions.length
+                    );
 
-                levelElement.textContent =
-                    Math.min(level, 5);
-
+                levelDisplay.textContent = level;
             }
-
-
-            if (timerElement) {
-
-                timerElement.textContent =
-                    timer;
-
-            }
-
-        }
-
-
-        /* =================================================
-           PROGRESS BAR
-        ================================================= */
-
-        function updateProgress() {
-
-            if (!progressBar) {
-                return;
-            }
-
-
-            const total =
-                gameQuestions.length;
-
-
-            const current =
-                questionIndex;
-
-
-            const percent =
-                (current / total) * 100;
-
-
-            progressBar.style.width =
-                percent + "%";
 
         }
 
@@ -1127,77 +598,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function finishGame() {
 
-            gameRunning = false;
-
-
             clearInterval(timerInterval);
 
+            gameStarted = false;
+
+            disableOptions();
+
+            nextQuestionBtn.style.display =
+                "none";
 
             if (progressBar) {
-
-                progressBar.style.width =
-                    "100%";
-
+                progressBar.style.width = "100%";
             }
-
 
             if (gameResult) {
-
-                gameResult.style.display =
-                    "block";
-
+                gameResult.style.display = "block";
             }
-
 
             if (finalScore) {
-
-                finalScore.textContent =
-                    score;
-
+                finalScore.textContent = score;
             }
-
 
             if (finalMessage) {
 
-                if (lives <= 0) {
+                if (score >= 40) {
 
                     finalMessage.textContent =
-                        "💔 You ran out of lives. Keep practicing networking!";
+                        "🔥 Excellent! Your networking knowledge is strong.";
 
-                } else if (score >= 80) {
-
-                    finalMessage.textContent =
-                        "🔥 Excellent! Your networking knowledge is strong!";
-
-                } else if (score >= 60) {
+                } else if (score >= 20) {
 
                     finalMessage.textContent =
-                        "👏 Good job! Keep improving your networking skills.";
+                        "👍 Good job! Keep practicing networking.";
 
                 } else {
 
                     finalMessage.textContent =
-                        "📚 Keep learning and try again!";
-
+                        "💪 Keep learning and try again!";
                 }
-
             }
 
+            gameQuestion.textContent =
+                lives <= 0
+                    ? "Game Over!"
+                    : "Challenge Complete!";
 
-            if (nextQuestion) {
+            gameOptions.innerHTML = "";
 
-                nextQuestion.style.display =
-                    "none";
+            gameStatus.textContent =
+                "🏆 Game Finished!";
 
-            }
-
-
-            if (startGame) {
-
-                startGame.style.display =
-                    "none";
-
-            }
+            gameStatus.style.color =
+                "#22c55e";
 
         }
 
@@ -1206,73 +658,57 @@ document.addEventListener("DOMContentLoaded", function () {
            RESET GAME
         ================================================= */
 
-        function resetNetworkGame() {
+        function resetGame() {
 
             clearInterval(timerInterval);
 
-
-            gameRunning = false;
-
-            lives = 3;
-
+            currentQuestion = 0;
             score = 0;
-
-            level = 1;
-
-            questionIndex = 0;
-
+            lives = 3;
+            gameStarted = false;
+            answered = false;
             timer = 30;
 
-            questionAnswered = false;
+            if (livesDisplay) {
+                livesDisplay.textContent = "3";
+            }
 
+            if (scoreDisplay) {
+                scoreDisplay.textContent = "0";
+            }
 
-            updateGameInfo();
+            if (levelDisplay) {
+                levelDisplay.textContent = "1";
+            }
 
+            if (timerDisplay) {
+                timerDisplay.textContent = "30";
+            }
+
+            if (progressBar) {
+                progressBar.style.width = "0%";
+            }
 
             gameQuestion.textContent =
                 "Click Start Game to begin!";
 
-
             gameOptions.innerHTML = "";
 
+            gameStatus.textContent =
+                "Ready?";
 
-            if (gameStatus) {
+            gameStatus.style.color =
+                "#38bdf8";
 
-                gameStatus.textContent =
-                    "Ready?";
+            startGameBtn.style.display =
+                "inline-block";
 
-            }
-
-
-            if (progressBar) {
-
-                progressBar.style.width =
-                    "0%";
-
-            }
-
+            nextQuestionBtn.style.display =
+                "none";
 
             if (gameResult) {
-
                 gameResult.style.display =
                     "none";
-
-            }
-
-
-            if (nextQuestion) {
-
-                nextQuestion.style.display =
-                    "none";
-
-            }
-
-
-            if (startGame) {
-
-                startGame.style.display =
-                    "inline-block";
-
             }
 
         }
@@ -1282,57 +718,284 @@ document.addEventListener("DOMContentLoaded", function () {
            BUTTON EVENTS
         ================================================= */
 
-        startGame.addEventListener(
+        startGameBtn.addEventListener(
             "click",
-            startNetworkGame
+            startGame
+        );
+
+        nextQuestionBtn.addEventListener(
+            "click",
+            nextQuestion
+        );
+
+        resetGameBtn.addEventListener(
+            "click",
+            resetGame
         );
 
 
-        if (nextQuestion) {
+        if (playAgainBtn) {
 
-            nextQuestion.addEventListener(
+            playAgainBtn.addEventListener(
                 "click",
-                goNextQuestion
+                startGame
             );
 
         }
-
-
-        if (resetGame) {
-
-            resetGame.addEventListener(
-                "click",
-                resetNetworkGame
-            );
-
-        }
-
-
-        if (playAgain) {
-
-            playAgain.addEventListener(
-                "click",
-                startNetworkGame
-            );
-
-        }
-
-
-        /* =================================================
-           INITIAL GAME STATE
-        ================================================= */
-
-        resetNetworkGame();
 
     }
 
 
     /* =====================================================
-       CONSOLE MESSAGE
+       NETWORK BOOK
     ===================================================== */
 
-    console.log(
-        "Badhon Biswas Portfolio loaded successfully."
-    );
+    const prevPage =
+        document.getElementById("prevPage");
+
+    const nextPage =
+        document.getElementById("nextPage");
+
+    const bookPageNumber =
+        document.getElementById("bookPageNumber");
+
+    const pages =
+        document.querySelectorAll(".flip-page");
+
+
+    if (
+        prevPage &&
+        nextPage &&
+        pages.length > 0
+    ) {
+
+        let bookIndex = 0;
+
+        const totalPages = pages.length;
+
+
+        function updateBook() {
+
+            pages.forEach(function (page) {
+
+                page.classList.remove(
+                    "flip-next",
+                    "flip-prev"
+                );
+
+                page.style.opacity = "0";
+                page.style.visibility = "hidden";
+
+            });
+
+
+            if (bookIndex === 0) {
+
+                pages[0].style.opacity = "1";
+                pages[0].style.visibility = "visible";
+
+                if (pages[1]) {
+                    pages[1].style.opacity = "1";
+                    pages[1].style.visibility = "visible";
+                }
+
+            } else {
+
+                const leftIndex =
+                    bookIndex * 2;
+
+                const rightIndex =
+                    leftIndex + 1;
+
+                if (pages[leftIndex]) {
+
+                    pages[leftIndex].style.opacity =
+                        "1";
+
+                    pages[leftIndex].style.visibility =
+                        "visible";
+                }
+
+                if (pages[rightIndex]) {
+
+                    pages[rightIndex].style.opacity =
+                        "1";
+
+                    pages[rightIndex].style.visibility =
+                        "visible";
+                }
+
+            }
+
+
+            const start =
+                bookIndex * 2 + 1;
+
+            const end =
+                Math.min(
+                    start + 1,
+                    totalPages
+                );
+
+
+            if (bookPageNumber) {
+
+                bookPageNumber.textContent =
+                    start + "–" + end +
+                    " / " + totalPages;
+
+            }
+
+
+            prevPage.disabled =
+                bookIndex === 0;
+
+            nextPage.disabled =
+                end >= totalPages;
+
+        }
+
+
+        nextPage.addEventListener(
+            "click",
+            function () {
+
+                const maxIndex =
+                    Math.ceil(totalPages / 2) - 1;
+
+                if (bookIndex < maxIndex) {
+
+                    bookIndex++;
+
+                    updateBook();
+
+                }
+
+            }
+        );
+
+
+        prevPage.addEventListener(
+            "click",
+            function () {
+
+                if (bookIndex > 0) {
+
+                    bookIndex--;
+
+                    updateBook();
+
+                }
+
+            }
+        );
+
+
+        updateBook();
+
+    }
+
+
+    /* =====================================================
+       PARTICLES.JS
+    ===================================================== */
+
+    if (
+        typeof particlesJS !== "undefined" &&
+        document.getElementById("particles-js")
+    ) {
+
+        particlesJS("particles-js", {
+
+            particles: {
+
+                number: {
+                    value: 45,
+                    density: {
+                        enable: true,
+                        value_area: 900
+                    }
+                },
+
+                color: {
+                    value: "#38bdf8"
+                },
+
+                shape: {
+                    type: "circle"
+                },
+
+                opacity: {
+                    value: 0.35,
+                    random: true
+                },
+
+                size: {
+                    value: 3,
+                    random: true
+                },
+
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#38bdf8",
+                    opacity: 0.15,
+                    width: 1
+                },
+
+                move: {
+                    enable: true,
+                    speed: 1.5,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+
+            },
+
+            interactivity: {
+
+                detect_on: "canvas",
+
+                events: {
+
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+
+                    resize: true
+
+                },
+
+                modes: {
+
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 0.4
+                        }
+                    },
+
+                    push: {
+                        particles_nb: 3
+                    }
+
+                }
+
+            },
+
+            retina_detect: true
+
+        });
+
+    }
 
 });
