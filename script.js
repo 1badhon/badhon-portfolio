@@ -1,69 +1,58 @@
 /* =========================================================
-   PORTFOLIO SCRIPT.JS
+   PORTFOLIO JAVASCRIPT
    Badhon Biswas | Network Engineer
 ========================================================= */
 
+document.addEventListener("DOMContentLoaded", function () {
 
-/* =========================================================
-   1. POWER SWITCH
-========================================================= */
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
 
-const powerSwitch = document.getElementById("powerSwitch");
+    const nav = document.querySelector("nav");
+    const menuToggle = document.getElementById("menuToggle");
 
-if (powerSwitch) {
-    powerSwitch.addEventListener("click", function () {
-        document.body.classList.toggle("lights-off");
-    });
-}
+    // Mobile menu
+    if (menuToggle && nav) {
 
+        menuToggle.addEventListener("click", function () {
 
-/* =========================================================
-   2. MOBILE NAVBAR
-========================================================= */
+            nav.classList.toggle("menu-open");
 
-const menuToggle = document.getElementById("menuToggle");
-const nav = document.querySelector("nav");
+            const isOpen = nav.classList.contains("menu-open");
 
-if (menuToggle && nav) {
+            menuToggle.setAttribute(
+                "aria-label",
+                isOpen ? "Close Menu" : "Open Menu"
+            );
 
-    menuToggle.addEventListener("click", function () {
+        });
 
-        nav.classList.toggle("menu-open");
+    }
 
-        const isOpen = nav.classList.contains("menu-open");
-
-        menuToggle.setAttribute(
-            "aria-label",
-            isOpen ? "Close Menu" : "Open Menu"
-        );
-    });
-
-
-    // Close menu after clicking a link
-    const navLinks = nav.querySelectorAll("ul li a");
+    // Close mobile menu after clicking a link
+    const navLinks = document.querySelectorAll("nav ul li a");
 
     navLinks.forEach(function (link) {
 
         link.addEventListener("click", function () {
-            nav.classList.remove("menu-open");
 
-            menuToggle.setAttribute(
-                "aria-label",
-                "Open Menu"
-            );
+            if (nav) {
+                nav.classList.remove("menu-open");
+            }
+
         });
 
     });
-}
 
 
-/* =========================================================
-   3. SCROLLED NAVBAR
-========================================================= */
+    /* =====================================================
+       SCROLLED NAVBAR
+    ===================================================== */
 
-window.addEventListener("scroll", function () {
+    function handleNavbarScroll() {
 
-    if (nav) {
+        if (!nav) return;
 
         if (window.scrollY > 50) {
             nav.classList.add("scrolled");
@@ -73,969 +62,1183 @@ window.addEventListener("scroll", function () {
 
     }
 
-});
+    window.addEventListener("scroll", handleNavbarScroll);
+
+    handleNavbarScroll();
 
 
-/* =========================================================
-   4. TYPING EFFECT
-========================================================= */
+    /* =====================================================
+       TYPING EFFECT
+    ===================================================== */
 
-const typingElement = document.getElementById("typing");
+    const typingElement = document.getElementById("typing");
 
-if (typingElement) {
+    if (typingElement) {
 
-    const typingTexts = [
-        "Aspiring Network Engineer",
-        "Networking Enthusiast",
-        "Cisco Learner",
-        "Linux Enthusiast"
-    ];
+        const texts = [
+            "Aspiring Network Engineer",
+            "Networking Enthusiast",
+            "Cisco Learner",
+            "Linux Enthusiast"
+        ];
 
-    let textIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
+        let textIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
 
-    function typingEffect() {
+        function typeEffect() {
 
-        const currentText = typingTexts[textIndex];
+            const currentText = texts[textIndex];
 
-        if (!deleting) {
+            if (!deleting) {
 
-            typingElement.textContent =
-                currentText.substring(0, charIndex + 1);
+                typingElement.textContent =
+                    currentText.substring(0, charIndex + 1);
 
-            charIndex++;
+                charIndex++;
 
-            if (charIndex === currentText.length) {
+                if (charIndex === currentText.length) {
 
-                deleting = true;
+                    deleting = true;
 
-                setTimeout(typingEffect, 1500);
-                return;
-            }
+                    setTimeout(typeEffect, 1500);
 
-        } else {
-
-            typingElement.textContent =
-                currentText.substring(0, charIndex - 1);
-
-            charIndex--;
-
-            if (charIndex === 0) {
-
-                deleting = false;
-
-                textIndex++;
-
-                if (textIndex >= typingTexts.length) {
-                    textIndex = 0;
+                    return;
                 }
+
+            } else {
+
+                typingElement.textContent =
+                    currentText.substring(0, charIndex - 1);
+
+                charIndex--;
+
+                if (charIndex === 0) {
+
+                    deleting = false;
+
+                    textIndex++;
+
+                    if (textIndex >= texts.length) {
+                        textIndex = 0;
+                    }
+
+                }
+
             }
-        }
 
-        setTimeout(
-            typingEffect,
-            deleting ? 60 : 100
-        );
-    }
-
-    typingEffect();
-}
-
-
-/* =========================================================
-   5. NETWORK LAB
-========================================================= */
-
-const startLab = document.getElementById("startLab");
-const resetLab = document.getElementById("resetLab");
-
-const packets = document.querySelectorAll(".packet");
-const labStatus = document.getElementById("labStatus");
-
-if (startLab) {
-
-    startLab.addEventListener("click", function () {
-
-        packets.forEach(function (packet) {
-            packet.classList.add("move");
-        });
-
-        if (labStatus) {
-            labStatus.textContent =
-                "🟢 Network is transmitting packets...";
-        }
-
-    });
-
-}
-
-
-if (resetLab) {
-
-    resetLab.addEventListener("click", function () {
-
-        packets.forEach(function (packet) {
-            packet.classList.remove("move");
-        });
-
-        if (labStatus) {
-            labStatus.textContent =
-                "Network Ready";
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   6. NETWORK TROUBLESHOOTER GAME
-========================================================= */
-
-const questions = [
-
-    {
-        question: "Which device connects different networks together?",
-        options: [
-            "Switch",
-            "Router",
-            "Hub",
-            "Repeater"
-        ],
-        answer: 1
-    },
-
-    {
-        question: "What does IP stand for?",
-        options: [
-            "Internet Protocol",
-            "Internal Program",
-            "Internet Process",
-            "Interface Protocol"
-        ],
-        answer: 0
-    },
-
-    {
-        question: "Which protocol automatically assigns IP addresses?",
-        options: [
-            "DNS",
-            "HTTP",
-            "DHCP",
-            "FTP"
-        ],
-        answer: 2
-    },
-
-    {
-        question: "Which device mainly connects devices inside a LAN?",
-        options: [
-            "Router",
-            "Switch",
-            "Modem",
-            "Firewall"
-        ],
-        answer: 1
-    },
-
-    {
-        question: "Which protocol translates domain names into IP addresses?",
-        options: [
-            "DHCP",
-            "DNS",
-            "FTP",
-            "SSH"
-        ],
-        answer: 1
-    },
-
-    {
-        question: "Which IPv4 address is a private IP address?",
-        options: [
-            "8.8.8.8",
-            "1.1.1.1",
-            "192.168.1.10",
-            "142.250.1.1"
-        ],
-        answer: 2
-    },
-
-    {
-        question: "How many bits are in an IPv4 address?",
-        options: [
-            "16 bits",
-            "32 bits",
-            "64 bits",
-            "128 bits"
-        ],
-        answer: 1
-    },
-
-    {
-        question: "Which command is commonly used to test network connectivity?",
-        options: [
-            "ping",
-            "mkdir",
-            "copy",
-            "format"
-        ],
-        answer: 0
-    },
-
-    {
-        question: "Which device operates mainly at Layer 2?",
-        options: [
-            "Router",
-            "Switch",
-            "DNS Server",
-            "Modem"
-        ],
-        answer: 1
-    },
-
-    {
-        question: "What is the default port for HTTP?",
-        options: [
-            "21",
-            "22",
-            "80",
-            "443"
-        ],
-        answer: 2
-    }
-];
-
-
-/* Game Elements */
-
-const livesElement = document.getElementById("lives");
-const scoreElement = document.getElementById("score");
-const levelElement = document.getElementById("gameLevel");
-const timerElement = document.getElementById("gameTimer");
-
-const questionElement =
-    document.getElementById("gameQuestion");
-
-const optionsElement =
-    document.getElementById("gameOptions");
-
-const gameStatus =
-    document.getElementById("gameStatus");
-
-const progressBar =
-    document.getElementById("gameProgressBar");
-
-const startGameButton =
-    document.getElementById("startGame");
-
-const nextQuestionButton =
-    document.getElementById("nextQuestion");
-
-const resetGameButton =
-    document.getElementById("resetGame");
-
-const gameResult =
-    document.getElementById("gameResult");
-
-const finalScore =
-    document.getElementById("finalScore");
-
-const finalMessage =
-    document.getElementById("finalMessage");
-
-const playAgainButton =
-    document.getElementById("playAgain");
-
-
-/* Game Variables */
-
-let lives = 3;
-let score = 0;
-let currentQuestion = 0;
-let gameTimer = 30;
-let timerInterval = null;
-let gameStarted = false;
-let answered = false;
-
-
-/* =========================================================
-   UPDATE GAME UI
-========================================================= */
-
-function updateGameUI() {
-
-    if (livesElement) {
-        livesElement.textContent = lives;
-    }
-
-    if (scoreElement) {
-        scoreElement.textContent = score;
-    }
-
-    if (levelElement) {
-
-        const level =
-            Math.min(
-                Math.floor(currentQuestion / 2) + 1,
-                5
+            setTimeout(
+                typeEffect,
+                deleting ? 60 : 100
             );
 
-        levelElement.textContent = level;
+        }
+
+        typeEffect();
+
     }
 
-    if (timerElement) {
-        timerElement.textContent = gameTimer;
+
+    /* =====================================================
+       POWER SWITCH
+    ===================================================== */
+
+    const powerSwitch = document.getElementById("powerSwitch");
+
+    if (powerSwitch) {
+
+        powerSwitch.addEventListener("click", function () {
+
+            document.body.classList.toggle("lights-off");
+
+        });
+
     }
 
-}
 
+    /* =====================================================
+       PARTICLES.JS
+    ===================================================== */
 
-/* =========================================================
-   LOAD QUESTION
-========================================================= */
+    if (
+        typeof particlesJS !== "undefined" &&
+        document.getElementById("particles-js")
+    ) {
 
-function loadQuestion() {
+        particlesJS("particles-js", {
 
-    if (!questionElement || !optionsElement) {
-        return;
+            particles: {
+
+                number: {
+                    value: 45,
+                    density: {
+                        enable: true,
+                        value_area: 900
+                    }
+                },
+
+                color: {
+                    value: "#38bdf8"
+                },
+
+                shape: {
+                    type: "circle"
+                },
+
+                opacity: {
+                    value: 0.35,
+                    random: true
+                },
+
+                size: {
+                    value: 3,
+                    random: true
+                },
+
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#38bdf8",
+                    opacity: 0.15,
+                    width: 1
+                },
+
+                move: {
+                    enable: true,
+                    speed: 1.2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out"
+                }
+
+            },
+
+            interactivity: {
+
+                detect_on: "canvas",
+
+                events: {
+
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+
+                    resize: true
+
+                },
+
+                modes: {
+
+                    repulse: {
+                        distance: 100,
+                        duration: 0.4
+                    },
+
+                    push: {
+                        particles_nb: 3
+                    }
+
+                }
+
+            },
+
+            retina_detect: true
+
+        });
+
     }
 
-    if (currentQuestion >= questions.length) {
-        endGame();
-        return;
+
+    /* =====================================================
+       BACK TO TOP BUTTON
+    ===================================================== */
+
+    const topBtn = document.getElementById("topBtn");
+
+    function showTopButton() {
+
+        if (!topBtn) return;
+
+        if (window.scrollY > 400) {
+            topBtn.style.display = "block";
+        } else {
+            topBtn.style.display = "none";
+        }
+
     }
 
-    answered = false;
+    window.addEventListener("scroll", showTopButton);
 
-    const question =
-        questions[currentQuestion];
+    showTopButton();
 
-    questionElement.textContent =
-        question.question;
 
-    optionsElement.innerHTML = "";
+    // Global function for your onclick="topFunction()"
+    window.topFunction = function () {
 
-    question.options.forEach(function (option, index) {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
-        const button =
-            document.createElement("button");
+    };
 
-        button.className = "game-option";
 
-        button.textContent = option;
+    /* =====================================================
+       NETWORK TROUBLESHOOTER GAME
+    ===================================================== */
 
-        button.type = "button";
+    const startGameBtn = document.getElementById("startGame");
+    const nextQuestionBtn = document.getElementById("nextQuestion");
+    const resetGameBtn = document.getElementById("resetGame");
+    const playAgainBtn = document.getElementById("playAgain");
 
-        button.addEventListener(
-            "click",
-            function () {
-                checkAnswer(index, button);
+    const livesElement = document.getElementById("lives");
+    const scoreElement = document.getElementById("score");
+    const levelElement = document.getElementById("gameLevel");
+    const timerElement = document.getElementById("gameTimer");
+
+    const progressBar =
+        document.getElementById("gameProgressBar");
+
+    const questionElement =
+        document.getElementById("gameQuestion");
+
+    const optionsContainer =
+        document.getElementById("gameOptions");
+
+    const gameStatus =
+        document.getElementById("gameStatus");
+
+    const gameResult =
+        document.getElementById("gameResult");
+
+    const finalScore =
+        document.getElementById("finalScore");
+
+    const finalMessage =
+        document.getElementById("finalMessage");
+
+
+    // Check if game exists on page
+    if (
+        startGameBtn &&
+        nextQuestionBtn &&
+        resetGameBtn &&
+        livesElement &&
+        scoreElement &&
+        levelElement &&
+        timerElement &&
+        progressBar &&
+        questionElement &&
+        optionsContainer &&
+        gameStatus
+    ) {
+
+        /* =================================================
+           GAME QUESTIONS
+        ================================================= */
+
+        const questions = [
+
+            {
+                question:
+                    "Which device is mainly used to connect different networks?",
+
+                options: [
+                    "Switch",
+                    "Router",
+                    "Hub",
+                    "Repeater"
+                ],
+
+                answer: "Router"
+            },
+
+            {
+                question:
+                    "Which protocol automatically assigns IP addresses to devices?",
+
+                options: [
+                    "DNS",
+                    "HTTP",
+                    "DHCP",
+                    "FTP"
+                ],
+
+                answer: "DHCP"
+            },
+
+            {
+                question:
+                    "Which device mainly connects devices inside a LAN?",
+
+                options: [
+                    "Router",
+                    "Switch",
+                    "Modem",
+                    "Firewall"
+                ],
+
+                answer: "Switch"
+            },
+
+            {
+                question:
+                    "What does DNS mainly do?",
+
+                options: [
+                    "Assigns MAC addresses",
+                    "Translates domain names to IP addresses",
+                    "Encrypts Wi-Fi",
+                    "Creates VLANs"
+                ],
+
+                answer:
+                    "Translates domain names to IP addresses"
+            },
+
+            {
+                question:
+                    "Which address identifies a device at Layer 3?",
+
+                options: [
+                    "MAC Address",
+                    "IP Address",
+                    "Port Number",
+                    "SSID"
+                ],
+
+                answer: "IP Address"
             }
-        );
 
-        optionsElement.appendChild(button);
-
-    });
+        ];
 
 
-    if (gameStatus) {
-        gameStatus.textContent =
-            "Choose the correct answer!";
-    }
+        /* =================================================
+           GAME VARIABLES
+        ================================================= */
 
-    if (nextQuestionButton) {
-        nextQuestionButton.style.display = "none";
-    }
+        let currentQuestion = 0;
+        let score = 0;
+        let lives = 3;
+        let timeLeft = 30;
 
-
-    /* Progress */
-
-    if (progressBar) {
-
-        const progress =
-            (currentQuestion / questions.length) * 100;
-
-        progressBar.style.width =
-            progress + "%";
-    }
+        let timer = null;
+        let gameRunning = false;
+        let questionAnswered = false;
 
 
-    updateGameUI();
-}
+        /* =================================================
+           UPDATE GAME INFO
+        ================================================= */
 
+        function updateGameInfo() {
 
-/* =========================================================
-   CHECK ANSWER
-========================================================= */
+            livesElement.textContent = lives;
+            scoreElement.textContent = score;
 
-function checkAnswer(selectedAnswer, selectedButton) {
+            levelElement.textContent =
+                currentQuestion + 1;
 
-    if (!gameStarted || answered) {
-        return;
-    }
+            timerElement.textContent = timeLeft;
 
-    answered = true;
-
-    const question =
-        questions[currentQuestion];
-
-    const optionButtons =
-        optionsElement.querySelectorAll(".game-option");
-
-
-    /* Disable all buttons */
-
-    optionButtons.forEach(function (button) {
-        button.disabled = true;
-    });
-
-
-    if (selectedAnswer === question.answer) {
-
-        /* Correct */
-
-        selectedButton.classList.add("correct");
-
-        score += 10;
-
-        if (gameStatus) {
-            gameStatus.textContent =
-                "✅ Correct! +10 points";
         }
 
-    } else {
 
-        /* Wrong */
+        /* =================================================
+           UPDATE PROGRESS
+        ================================================= */
 
-        selectedButton.classList.add("wrong");
+        function updateProgress() {
 
-        optionButtons[
-            question.answer
-        ].classList.add("correct");
+            const progress =
+                (currentQuestion / questions.length) * 100;
 
-        lives--;
+            progressBar.style.width =
+                progress + "%";
 
-        if (gameStatus) {
-            gameStatus.textContent =
-                "❌ Wrong answer!";
         }
 
-    }
+
+        /* =================================================
+           STOP TIMER
+        ================================================= */
+
+        function stopTimer() {
+
+            if (timer !== null) {
+
+                clearInterval(timer);
+
+                timer = null;
+
+            }
+
+        }
 
 
-    updateGameUI();
+        /* =================================================
+           START TIMER
+        ================================================= */
+
+        function startTimer() {
+
+            stopTimer();
+
+            timeLeft = 30;
+
+            timerElement.textContent = timeLeft;
+
+            timer = setInterval(function () {
+
+                timeLeft--;
+
+                timerElement.textContent =
+                    timeLeft;
+
+                if (timeLeft <= 0) {
+
+                    stopTimer();
+
+                    handleTimeOut();
+
+                }
+
+            }, 1000);
+
+        }
 
 
-    /* Game Over */
+        /* =================================================
+           TIME OUT
+        ================================================= */
 
-    if (lives <= 0) {
+        function handleTimeOut() {
 
-        setTimeout(function () {
-            endGame();
-        }, 900);
-
-        return;
-    }
-
-
-    /* Show Next Button */
-
-    if (nextQuestionButton) {
-
-        nextQuestionButton.style.display =
-            "inline-block";
-    }
-
-}
-
-
-/* =========================================================
-   TIMER
-========================================================= */
-
-function startTimer() {
-
-    clearInterval(timerInterval);
-
-    timerInterval =
-        setInterval(function () {
-
-            if (!gameStarted) {
+            if (!gameRunning || questionAnswered) {
                 return;
             }
 
-            gameTimer--;
+            questionAnswered = true;
 
-            updateGameUI();
+            lives--;
 
-            if (gameTimer <= 0) {
+            livesElement.textContent = lives;
 
-                clearInterval(timerInterval);
+            gameStatus.textContent =
+                "⏰ Time's up!";
+
+            gameStatus.style.color =
+                "#ef4444";
+
+            disableOptions();
+
+            markCorrectAnswer();
+
+            if (lives <= 0) {
+
+                setTimeout(function () {
+                    endGame(false);
+                }, 1000);
+
+            } else {
+
+                nextQuestionBtn.style.display =
+                    "inline-block";
+
+            }
+
+        }
+
+
+        /* =================================================
+           LOAD QUESTION
+        ================================================= */
+
+        function loadQuestion() {
+
+            if (currentQuestion >= questions.length) {
+
+                endGame(true);
+
+                return;
+
+            }
+
+            questionAnswered = false;
+
+            const question =
+                questions[currentQuestion];
+
+            questionElement.textContent =
+                question.question;
+
+            optionsContainer.innerHTML = "";
+
+            question.options.forEach(function (option) {
+
+                const button =
+                    document.createElement("button");
+
+                button.className =
+                    "game-option";
+
+                button.type = "button";
+
+                button.textContent =
+                    option;
+
+                button.addEventListener(
+                    "click",
+                    function () {
+                        checkAnswer(option, button);
+                    }
+                );
+
+                optionsContainer.appendChild(button);
+
+            });
+
+            updateGameInfo();
+
+            updateProgress();
+
+            gameStatus.textContent =
+                "Choose the correct answer!";
+
+            gameStatus.style.color =
+                "#38bdf8";
+
+            nextQuestionBtn.style.display =
+                "none";
+
+            startTimer();
+
+        }
+
+
+        /* =================================================
+           CHECK ANSWER
+        ================================================= */
+
+        function checkAnswer(selectedAnswer, button) {
+
+            if (!gameRunning || questionAnswered) {
+                return;
+            }
+
+            questionAnswered = true;
+
+            stopTimer();
+
+            const correctAnswer =
+                questions[currentQuestion].answer;
+
+            if (selectedAnswer === correctAnswer) {
+
+                button.classList.add("correct");
+
+                score += 10;
+
+                scoreElement.textContent =
+                    score;
+
+                gameStatus.textContent =
+                    "✅ Correct! Great job!";
+
+                gameStatus.style.color =
+                    "#22c55e";
+
+            } else {
+
+                button.classList.add("wrong");
 
                 lives--;
 
-                if (lives <= 0) {
+                livesElement.textContent =
+                    lives;
 
-                    endGame();
+                gameStatus.textContent =
+                    "❌ Wrong answer!";
+
+                gameStatus.style.color =
+                    "#ef4444";
+
+                markCorrectAnswer();
+
+            }
+
+            disableOptions();
+
+            if (lives <= 0) {
+
+                setTimeout(function () {
+
+                    endGame(false);
+
+                }, 1000);
+
+            } else {
+
+                nextQuestionBtn.style.display =
+                    "inline-block";
+
+            }
+
+        }
+
+
+        /* =================================================
+           SHOW CORRECT ANSWER
+        ================================================= */
+
+        function markCorrectAnswer() {
+
+            const correctAnswer =
+                questions[currentQuestion].answer;
+
+            const buttons =
+                optionsContainer.querySelectorAll(
+                    ".game-option"
+                );
+
+            buttons.forEach(function (button) {
+
+                if (
+                    button.textContent ===
+                    correctAnswer
+                ) {
+
+                    button.classList.add("correct");
+
+                }
+
+            });
+
+        }
+
+
+        /* =================================================
+           DISABLE OPTIONS
+        ================================================= */
+
+        function disableOptions() {
+
+            const buttons =
+                optionsContainer.querySelectorAll(
+                    ".game-option"
+                );
+
+            buttons.forEach(function (button) {
+
+                button.disabled = true;
+
+            });
+
+        }
+
+
+        /* =================================================
+           NEXT QUESTION
+        ================================================= */
+
+        function nextQuestion() {
+
+            if (!gameRunning) {
+                return;
+            }
+
+            currentQuestion++;
+
+            if (
+                currentQuestion >=
+                questions.length
+            ) {
+
+                endGame(true);
+
+            } else {
+
+                loadQuestion();
+
+            }
+
+        }
+
+
+        /* =================================================
+           START GAME
+        ================================================= */
+
+        function startGame() {
+
+            console.log("Network Game Started!");
+
+            gameRunning = true;
+
+            currentQuestion = 0;
+            score = 0;
+            lives = 3;
+
+            timeLeft = 30;
+
+            if (gameResult) {
+                gameResult.style.display = "none";
+            }
+
+            startGameBtn.style.display =
+                "none";
+
+            nextQuestionBtn.style.display =
+                "none";
+
+            loadQuestion();
+
+        }
+
+
+        /* =================================================
+           RESET GAME
+        ================================================= */
+
+        function resetGame() {
+
+            stopTimer();
+
+            gameRunning = false;
+
+            currentQuestion = 0;
+            score = 0;
+            lives = 3;
+            timeLeft = 30;
+
+            questionAnswered = false;
+
+            livesElement.textContent = "3";
+            scoreElement.textContent = "0";
+            levelElement.textContent = "1";
+            timerElement.textContent = "30";
+
+            progressBar.style.width = "0%";
+
+            questionElement.textContent =
+                "Click Start Game to begin!";
+
+            optionsContainer.innerHTML = "";
+
+            gameStatus.textContent =
+                "Ready?";
+
+            gameStatus.style.color =
+                "#38bdf8";
+
+            startGameBtn.style.display =
+                "inline-block";
+
+            nextQuestionBtn.style.display =
+                "none";
+
+            if (gameResult) {
+                gameResult.style.display =
+                    "none";
+            }
+
+        }
+
+
+        /* =================================================
+           END GAME
+        ================================================= */
+
+        function endGame(completed) {
+
+            stopTimer();
+
+            gameRunning = false;
+
+            progressBar.style.width = "100%";
+
+            if (gameResult) {
+
+                gameResult.style.display =
+                    "block";
+
+                finalScore.textContent =
+                    score;
+
+                if (completed) {
+
+                    if (score >= 40) {
+
+                        finalMessage.textContent =
+                            "🎉 Excellent! Your networking knowledge is strong!";
+
+                    } else if (score >= 20) {
+
+                        finalMessage.textContent =
+                            "👍 Good job! Keep practicing networking.";
+
+                    } else {
+
+                        finalMessage.textContent =
+                            "📚 Keep learning and practice more networking.";
+
+                    }
 
                 } else {
 
-                    gameTimer = 30;
+                    finalMessage.textContent =
+                        "💡 Game Over! Try again and improve your score.";
 
-                    if (gameStatus) {
-                        gameStatus.textContent =
-                            "⏰ Time's up! Life lost.";
-                    }
-
-                    currentQuestion++;
-
-                    loadQuestion();
-
-                    startTimer();
                 }
 
             }
 
-        }, 1000);
-}
+            questionElement.textContent =
+                completed
+                    ? "🎉 All questions completed!"
+                    : "💀 Game Over!";
 
+            optionsContainer.innerHTML = "";
 
-/* =========================================================
-   START GAME
-========================================================= */
+            gameStatus.textContent =
+                completed
+                    ? "Challenge Complete!"
+                    : "No lives left.";
 
-function startGame() {
+            gameStatus.style.color =
+                completed
+                    ? "#22c55e"
+                    : "#ef4444";
 
-    lives = 3;
-    score = 0;
-    currentQuestion = 0;
-    gameTimer = 30;
+            startGameBtn.style.display =
+                "none";
 
-    gameStarted = true;
-    answered = false;
-
-    clearInterval(timerInterval);
-
-    if (gameResult) {
-        gameResult.style.display = "none";
-    }
-
-    if (startGameButton) {
-        startGameButton.style.display = "none";
-    }
-
-    loadQuestion();
-
-    startTimer();
-
-    updateGameUI();
-
-}
-
-
-/* =========================================================
-   NEXT QUESTION
-========================================================= */
-
-function nextQuestion() {
-
-    if (!gameStarted) {
-        return;
-    }
-
-    currentQuestion++;
-
-    gameTimer = 30;
-
-    if (currentQuestion >= questions.length) {
-
-        endGame();
-
-        return;
-    }
-
-    loadQuestion();
-
-}
-
-
-/* =========================================================
-   END GAME
-========================================================= */
-
-function endGame() {
-
-    gameStarted = false;
-
-    clearInterval(timerInterval);
-
-    if (optionsElement) {
-        optionsElement.innerHTML = "";
-    }
-
-    if (questionElement) {
-        questionElement.textContent =
-            "Game Finished!";
-    }
-
-    if (nextQuestionButton) {
-        nextQuestionButton.style.display =
-            "none";
-    }
-
-    if (gameStatus) {
-        gameStatus.textContent =
-            "🏆 Challenge Complete!";
-    }
-
-    if (gameResult) {
-        gameResult.style.display = "block";
-    }
-
-    if (finalScore) {
-        finalScore.textContent = score;
-    }
-
-
-    if (finalMessage) {
-
-        if (score >= 80) {
-
-            finalMessage.textContent =
-                "🔥 Excellent! Your networking knowledge is strong.";
-
-        } else if (score >= 50) {
-
-            finalMessage.textContent =
-                "👏 Good job! Keep practicing networking.";
-
-        } else {
-
-            finalMessage.textContent =
-                "💪 Keep learning! Practice more networking concepts.";
+            nextQuestionBtn.style.display =
+                "none";
 
         }
-    }
-
-    updateGameUI();
-}
 
 
-/* =========================================================
-   RESET GAME
-========================================================= */
+        /* =================================================
+           BUTTON EVENTS
+        ================================================= */
 
-function resetGame() {
-
-    clearInterval(timerInterval);
-
-    lives = 3;
-    score = 0;
-    currentQuestion = 0;
-    gameTimer = 30;
-
-    gameStarted = false;
-    answered = false;
-
-    if (questionElement) {
-        questionElement.textContent =
-            "Loading Question...";
-    }
-
-    if (optionsElement) {
-        optionsElement.innerHTML = "";
-    }
-
-    if (gameStatus) {
-        gameStatus.textContent =
-            "Ready?";
-    }
-
-    if (gameResult) {
-        gameResult.style.display = "none";
-    }
-
-    if (nextQuestionButton) {
-        nextQuestionButton.style.display =
-            "none";
-    }
-
-    if (startGameButton) {
-        startGameButton.style.display =
-            "inline-block";
-    }
-
-    if (progressBar) {
-        progressBar.style.width = "0%";
-    }
-
-    updateGameUI();
-}
-
-
-/* =========================================================
-   GAME BUTTON EVENTS
-========================================================= */
-
-if (startGameButton) {
-
-    startGameButton.addEventListener(
-        "click",
-        startGame
-    );
-}
-
-
-if (nextQuestionButton) {
-
-    nextQuestionButton.addEventListener(
-        "click",
-        nextQuestion
-    );
-}
-
-
-if (resetGameButton) {
-
-    resetGameButton.addEventListener(
-        "click",
-        resetGame
-    );
-}
-
-
-if (playAgainButton) {
-
-    playAgainButton.addEventListener(
-        "click",
-        startGame
-    );
-}
-
-
-/* =========================================================
-   7. NETWORKING BLOG BOOK
-========================================================= */
-
-const pages =
-    document.querySelectorAll(".flip-page");
-
-const prevPage =
-    document.getElementById("prevPage");
-
-const nextPage =
-    document.getElementById("nextPage");
-
-const bookPageNumber =
-    document.getElementById("bookPageNumber");
-
-
-let bookIndex = 0;
-
-
-/*
-   Pages are arranged as:
-
-   1-2
-   3-4
-   5-6
-
-   So index moves:
-   0 -> 2 -> 4
-*/
-
-
-function updateBook() {
-
-    if (!pages.length) {
-        return;
-    }
-
-
-    pages.forEach(function (page) {
-
-        page.style.opacity = "0";
-        page.style.visibility = "hidden";
-        page.style.zIndex = "1";
-
-        page.classList.remove(
-            "flip-next",
-            "flip-prev"
+        startGameBtn.addEventListener(
+            "click",
+            startGame
         );
-    });
 
+        nextQuestionBtn.addEventListener(
+            "click",
+            nextQuestion
+        );
 
-    /* Current two pages */
+        resetGameBtn.addEventListener(
+            "click",
+            resetGame
+        );
 
-    if (pages[bookIndex]) {
+        if (playAgainBtn) {
 
-        pages[bookIndex].style.opacity = "1";
-        pages[bookIndex].style.visibility = "visible";
-        pages[bookIndex].style.zIndex = "10";
-    }
+            playAgainBtn.addEventListener(
+                "click",
+                function () {
 
+                    resetGame();
 
-    if (pages[bookIndex + 1]) {
+                    startGame();
 
-        pages[bookIndex + 1].style.opacity = "1";
-        pages[bookIndex + 1].style.visibility = "visible";
-        pages[bookIndex + 1].style.zIndex = "9";
-    }
+                }
+            );
 
-
-    if (bookPageNumber) {
-
-        bookPageNumber.textContent =
-            `${bookIndex + 1}–${Math.min(
-                bookIndex + 2,
-                pages.length
-            )} / ${pages.length}`;
-    }
-
-
-    if (prevPage) {
-        prevPage.disabled =
-            bookIndex === 0;
-    }
-
-    if (nextPage) {
-        nextPage.disabled =
-            bookIndex + 2 >= pages.length;
-    }
-}
-
-
-if (nextPage) {
-
-    nextPage.addEventListener(
-        "click",
-        function () {
-
-            if (bookIndex + 2 >= pages.length) {
-                return;
-            }
-
-            bookIndex += 2;
-
-            updateBook();
         }
-    );
-}
 
 
-if (prevPage) {
+        // Initial game state
+        resetGame();
 
-    prevPage.addEventListener(
-        "click",
-        function () {
-
-            if (bookIndex === 0) {
-                return;
-            }
-
-            bookIndex -= 2;
-
-            updateBook();
-        }
-    );
-}
-
-
-updateBook();
-
-
-/* =========================================================
-   8. BACK TO TOP BUTTON
-========================================================= */
-
-const topButton =
-    document.getElementById("topBtn");
-
-
-window.addEventListener("scroll", function () {
-
-    if (!topButton) {
-        return;
     }
 
-    if (window.scrollY > 400) {
 
-        topButton.style.display =
-            "block";
+    /* =====================================================
+       NETWORK LAB PACKET ANIMATION
+    ===================================================== */
 
-    } else {
+    const labButtons =
+        document.querySelectorAll(
+            ".lab-buttons button"
+        );
 
-        topButton.style.display =
-            "none";
+    const packet =
+        document.querySelector(".packet");
+
+    const status =
+        document.querySelector(".status");
+
+    if (labButtons.length > 0) {
+
+        labButtons.forEach(function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    if (packet) {
+
+                        packet.classList.remove(
+                            "move"
+                        );
+
+                        // Restart CSS animation
+                        void packet.offsetWidth;
+
+                        packet.classList.add(
+                            "move"
+                        );
+
+                    }
+
+                    if (status) {
+
+                        status.textContent =
+                            "📡 Sending network packet...";
+
+                    }
+
+                    setTimeout(function () {
+
+                        if (status) {
+
+                            status.textContent =
+                                "✅ Packet delivered successfully!";
+
+                        }
+
+                    }, 2000);
+
+                }
+            );
+
+        });
+
     }
 
-});
+
+    /* =====================================================
+       NETWORK ROUTING GAME
+    ===================================================== */
+
+    const routeDevices =
+        document.querySelectorAll(
+            ".route-device"
+        );
+
+    if (routeDevices.length > 0) {
+
+        routeDevices.forEach(function (device) {
+
+            device.addEventListener(
+                "click",
+                function () {
+
+                    const isCorrect =
+                        device.dataset.correct === "true";
+
+                    routeDevices.forEach(
+                        function (item) {
+
+                            item.classList.remove(
+                                "correct",
+                                "wrong"
+                            );
+
+                        }
+                    );
+
+                    if (isCorrect) {
+
+                        device.classList.add(
+                            "correct"
+                        );
+
+                    } else {
+
+                        device.classList.add(
+                            "wrong"
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+    }
 
 
-function topFunction() {
+    /* =====================================================
+       NETWORKING BLOG BOOK
+    ===================================================== */
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    const bookPages =
+        document.getElementById("bookPages");
 
-}
+    const prevPage =
+        document.getElementById("prevPage");
 
+    const nextPage =
+        document.getElementById("nextPage");
 
-/* =========================================================
-   9. SMOOTH NAVIGATION
-========================================================= */
+    const bookPageNumber =
+        document.getElementById("bookPageNumber");
 
-document.querySelectorAll(
-    'a[href^="#"]'
-).forEach(function (link) {
+    if (
+        bookPages &&
+        prevPage &&
+        nextPage &&
+        bookPageNumber
+    ) {
 
-    link.addEventListener(
-        "click",
-        function (event) {
+        const leftPage =
+            bookPages.querySelector(".page-left");
 
-            const targetId =
-                link.getAttribute("href");
+        const rightPage =
+            bookPages.querySelector(".page-right");
 
-            if (
-                !targetId ||
-                targetId === "#"
-            ) {
-                return;
-            }
+        const page3 =
+            bookPages.querySelector(".page-3");
 
-            const target =
-                document.querySelector(targetId);
+        const page4 =
+            bookPages.querySelector(".page-4");
 
-            if (!target) {
-                return;
-            }
+        const page5 =
+            bookPages.querySelector(".page-5");
 
-            event.preventDefault();
+        const page6 =
+            bookPages.querySelector(".page-6");
 
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
+        const pages = [
+            leftPage,
+            rightPage,
+            page3,
+            page4,
+            page5,
+            page6
+        ].filter(Boolean);
+
+        let bookIndex = 0;
+
+        function updateBook() {
+
+            pages.forEach(function (page) {
+
+                page.style.opacity = "0";
+                page.style.visibility = "hidden";
+
             });
 
+            // Show two pages
+            if (pages[bookIndex]) {
+
+                pages[bookIndex].style.opacity =
+                    "1";
+
+                pages[bookIndex].style.visibility =
+                    "visible";
+
+            }
+
+            if (pages[bookIndex + 1]) {
+
+                pages[bookIndex + 1].style.opacity =
+                    "1";
+
+                pages[bookIndex + 1].style.visibility =
+                    "visible";
+
+            }
+
+            const first =
+                bookIndex + 1;
+
+            const second =
+                Math.min(
+                    bookIndex + 2,
+                    pages.length
+                );
+
+            bookPageNumber.textContent =
+                first + "–" + second +
+                " / " + pages.length;
+
+            prevPage.disabled =
+                bookIndex === 0;
+
+            nextPage.disabled =
+                bookIndex + 2 >= pages.length;
+
         }
+
+
+        nextPage.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    bookIndex + 2 <
+                    pages.length
+                ) {
+
+                    bookIndex += 2;
+
+                    updateBook();
+
+                }
+
+            }
+        );
+
+
+        prevPage.addEventListener(
+            "click",
+            function () {
+
+                if (bookIndex >= 2) {
+
+                    bookIndex -= 2;
+
+                    updateBook();
+
+                }
+
+            }
+        );
+
+
+        updateBook();
+
+    }
+
+
+    /* =====================================================
+       CONSOLE MESSAGE
+    ===================================================== */
+
+    console.log(
+        "Badhon Biswas Portfolio Loaded Successfully."
+    );
+
+    console.log(
+        "Network Troubleshooter Ready."
     );
 
 });
-
-
-/* =========================================================
-   10. INITIAL GAME STATE
-========================================================= */
-
-updateGameUI();
-
-
-/* =========================================================
-   SCRIPT LOADED
-========================================================= */
-
-console.log(
-    "✅ Badhon Portfolio Script Loaded Successfully!"
-);
