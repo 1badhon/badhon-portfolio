@@ -1717,3 +1717,656 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 });
+/* =========================================================
+   BADHON PERSONAL ASSISTANT
+========================================================= */
+
+const assistantInput =
+    document.getElementById("assistantInput");
+
+const assistantSend =
+    document.getElementById("assistantSend");
+
+const assistantChat =
+    document.getElementById("assistantChat");
+
+
+/* ---------------------------------------------------------
+   ASK QUESTION
+--------------------------------------------------------- */
+
+function askQuestion(question) {
+
+    if (!question) return;
+
+    addUserMessage(question);
+
+    assistantInput.value = "";
+
+    showTyping();
+
+    setTimeout(() => {
+
+        removeTyping();
+
+        const answer = getAssistantAnswer(question);
+
+        addBotMessage(answer);
+
+    }, 700);
+}
+
+
+/* ---------------------------------------------------------
+   SEND BUTTON
+--------------------------------------------------------- */
+
+assistantSend.addEventListener("click", function () {
+
+    const question =
+        assistantInput.value.trim();
+
+    if (question === "") {
+
+        assistantInput.focus();
+
+        return;
+    }
+
+    askQuestion(question);
+
+});
+
+
+/* ---------------------------------------------------------
+   ENTER KEY
+--------------------------------------------------------- */
+
+assistantInput.addEventListener("keydown", function (event) {
+
+    if (event.key === "Enter") {
+
+        event.preventDefault();
+
+        const question =
+            assistantInput.value.trim();
+
+        if (question !== "") {
+
+            askQuestion(question);
+
+        }
+
+    }
+
+});
+
+
+/* ---------------------------------------------------------
+   ADD USER MESSAGE
+--------------------------------------------------------- */
+
+function addUserMessage(message) {
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "assistant-message user-message";
+
+    div.innerHTML = `
+
+        <div class="assistant-avatar">
+            👤
+        </div>
+
+        <div class="message-content">
+
+            <strong>You</strong>
+
+            <p>${escapeHTML(message)}</p>
+
+        </div>
+
+    `;
+
+    assistantChat.appendChild(div);
+
+    scrollAssistant();
+}
+
+
+/* ---------------------------------------------------------
+   ADD BOT MESSAGE
+--------------------------------------------------------- */
+
+function addBotMessage(message) {
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "assistant-message bot-message";
+
+    div.innerHTML = `
+
+        <div class="assistant-avatar">
+            🤖
+        </div>
+
+        <div class="message-content">
+
+            <strong>Badhon Assistant</strong>
+
+            <p>${message}</p>
+
+        </div>
+
+    `;
+
+    assistantChat.appendChild(div);
+
+    scrollAssistant();
+}
+
+
+/* ---------------------------------------------------------
+   TYPING
+--------------------------------------------------------- */
+
+function showTyping() {
+
+    const div =
+        document.createElement("div");
+
+    div.id =
+        "assistantTyping";
+
+    div.className =
+        "assistant-message";
+
+    div.innerHTML = `
+
+        <div class="assistant-avatar">
+            🤖
+        </div>
+
+        <div class="message-content">
+
+            <strong>Badhon Assistant</strong>
+
+            <p class="typing-message">
+                Typing...
+            </p>
+
+        </div>
+
+    `;
+
+    assistantChat.appendChild(div);
+
+    scrollAssistant();
+}
+
+
+function removeTyping() {
+
+    const typing =
+        document.getElementById(
+            "assistantTyping"
+        );
+
+    if (typing) {
+
+        typing.remove();
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   SCROLL CHAT
+--------------------------------------------------------- */
+
+function scrollAssistant() {
+
+    assistantChat.scrollTop =
+        assistantChat.scrollHeight;
+
+}
+
+
+/* ---------------------------------------------------------
+   ASSISTANT KNOWLEDGE
+--------------------------------------------------------- */
+
+function getAssistantAnswer(question) {
+
+    const q =
+        question
+            .toLowerCase()
+            .trim();
+
+
+    /* WHO ARE YOU */
+
+    if (
+        q.includes("তুমি কে") ||
+        q.includes("কে তুমি") ||
+        q.includes("who are you") ||
+        q.includes("your identity")
+    ) {
+
+        return `
+            আমি <strong>Badhon Sir-এর Personal Assistant</strong> 🤖।
+            Badhon Sir সম্পর্কে তথ্য জানতে আপনি আমাকে
+            প্রশ্ন করতে পারেন।
+        `;
+
+    }
+
+
+    /* WHO IS BADHON */
+
+    if (
+        q.includes("badhon কে") ||
+        q.includes("badhon কে") ||
+        q.includes("who is badhon") ||
+        q.includes("about badhon") ||
+        q.includes("badhon biswas কে")
+    ) {
+
+        return `
+            <strong>Badhon Biswas</strong> একজন
+            Diploma in Computer Science & Technology
+            (Networking) শিক্ষার্থী।
+            তিনি Networking, Cisco, MikroTik, Linux
+            এবং Web Development-এর প্রতি আগ্রহী।
+        `;
+
+    }
+
+
+    /* EDUCATION */
+
+    if (
+        q.includes("education") ||
+        q.includes("পড়াশোনা") ||
+        q.includes("শিক্ষা") ||
+        q.includes("কী নিয়ে পড়") ||
+        q.includes("কি নিয়ে পড়")
+    ) {
+
+        return `
+            Badhon Sir বর্তমানে
+            <strong>Diploma in Computer Science &
+            Technology (Networking)</strong>
+            নিয়ে পড়াশোনা করছেন।
+            তাঁর প্রতিষ্ঠান <strong>Magura Polytechnic
+            Institute</strong>।
+        `;
+
+    }
+
+
+    /* SSC */
+
+    if (
+        q.includes("ssc") ||
+        q.includes("gpa") ||
+        q.includes("রেজাল্ট") ||
+        q.includes("result")
+    ) {
+
+        return `
+            Badhon Sir-এর SSC (Vocational)
+            GPA হলো <strong>4.93</strong>।
+        `;
+
+    }
+
+
+    /* NETWORKING */
+
+    if (
+        q.includes("network") ||
+        q.includes("networking") ||
+        q.includes("নেটওয়ার্ক")
+    ) {
+
+        return `
+            Networking Badhon Sir-এর অন্যতম প্রধান
+            interest।
+            তাঁর skills-এর মধ্যে Networking Fundamentals,
+            Cisco Packet Tracer, IP Addressing,
+            Subnetting এবং MikroTik Basics রয়েছে।
+        `;
+
+    }
+
+
+    /* CISCO */
+
+    if (
+        q.includes("cisco") ||
+        q.includes("packet tracer")
+    ) {
+
+        return `
+            জি। Badhon Sir
+            <strong>Cisco Packet Tracer</strong>
+            ব্যবহার করে basic networking topology
+            design এবং networking practice করেন।
+        `;
+
+    }
+
+
+    /* MIKROTIK */
+
+    if (
+        q.includes("mikrotik")
+    ) {
+
+        return `
+            জি। Badhon Sir-এর
+            <strong>MikroTik Basics</strong>
+            সম্পর্কে knowledge রয়েছে।
+        `;
+
+    }
+
+
+    /* LINUX */
+
+    if (
+        q.includes("linux") ||
+        q.includes("ubuntu")
+    ) {
+
+        return `
+            Badhon Sir <strong>Ubuntu Linux</strong>
+            নিয়ে কাজ ও practice করেছেন।
+        `;
+
+    }
+
+
+    /* WEB DEVELOPMENT */
+
+    if (
+        q.includes("html") ||
+        q.includes("css") ||
+        q.includes("javascript") ||
+        q.includes("web development") ||
+        q.includes("ওয়েব")
+    ) {
+
+        return `
+            Badhon Sir Web Development-এর প্রতিও
+            interested।
+            তিনি <strong>HTML, CSS</strong> এবং
+            JavaScript নিয়ে project তৈরি করেন।
+        `;
+
+    }
+
+
+    /* GITHUB */
+
+    if (
+        q.includes("github") ||
+        q.includes("গিটহাব")
+    ) {
+
+        return `
+            জি। Badhon Sir-এর GitHub account আছে।
+            <br><br>
+
+            🐙
+            <a
+                href="https://github.com/1badhon"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Visit Badhon Sir's GitHub
+            </a>
+        `;
+
+    }
+
+
+    /* LINKEDIN */
+
+    if (
+        q.includes("linkedin") ||
+        q.includes("লিংকডইন")
+    ) {
+
+        return `
+            জি। Badhon Sir-এর LinkedIn profile আছে।
+            <br><br>
+
+            🔗
+            <a
+                href="https://www.linkedin.com/in/badhon-biswas-5a8320334/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Visit LinkedIn
+            </a>
+        `;
+
+    }
+
+
+    /* PROJECTS */
+
+    if (
+        q.includes("project") ||
+        q.includes("projects") ||
+        q.includes("প্রজেক্ট") ||
+        q.includes("প্রজেক্টগুলো")
+    ) {
+
+        return `
+            Badhon Sir-এর portfolio-তে বর্তমানে
+            কয়েকটি project রয়েছে:
+            <br><br>
+
+            🚀 Portfolio Website<br>
+            🌐 Cisco Packet Tracer Lab<br>
+            🧮 IP Addressing Practice
+        `;
+
+    }
+
+
+    /* SKILLS */
+
+    if (
+        q.includes("skill") ||
+        q.includes("skills") ||
+        q.includes("দক্ষতা") ||
+        q.includes("কি কি জানে") ||
+        q.includes("কী কী জানে")
+    ) {
+
+        return `
+            Badhon Sir-এর technical skills:
+            <br><br>
+
+            ✔ Networking Fundamentals<br>
+            ✔ Cisco Packet Tracer<br>
+            ✔ MikroTik Basics<br>
+            ✔ Windows Installation<br>
+            ✔ Ubuntu Linux<br>
+            ✔ HTML<br>
+            ✔ CSS<br>
+            ✔ Git & GitHub
+        `;
+
+    }
+
+
+    /* CAREER */
+
+    if (
+        q.includes("career") ||
+        q.includes("future") ||
+        q.includes("লক্ষ্য") ||
+        q.includes("ভবিষ্যৎ") ||
+        q.includes("goal")
+    ) {
+
+        return `
+            Badhon Sir-এর লক্ষ্য হলো Networking
+            field-এ নিজের practical skills আরও
+            উন্নত করা এবং একজন দক্ষ
+            <strong>Network Engineer</strong> হিসেবে
+            career তৈরি করা।
+        `;
+
+    }
+
+
+    /* INDUSTRIAL ATTACHMENT */
+
+    if (
+        q.includes("industrial") ||
+        q.includes("attachment") ||
+        q.includes("internship") ||
+        q.includes("ইন্ডাস্ট্রিয়াল")
+    ) {
+
+        return `
+            বর্তমানে Badhon Sir practical experience
+            অর্জনের জন্য একটি
+            <strong>Industrial Attachment</strong>
+            opportunity খুঁজছেন।
+        `;
+
+    }
+
+
+    /* CONTACT */
+
+    if (
+        q.includes("contact") ||
+        q.includes("যোগাযোগ") ||
+        q.includes("email") ||
+        q.includes("phone") ||
+        q.includes("মোবাইল")
+    ) {
+
+        return `
+            Badhon Sir-এর সাথে যোগাযোগ করতে পারেন:
+            <br><br>
+
+            📧 badhonbiswas.1.bd@gmail.com<br>
+            📱 01866314941<br>
+            📍 Magura, Bangladesh
+        `;
+
+    }
+
+
+    /* LOCATION */
+
+    if (
+        q.includes("কোথায়") ||
+        q.includes("where") ||
+        q.includes("location") ||
+        q.includes("magura")
+    ) {
+
+        return `
+            Badhon Sir Bangladesh-এর
+            <strong>Magura</strong> থেকে।
+        `;
+
+    }
+
+
+    /* CV */
+
+    if (
+        q.includes("cv") ||
+        q.includes("resume") ||
+        q.includes("সিভি")
+    ) {
+
+        return `
+            অবশ্যই। Badhon Sir-এর CV portfolio-এর
+            <strong>Download CV</strong> button থেকে
+            দেখা বা download করা যাবে।
+        `;
+
+    }
+
+
+    /* HELLO */
+
+    if (
+        q.includes("hello") ||
+        q.includes("hi") ||
+        q.includes("হ্যালো") ||
+        q.includes("হাই")
+    ) {
+
+        return `
+            Hello! 👋
+            আমি Badhon Sir-এর Personal Assistant।
+            Badhon Sir সম্পর্কে কী জানতে চান?
+        `;
+
+    }
+
+
+    /* THANK YOU */
+
+    if (
+        q.includes("thank") ||
+        q.includes("ধন্যবাদ")
+    ) {
+
+        return `
+            You're welcome! 😊
+            Badhon Sir সম্পর্কে আরও কিছু জানতে
+            চাইলে প্রশ্ন করতে পারেন।
+        `;
+
+    }
+
+
+    /* DEFAULT */
+
+    return `
+        দুঃখিত! 😅 এই প্রশ্নটির উত্তর আমার
+        database-এ এখনো নেই।
+        <br><br>
+
+        আপনি Badhon Sir-এর
+        <strong>Education, Skills, Networking,
+        Projects, GitHub, LinkedIn, Career</strong>
+        অথবা Contact সম্পর্কে প্রশ্ন করতে পারেন।
+    `;
+
+}
+
+
+/* ---------------------------------------------------------
+   SECURITY
+--------------------------------------------------------- */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
