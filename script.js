@@ -1471,3 +1471,249 @@ function askSuggested(question) {
     askQuestion();
 
 }
+/* =========================================================
+   ASK ABOUT ME
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const questionInput =
+        document.getElementById("aboutQuestion");
+
+    const askButton =
+        document.getElementById("askButton");
+
+    const answerBox =
+        document.getElementById("aboutAnswer");
+
+
+    if (!questionInput || !askButton || !answerBox) {
+        console.error("Ask About Me elements not found!");
+        return;
+    }
+
+
+    function answerQuestion() {
+
+        const question =
+            questionInput.value.trim().toLowerCase();
+
+
+        if (question === "") {
+
+            answerBox.innerHTML =
+                "⚠️ Please write a question first.";
+
+            return;
+        }
+
+
+        let answer = "";
+
+
+        /* NAME */
+
+        if (
+            question.includes("name") ||
+            question.includes("নাম")
+        ) {
+
+            answer =
+                "আমার নাম Badhon Biswas।";
+
+        }
+
+
+        /* EDUCATION */
+
+        else if (
+            question.includes("education") ||
+            question.includes("study") ||
+            question.includes("student") ||
+            question.includes("পড়াশোনা") ||
+            question.includes("শিক্ষা")
+        ) {
+
+            answer =
+                "আমি Diploma in Computer Science & Technology (Networking)-এর একজন শিক্ষার্থী।";
+
+        }
+
+
+        /* SKILLS */
+
+        else if (
+            question.includes("skill") ||
+            question.includes("skills") ||
+            question.includes("দক্ষতা")
+        ) {
+
+            answer =
+                "আমার skills-এর মধ্যে Networking Fundamentals, Cisco Packet Tracer, MikroTik Basics, Windows Installation, Ubuntu Linux, HTML, CSS এবং Git & GitHub রয়েছে।";
+
+        }
+
+
+        /* NETWORKING */
+
+        else if (
+            question.includes("network") ||
+            question.includes("networking") ||
+            question.includes("নেটওয়ার্ক")
+        ) {
+
+            answer =
+                "আমি Networking, Cisco, MikroTik এবং Linux নিয়ে কাজ করতে এবং শিখতে আগ্রহী।";
+
+        }
+
+
+        /* CISCO */
+
+        else if (
+            question.includes("cisco") ||
+            question.includes("packet tracer")
+        ) {
+
+            answer =
+                "আমি Cisco Packet Tracer ব্যবহার করে basic networking topology এবং device configuration practice করি।";
+
+        }
+
+
+        /* LINUX */
+
+        else if (
+            question.includes("linux") ||
+            question.includes("ubuntu")
+        ) {
+
+            answer =
+                "আমি Ubuntu Linux নিয়ে কাজ ও practice করতে আগ্রহী।";
+
+        }
+
+
+        /* LOCATION */
+
+        else if (
+            question.includes("where") ||
+            question.includes("location") ||
+            question.includes("কোথায়") ||
+            question.includes("ঠিকানা")
+        ) {
+
+            answer =
+                "আমি Magura, Bangladesh-এর।";
+
+        }
+
+
+        /* PROJECT */
+
+        else if (
+            question.includes("project") ||
+            question.includes("projects") ||
+            question.includes("প্রজেক্ট")
+        ) {
+
+            answer =
+                "আমার projects-এর মধ্যে Personal Portfolio Website, Cisco Packet Tracer Lab এবং IP Addressing Practice রয়েছে।";
+
+        }
+
+
+        /* GITHUB */
+
+        else if (
+            question.includes("github")
+        ) {
+
+            answer =
+                "আমার GitHub profile: github.com/1badhon";
+
+        }
+
+
+        /* LINKEDIN */
+
+        else if (
+            question.includes("linkedin")
+        ) {
+
+            answer =
+                "আমার LinkedIn profile আমার portfolio-এর Contact section-এ দেওয়া আছে।";
+
+        }
+
+
+        /* CONTACT */
+
+        else if (
+            question.includes("contact") ||
+            question.includes("email") ||
+            question.includes("যোগাযোগ")
+        ) {
+
+            answer =
+                "আমার email: badhonbiswas.1.bd@gmail.com";
+
+        }
+
+
+        /* ABOUT */
+
+        else if (
+            question.includes("about") ||
+            question.includes("who are you") ||
+            question.includes("সম্পর্কে")
+        ) {
+
+            answer =
+                "আমি Badhon Biswas, একজন Diploma in CST (Networking) শিক্ষার্থী। Networking, Cisco, MikroTik, Linux এবং Web Development নিয়ে কাজ করতে আগ্রহী।";
+
+        }
+
+
+        /* UNKNOWN QUESTION */
+
+        else {
+
+            answer =
+                "দুঃখিত, এই প্রশ্নের উত্তর আমার তথ্যের মধ্যে নেই। আপনি আমার নাম, শিক্ষা, skills, networking, Cisco, Linux, projects, GitHub বা contact সম্পর্কে প্রশ্ন করতে পারেন।";
+
+        }
+
+
+        answerBox.innerHTML =
+            `<span>🤖 ${answer}</span>`;
+
+    }
+
+
+    /* SEND BUTTON */
+
+    askButton.addEventListener(
+        "click",
+        answerQuestion
+    );
+
+
+    /* ENTER KEY */
+
+    questionInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Enter") {
+
+                event.preventDefault();
+
+                answerQuestion();
+
+            }
+
+        }
+    );
+
+});
