@@ -1960,7 +1960,7 @@ function getAssistantAnswer(question) {
 
         return `
             আমি <strong>Badhon-এর Personal Assistant</strong> 🤖।
-            Badhon  সম্পর্কে তথ্য জানতে আপনি আমাকে
+            Badhon-এর সম্পর্কে তথ্য জানতে আপনি আমাকে
             প্রশ্ন করতে পারেন।
         `;
 
@@ -2241,7 +2241,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            বর্তমানে Badhon Sir practical experience
+            বর্তমানে Badhon practical experience
             অর্জনের জন্য একটি
             <strong>Industrial Attachment</strong>
             opportunity খুঁজছেন।
@@ -2318,7 +2318,7 @@ function getAssistantAnswer(question) {
         return `
             Hello! 👋
             আমি Badhon-এর Personal Assistant।
-            Badhon Sir সম্পর্কে কী জানতে চান?
+            Badhon সম্পর্কে কী জানতে চান?
         `;
 
     }
