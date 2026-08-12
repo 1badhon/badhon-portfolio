@@ -1959,8 +1959,8 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            আমি <strong>Badhon Sir-এর Personal Assistant</strong> 🤖।
-            Badhon Sir সম্পর্কে তথ্য জানতে আপনি আমাকে
+            আমি <strong>Badhon-এর Personal Assistant</strong> 🤖।
+            Badhon  সম্পর্কে তথ্য জানতে আপনি আমাকে
             প্রশ্ন করতে পারেন।
         `;
 
@@ -1999,7 +1999,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Badhon Sir বর্তমানে
+            Badhon বর্তমানে
             <strong>Diploma in Computer Science &
             Technology (Networking)</strong>
             নিয়ে পড়াশোনা করছেন।
@@ -2020,7 +2020,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Badhon Sir-এর SSC (Vocational)
+            Badhon-এর SSC (Vocational)
             GPA হলো <strong>4.93</strong>।
         `;
 
@@ -2036,7 +2036,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Networking Badhon Sir-এর অন্যতম প্রধান
+            Networking Badhon-এর অন্যতম প্রধান
             interest।
             তাঁর skills-এর মধ্যে Networking Fundamentals,
             Cisco Packet Tracer, IP Addressing,
@@ -2054,7 +2054,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            জি। Badhon Sir
+            জি। Badhon 
             <strong>Cisco Packet Tracer</strong>
             ব্যবহার করে basic networking topology
             design এবং networking practice করেন।
@@ -2070,7 +2070,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            জি। Badhon Sir-এর
+            জি। Badhon-এর
             <strong>MikroTik Basics</strong>
             সম্পর্কে knowledge রয়েছে।
         `;
@@ -2086,7 +2086,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Badhon Sir <strong>Ubuntu Linux</strong>
+            Badhon <strong>Ubuntu Linux</strong>
             নিয়ে কাজ ও practice করেছেন।
         `;
 
@@ -2104,7 +2104,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Badhon Sir Web Development-এর প্রতিও
+            Badhon Web Development-এর প্রতিও
             interested।
             তিনি <strong>HTML, CSS</strong> এবং
             JavaScript নিয়ে project তৈরি করেন।
@@ -2121,7 +2121,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            জি। Badhon Sir-এর GitHub account আছে।
+            জি। Badhon-এর GitHub account আছে।
             <br><br>
 
             🐙
@@ -2145,7 +2145,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            জি। Badhon Sir-এর LinkedIn profile আছে।
+            জি। Badhon-এর LinkedIn profile আছে।
             <br><br>
 
             🔗
@@ -2171,7 +2171,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Badhon Sir-এর portfolio-তে বর্তমানে
+            Badhon-এর portfolio-তে বর্তমানে
             কয়েকটি project রয়েছে:
             <br><br>
 
@@ -2194,7 +2194,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Badhon Sir-এর technical skills:
+            Badhon-এর technical skills:
             <br><br>
 
             ✔ Networking Fundamentals<br>
@@ -2221,7 +2221,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Badhon Sir-এর লক্ষ্য হলো Networking
+            Badhon-এর লক্ষ্য হলো Networking
             field-এ নিজের practical skills আরও
             উন্নত করা এবং একজন দক্ষ
             <strong>Network Engineer</strong> হিসেবে
@@ -2261,7 +2261,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Badhon Sir-এর সাথে যোগাযোগ করতে পারেন:
+            Badhon-এর সাথে যোগাযোগ করতে পারেন:
             <br><br>
 
             📧 badhonbiswas.1.bd@gmail.com<br>
@@ -2282,7 +2282,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            Badhon Sir Bangladesh-এর
+            Badhon  Bangladesh-এর
             <strong>Magura</strong> থেকে।
         `;
 
@@ -2298,7 +2298,7 @@ function getAssistantAnswer(question) {
     ) {
 
         return `
-            অবশ্যই। Badhon Sir-এর CV portfolio-এর
+            অবশ্যই। Badhon-এর CV portfolio-এর
             <strong>Download CV</strong> button থেকে
             দেখা বা download করা যাবে।
         `;
@@ -2317,7 +2317,7 @@ function getAssistantAnswer(question) {
 
         return `
             Hello! 👋
-            আমি Badhon Sir-এর Personal Assistant।
+            আমি Badhon-এর Personal Assistant।
             Badhon Sir সম্পর্কে কী জানতে চান?
         `;
 
@@ -2333,7 +2333,7 @@ function getAssistantAnswer(question) {
 
         return `
             You're welcome! 😊
-            Badhon Sir সম্পর্কে আরও কিছু জানতে
+            Badhon-এর সম্পর্কে আরও কিছু জানতে
             চাইলে প্রশ্ন করতে পারেন।
         `;
 
@@ -2347,7 +2347,7 @@ function getAssistantAnswer(question) {
         database-এ এখনো নেই।
         <br><br>
 
-        আপনি Badhon Sir-এর
+        আপনি Badhon-এর
         <strong>Education, Skills, Networking,
         Projects, GitHub, LinkedIn, Career</strong>
         অথবা Contact সম্পর্কে প্রশ্ন করতে পারেন।
