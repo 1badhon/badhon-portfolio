@@ -788,163 +788,167 @@ if (
     );
 
 }
-/* =========================================================
-   NETWORKING BLOG - BOOK PAGE FLIP
-========================================================= */
+/* =====================================================
+   NETWORKING BLOG - BOOK
+===================================================== */
 
-const bookPages = document.querySelectorAll(".flip-page");
-const nextPage = document.getElementById("nextPage");
-const prevPage = document.getElementById("prevPage");
-const bookPageNumber = document.getElementById("bookPageNumber");
+const bookContainer = document.getElementById("bookPages");
+const nextBookBtn = document.getElementById("nextPage");
+const prevBookBtn = document.getElementById("prevPage");
+const bookNumber = document.getElementById("bookPageNumber");
 
-let bookCurrentPage = 0;
+if (
+    bookContainer &&
+    nextBookBtn &&
+    prevBookBtn &&
+    bookNumber
+) {
 
-const totalBookPages = bookPages.length;
+    const bookPages = Array.from(
+        bookContainer.querySelectorAll(".flip-page")
+    );
+
+    let currentPair = 0;
+
+    const totalPairs = Math.ceil(
+        bookPages.length / 2
+    );
 
 
-/* =========================
-   UPDATE BOOK
-========================= */
+    /* =========================
+       SHOW CURRENT PAGES
+    ========================= */
 
-function updateBook() {
+    function showBookPages() {
 
-    bookPages.forEach((page) => {
+        bookPages.forEach((page) => {
 
-        page.style.visibility = "hidden";
-        page.style.opacity = "0";
-        page.style.zIndex = "1";
+            page.style.display = "none";
+            page.style.visibility = "hidden";
+            page.style.opacity = "0";
 
-        page.classList.remove(
-            "active-page",
-            "flip-next",
-            "flip-prev"
+            page.classList.remove(
+                "flip-next",
+                "flip-prev"
+            );
+
+        });
+
+
+        const leftIndex = currentPair * 2;
+        const rightIndex = leftIndex + 1;
+
+
+        if (bookPages[leftIndex]) {
+
+            bookPages[leftIndex].style.display = "block";
+            bookPages[leftIndex].style.visibility = "visible";
+            bookPages[leftIndex].style.opacity = "1";
+            bookPages[leftIndex].style.zIndex = "10";
+
+        }
+
+
+        if (bookPages[rightIndex]) {
+
+            bookPages[rightIndex].style.display = "block";
+            bookPages[rightIndex].style.visibility = "visible";
+            bookPages[rightIndex].style.opacity = "1";
+            bookPages[rightIndex].style.zIndex = "9";
+
+        }
+
+
+        /* Page number */
+
+        const firstPage = leftIndex + 1;
+
+        const lastPage = Math.min(
+            rightIndex + 1,
+            bookPages.length
         );
+
+        bookNumber.textContent =
+            `${firstPage}–${lastPage} / ${bookPages.length}`;
+
+
+        /* Button state */
+
+        prevBookBtn.disabled =
+            currentPair === 0;
+
+        nextBookBtn.disabled =
+            currentPair >= totalPairs - 1;
+
+    }
+
+
+    /* =========================
+       NEXT
+    ========================= */
+
+    nextBookBtn.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        if (currentPair >= totalPairs - 1) {
+            return;
+        }
+
+
+        const leftPage =
+            bookPages[currentPair * 2];
+
+        const rightPage =
+            bookPages[currentPair * 2 + 1];
+
+
+        if (leftPage) {
+            leftPage.classList.add("flip-next");
+        }
+
+        if (rightPage) {
+            rightPage.classList.add("flip-next");
+        }
+
+
+        setTimeout(function () {
+
+            currentPair++;
+
+            showBookPages();
+
+        }, 800);
 
     });
 
 
-    /* Current left page */
+    /* =========================
+       PREVIOUS
+    ========================= */
 
-    if (bookPages[bookCurrentPage]) {
+    prevBookBtn.addEventListener("click", function (event) {
 
-        bookPages[bookCurrentPage].style.visibility = "visible";
-        bookPages[bookCurrentPage].style.opacity = "1";
-        bookPages[bookCurrentPage].style.zIndex = "10";
+        event.preventDefault();
 
-        bookPages[bookCurrentPage].classList.add(
-            "active-page"
-        );
-
-    }
+        if (currentPair <= 0) {
+            return;
+        }
 
 
-    /* Current right page */
+        currentPair--;
 
-    if (bookPages[bookCurrentPage + 1]) {
+        showBookPages();
 
-        bookPages[bookCurrentPage + 1].style.visibility = "visible";
-        bookPages[bookCurrentPage + 1].style.opacity = "1";
-        bookPages[bookCurrentPage + 1].style.zIndex = "9";
-
-        bookPages[bookCurrentPage + 1].classList.add(
-            "active-page"
-        );
-
-    }
+    });
 
 
-    /* Page number */
+    /* =========================
+       START
+    ========================= */
 
-    const startPage = bookCurrentPage + 1;
-
-    const endPage = Math.min(
-        bookCurrentPage + 2,
-        totalBookPages
-    );
-
-    bookPageNumber.textContent =
-        `${startPage}–${endPage} / ${totalBookPages}`;
+    showBookPages();
 
 
-    /* Previous */
-
-    prevPage.disabled =
-        bookCurrentPage === 0;
-
-
-    /* Next */
-
-    nextPage.disabled =
-        bookCurrentPage >= totalBookPages - 2;
-
-}
-
-
-/* =========================
-   NEXT BUTTON
-========================= */
-
-nextPage.addEventListener("click", function () {
-
-    if (bookCurrentPage >= totalBookPages - 2) {
-        return;
-    }
-
-
-    const left = bookPages[bookCurrentPage];
-
-    const right = bookPages[bookCurrentPage + 1];
-
-
-    if (left) {
-        left.classList.add("flip-next");
-    }
-
-    if (right) {
-        right.classList.add("flip-next");
-    }
-
-
-    setTimeout(() => {
-
-        bookCurrentPage += 2;
-
-        updateBook();
-
-    }, 800);
-
-});
-
-
-/* =========================
-   PREVIOUS BUTTON
-========================= */
-
-prevPage.addEventListener("click", function () {
-
-    if (bookCurrentPage <= 0) {
-        return;
-    }
-
-
-    bookCurrentPage -= 2;
-
-    updateBook();
-
-});
-
-
-/* =========================
-   START BOOK
-========================= */
-
-if (
-    bookPages.length > 0 &&
-    nextPage &&
-    prevPage &&
-    bookPageNumber
-) {
-
-    updateBook();
 
 }
