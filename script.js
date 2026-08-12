@@ -788,3 +788,163 @@ if (
     );
 
 }
+/* =========================================================
+   NETWORKING BLOG - BOOK PAGE FLIP
+========================================================= */
+
+const bookPages = document.querySelectorAll(".flip-page");
+const nextPage = document.getElementById("nextPage");
+const prevPage = document.getElementById("prevPage");
+const bookPageNumber = document.getElementById("bookPageNumber");
+
+let bookCurrentPage = 0;
+
+const totalBookPages = bookPages.length;
+
+
+/* =========================
+   UPDATE BOOK
+========================= */
+
+function updateBook() {
+
+    bookPages.forEach((page) => {
+
+        page.style.visibility = "hidden";
+        page.style.opacity = "0";
+        page.style.zIndex = "1";
+
+        page.classList.remove(
+            "active-page",
+            "flip-next",
+            "flip-prev"
+        );
+
+    });
+
+
+    /* Current left page */
+
+    if (bookPages[bookCurrentPage]) {
+
+        bookPages[bookCurrentPage].style.visibility = "visible";
+        bookPages[bookCurrentPage].style.opacity = "1";
+        bookPages[bookCurrentPage].style.zIndex = "10";
+
+        bookPages[bookCurrentPage].classList.add(
+            "active-page"
+        );
+
+    }
+
+
+    /* Current right page */
+
+    if (bookPages[bookCurrentPage + 1]) {
+
+        bookPages[bookCurrentPage + 1].style.visibility = "visible";
+        bookPages[bookCurrentPage + 1].style.opacity = "1";
+        bookPages[bookCurrentPage + 1].style.zIndex = "9";
+
+        bookPages[bookCurrentPage + 1].classList.add(
+            "active-page"
+        );
+
+    }
+
+
+    /* Page number */
+
+    const startPage = bookCurrentPage + 1;
+
+    const endPage = Math.min(
+        bookCurrentPage + 2,
+        totalBookPages
+    );
+
+    bookPageNumber.textContent =
+        `${startPage}–${endPage} / ${totalBookPages}`;
+
+
+    /* Previous */
+
+    prevPage.disabled =
+        bookCurrentPage === 0;
+
+
+    /* Next */
+
+    nextPage.disabled =
+        bookCurrentPage >= totalBookPages - 2;
+
+}
+
+
+/* =========================
+   NEXT BUTTON
+========================= */
+
+nextPage.addEventListener("click", function () {
+
+    if (bookCurrentPage >= totalBookPages - 2) {
+        return;
+    }
+
+
+    const left = bookPages[bookCurrentPage];
+
+    const right = bookPages[bookCurrentPage + 1];
+
+
+    if (left) {
+        left.classList.add("flip-next");
+    }
+
+    if (right) {
+        right.classList.add("flip-next");
+    }
+
+
+    setTimeout(() => {
+
+        bookCurrentPage += 2;
+
+        updateBook();
+
+    }, 800);
+
+});
+
+
+/* =========================
+   PREVIOUS BUTTON
+========================= */
+
+prevPage.addEventListener("click", function () {
+
+    if (bookCurrentPage <= 0) {
+        return;
+    }
+
+
+    bookCurrentPage -= 2;
+
+    updateBook();
+
+});
+
+
+/* =========================
+   START BOOK
+========================= */
+
+if (
+    bookPages.length > 0 &&
+    nextPage &&
+    prevPage &&
+    bookPageNumber
+) {
+
+    updateBook();
+
+}
