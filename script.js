@@ -952,3 +952,522 @@ if (
 
 
 }
+/* =========================================================
+   ASK ABOUT BADHON
+========================================================= */
+
+const userQuestion =
+    document.getElementById("userQuestion");
+
+const sendQuestion =
+    document.getElementById("sendQuestion");
+
+const chatMessages =
+    document.getElementById("chatMessages");
+
+
+/* =========================
+   BADHON INFORMATION
+========================= */
+
+const badhonInfo = {
+
+    name:
+        "Badhon Biswas",
+
+    education:
+        "Badhon Biswas is a Diploma in Computer Science & Technology (Networking) student from Magura Polytechnic Institute.",
+
+    school:
+        "Badhon completed SSC (Vocational) from Sreepur Govt. M.C Pilot High School with a GPA of 4.93.",
+
+    skills:
+        "Badhon's technical skills include Networking Fundamentals, Cisco Packet Tracer, MikroTik Basics, Windows Installation, Ubuntu Linux, HTML, CSS, Git and GitHub.",
+
+    networking:
+        "Badhon is passionate about computer networking, Cisco, MikroTik, Linux and secure network infrastructure.",
+
+    projects:
+        "Badhon's projects include a Personal Portfolio Website, Cisco Packet Tracer Networking Lab and IP Addressing & Subnetting practice.",
+
+    location:
+        "Badhon is from Magura, Bangladesh.",
+
+    career:
+        "Badhon is interested in Networking and is looking for an Industrial Attachment opportunity to improve practical networking skills.",
+
+    github:
+        "Badhon's GitHub profile is github.com/1badhon.",
+
+    linkedin:
+        "You can find Badhon on LinkedIn through his portfolio's LinkedIn profile.",
+
+    contact:
+        "You can contact Badhon through the email and phone number listed in the Contact section of this portfolio.",
+
+    portfolio:
+        "This portfolio showcases Badhon's networking skills, education, projects, networking notes and interactive Network Troubleshooter game."
+
+};
+
+
+/* =========================
+   ADD BOT MESSAGE
+========================= */
+
+function addBotMessage(text) {
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "bot-message";
+
+    message.innerHTML = `
+
+        <div class="message-icon">
+            🤖
+        </div>
+
+        <div class="message-content">
+
+            <strong>Badhon Assistant</strong>
+
+            <p>${text}</p>
+
+        </div>
+    `;
+
+    chatMessages.appendChild(message);
+
+    scrollChat();
+
+}
+
+
+/* =========================
+   ADD USER MESSAGE
+========================= */
+
+function addUserMessage(text) {
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "user-message";
+
+    message.innerHTML = `
+        <p>${escapeHTML(text)}</p>
+    `;
+
+    chatMessages.appendChild(message);
+
+    scrollChat();
+
+}
+
+
+/* =========================
+   TYPING ANIMATION
+========================= */
+
+function showTyping() {
+
+    const typing =
+        document.createElement("div");
+
+    typing.className =
+        "bot-message";
+
+    typing.id =
+        "typingIndicator";
+
+    typing.innerHTML = `
+
+        <div class="message-icon">
+            🤖
+        </div>
+
+        <div class="message-content">
+
+            <strong>Badhon Assistant</strong>
+
+            <div class="typing-message">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+    `;
+
+    chatMessages.appendChild(typing);
+
+    scrollChat();
+}
+
+
+function removeTyping() {
+
+    const typing =
+        document.getElementById(
+            "typingIndicator"
+        );
+
+    if (typing) {
+        typing.remove();
+    }
+}
+
+
+/* =========================
+   SCROLL CHAT
+========================= */
+
+function scrollChat() {
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================
+   FIND ANSWER
+========================= */
+
+function getBadhonAnswer(question) {
+
+    const q =
+        question
+            .toLowerCase()
+            .trim();
+
+
+    /* GREETING */
+
+    if (
+        q.includes("hello") ||
+        q.includes("hi") ||
+        q.includes("hey") ||
+        q.includes("হাই") ||
+        q.includes("হ্যালো")
+    ) {
+
+        return `
+            Hello! 👋
+            I'm Badhon's personal assistant.
+            You can ask me about his education,
+            skills, projects, networking or career.
+        `;
+
+    }
+
+
+    /* NAME */
+
+    if (
+        q.includes("name") ||
+        q.includes("নাম") ||
+        q.includes("who is badhon") ||
+        q.includes("who are you")
+    ) {
+
+        return `
+            His name is <strong>Badhon Biswas</strong>.
+            He is a Diploma student interested in
+            Networking and Computer Technology.
+        `;
+
+    }
+
+
+    /* EDUCATION */
+
+    if (
+        q.includes("education") ||
+        q.includes("study") ||
+        q.includes("student") ||
+        q.includes("পড়াশোনা") ||
+        q.includes("শিক্ষা") ||
+        q.includes("কোথায় পড়")
+    ) {
+
+        return badhonInfo.education;
+
+    }
+
+
+    /* SCHOOL */
+
+    if (
+        q.includes("ssc") ||
+        q.includes("school") ||
+        q.includes("স্কুল") ||
+        q.includes("gpa")
+    ) {
+
+        return badhonInfo.school;
+
+    }
+
+
+    /* SKILLS */
+
+    if (
+        q.includes("skill") ||
+        q.includes("skills") ||
+        q.includes("দক্ষতা") ||
+        q.includes("কি কি পারে") ||
+        q.includes("কী কী পারে")
+    ) {
+
+        return badhonInfo.skills;
+
+    }
+
+
+    /* NETWORKING */
+
+    if (
+        q.includes("network") ||
+        q.includes("networking") ||
+        q.includes("cisco") ||
+        q.includes("mikrotik") ||
+        q.includes("linux")
+    ) {
+
+        return badhonInfo.networking;
+
+    }
+
+
+    /* PROJECTS */
+
+    if (
+        q.includes("project") ||
+        q.includes("projects") ||
+        q.includes("প্রজেক্ট") ||
+        q.includes("প্রজেক্টগুলো")
+    ) {
+
+        return badhonInfo.projects;
+
+    }
+
+
+    /* LOCATION */
+
+    if (
+        q.includes("where") ||
+        q.includes("location") ||
+        q.includes("from") ||
+        q.includes("কোথায়") ||
+        q.includes("কোথায়") ||
+        q.includes("বাড়ি") ||
+        q.includes("বাড়ি")
+    ) {
+
+        return badhonInfo.location;
+
+    }
+
+
+    /* CAREER */
+
+    if (
+        q.includes("career") ||
+        q.includes("future") ||
+        q.includes("job") ||
+        q.includes("attachment") ||
+        q.includes("industrial")
+    ) {
+
+        return badhonInfo.career;
+
+    }
+
+
+    /* GITHUB */
+
+    if (
+        q.includes("github") ||
+        q.includes("গিটহাব")
+    ) {
+
+        return badhonInfo.github;
+
+    }
+
+
+    /* LINKEDIN */
+
+    if (
+        q.includes("linkedin") ||
+        q.includes("লিংকডইন")
+    ) {
+
+        return badhonInfo.linkedin;
+
+    }
+
+
+    /* CONTACT */
+
+    if (
+        q.includes("contact") ||
+        q.includes("email") ||
+        q.includes("phone") ||
+        q.includes("যোগাযোগ")
+    ) {
+
+        return badhonInfo.contact;
+
+    }
+
+
+    /* PORTFOLIO */
+
+    if (
+        q.includes("portfolio") ||
+        q.includes("website") ||
+        q.includes("ওয়েবসাইট") ||
+        q.includes("ওয়েবসাইট")
+    ) {
+
+        return badhonInfo.portfolio;
+
+    }
+
+
+    /* DEFAULT */
+
+    return `
+        Sorry! 🤔 I don't know the answer to
+        that question yet.
+
+        Try asking me about:
+        <strong>Education, Skills, Projects,
+        Networking, GitHub, LinkedIn,
+        Career or Location.</strong>
+    `;
+
+}
+
+
+/* =========================
+   ASK QUESTION
+========================= */
+
+function askQuestion() {
+
+    const question =
+        userQuestion.value.trim();
+
+
+    if (!question) {
+        return;
+    }
+
+
+    /* USER MESSAGE */
+
+    addUserMessage(question);
+
+    userQuestion.value = "";
+
+
+    /* TYPING */
+
+    showTyping();
+
+
+    /* ANSWER */
+
+    setTimeout(() => {
+
+        removeTyping();
+
+        const answer =
+            getBadhonAnswer(question);
+
+        addBotMessage(answer);
+
+    }, 600);
+
+}
+
+
+/* =========================
+   SEND BUTTON
+========================= */
+
+if (
+    sendQuestion &&
+    userQuestion &&
+    chatMessages
+) {
+
+    sendQuestion.addEventListener(
+        "click",
+        askQuestion
+    );
+
+
+    /* ENTER KEY */
+
+    userQuestion.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                event.preventDefault();
+
+                askQuestion();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================
+   SUGGESTED QUESTIONS
+========================= */
+
+function askSuggested(question) {
+
+    if (!userQuestion) {
+        return;
+    }
+
+    userQuestion.value =
+        question;
+
+    askQuestion();
+
+}
