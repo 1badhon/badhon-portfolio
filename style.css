@@ -4718,3 +4718,498 @@ footer {
         padding: 7px 9px;
     }
 }
+/* =========================================================
+   UNIQUE NETWORK LOADING SCREEN
+========================================================= */
+
+#networkLoader {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #0f2740 0%,
+            #020617 45%,
+            #000 100%
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999999;
+
+    overflow: hidden;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+
+/* Loading শেষ হলে */
+
+#networkLoader.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* Grid */
+
+#networkLoader::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(56,189,248,0.06) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(56,189,248,0.06) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    animation:
+        loaderGrid 8s linear infinite;
+}
+
+
+@keyframes loaderGrid {
+
+    from {
+        background-position:
+            0 0;
+    }
+
+    to {
+        background-position:
+            45px 45px;
+    }
+
+}
+
+
+/* Main Content */
+
+.loader-content {
+
+    position: relative;
+
+    width: 100%;
+    max-width: 500px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   NETWORK DIAGRAM
+========================================================= */
+
+.network-loader {
+
+    position: relative;
+
+    width: 260px;
+    height: 220px;
+
+    margin: 0 auto 20px;
+}
+
+
+/* Router */
+
+.loader-router {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 70px;
+    height: 70px;
+
+    border-radius: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(15,23,42,0.95);
+
+    border:
+        2px solid #38bdf8;
+
+    color: #38bdf8;
+
+    font-size: 28px;
+
+    box-shadow:
+        0 0 15px #38bdf8,
+        0 0 40px rgba(56,189,248,0.5);
+
+    animation:
+        routerPulse 2s ease-in-out infinite;
+}
+
+
+@keyframes routerPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 15px #38bdf8,
+            0 0 30px rgba(56,189,248,0.3);
+    }
+
+    50% {
+        box-shadow:
+            0 0 25px #38bdf8,
+            0 0 60px rgba(56,189,248,0.7);
+    }
+
+}
+
+
+/* Nodes */
+
+.loader-node {
+
+    position: absolute;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: #38bdf8;
+
+    box-shadow:
+        0 0 8px #38bdf8,
+        0 0 20px #38bdf8;
+
+    animation:
+        nodePulse 1.5s ease-in-out infinite;
+}
+
+
+.node1 {
+    top: 15px;
+    left: 35px;
+}
+
+.node2 {
+    top: 20px;
+    right: 30px;
+
+    animation-delay: 0.3s;
+}
+
+.node3 {
+    bottom: 20px;
+    left: 25px;
+
+    animation-delay: 0.6s;
+}
+
+.node4 {
+    bottom: 25px;
+    right: 25px;
+
+    animation-delay: 0.9s;
+}
+
+.node5 {
+    top: 50%;
+    left: 5px;
+
+    animation-delay: 1.2s;
+}
+
+
+@keyframes nodePulse {
+
+    0%,
+    100% {
+        transform: scale(0.7);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+}
+
+
+/* Network Lines */
+
+.loader-line {
+
+    position: absolute;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #38bdf8,
+            transparent
+        );
+
+    transform-origin: left center;
+
+    animation:
+        dataFlow 1.5s linear infinite;
+}
+
+
+/* Line positions */
+
+.line1 {
+    width: 105px;
+
+    left: 42px;
+    top: 48px;
+
+    transform:
+        rotate(28deg);
+}
+
+.line2 {
+    width: 100px;
+
+    right: 42px;
+    top: 50px;
+
+    transform:
+        rotate(145deg);
+}
+
+.line3 {
+    width: 110px;
+
+    left: 35px;
+    bottom: 50px;
+
+    transform:
+        rotate(-25deg);
+}
+
+.line4 {
+    width: 105px;
+
+    right: 35px;
+    bottom: 50px;
+
+    transform:
+        rotate(205deg);
+}
+
+
+@keyframes dataFlow {
+
+    0% {
+        opacity: 0.2;
+        filter: brightness(1);
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(2);
+    }
+
+    100% {
+        opacity: 0.2;
+        filter: brightness(1);
+    }
+
+}
+
+
+/* =========================================================
+   LOADER TEXT
+========================================================= */
+
+.loader-content h1 {
+
+    margin: 5px 0 8px;
+
+    font-size: 42px;
+
+    color: #fff;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 10px #38bdf8,
+        0 0 25px rgba(56,189,248,0.5);
+}
+
+
+.loader-content h1 span {
+    color: #38bdf8;
+}
+
+
+#loaderText {
+
+    margin: 0 0 20px;
+
+    color: #94a3b8;
+
+    font-size: 15px;
+
+    min-height: 22px;
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.loader-progress {
+
+    width: 100%;
+    max-width: 350px;
+
+    height: 5px;
+
+    margin: auto;
+
+    background:
+        rgba(148,163,184,0.15);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+#loaderProgress {
+
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0ea5e9,
+            #38bdf8,
+            #60a5fa
+        );
+
+    box-shadow:
+        0 0 15px #38bdf8;
+
+    transition:
+        width 0.15s linear;
+}
+
+
+/* Status */
+
+.loader-status {
+
+    margin-top: 12px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+.status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 8px #22c55e;
+
+    animation:
+        statusBlink 1s infinite;
+}
+
+
+@keyframes statusBlink {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .network-loader {
+
+        transform:
+            scale(0.8);
+
+        margin-bottom: 5px;
+    }
+
+    .loader-content h1 {
+
+        font-size: 34px;
+    }
+
+    #loaderText {
+
+        font-size: 13px;
+    }
+
+    .loader-progress {
+
+        width: 85%;
+    }
+
+}
