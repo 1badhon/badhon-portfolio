@@ -2370,3 +2370,114 @@ function escapeHTML(text) {
     return div.innerHTML;
 
 }
+/* =========================================================
+   UNIQUE NETWORK LOADER
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const loader =
+        document.getElementById("networkLoader");
+
+    const progress =
+        document.getElementById("loaderProgress");
+
+    const percent =
+        document.getElementById("loaderPercent");
+
+    const loaderText =
+        document.getElementById("loaderText");
+
+
+    if (!loader) return;
+
+
+    let value = 0;
+
+
+    const messages = [
+        "Connecting to Badhon Network...",
+        "Initializing Network Interface...",
+        "Checking Secure Connection...",
+        "Loading Portfolio Data...",
+        "Starting Network Lab...",
+        "Connection Established ✓"
+    ];
+
+
+    const interval = setInterval(() => {
+
+        value++;
+
+        progress.style.width =
+            value + "%";
+
+        percent.textContent =
+            value + "%";
+
+
+        /* Change loading message */
+
+        if (value < 20) {
+
+            loaderText.textContent =
+                messages[0];
+
+        } else if (value < 40) {
+
+            loaderText.textContent =
+                messages[1];
+
+        } else if (value < 60) {
+
+            loaderText.textContent =
+                messages[2];
+
+        } else if (value < 80) {
+
+            loaderText.textContent =
+                messages[3];
+
+        } else if (value < 95) {
+
+            loaderText.textContent =
+                messages[4];
+
+        } else {
+
+            loaderText.textContent =
+                messages[5];
+
+        }
+
+
+        /* Complete */
+
+        if (value >= 100) {
+
+            clearInterval(interval);
+
+
+            setTimeout(() => {
+
+                loader.classList.add(
+                    "loader-hidden"
+                );
+
+
+                /* Remove loader */
+
+                setTimeout(() => {
+
+                    loader.remove();
+
+                }, 900);
+
+
+            }, 500);
+
+        }
+
+    }, 25);
+
+});
