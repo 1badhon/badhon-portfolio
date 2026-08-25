@@ -4718,65 +4718,320 @@ footer {
         padding: 7px 9px;
     }
 }
-/* =========================
-   LOADER PROFILE IMAGE
-========================= */
+/* =========================================================
+   WEBSITE LOADING SCREEN
+========================================================= */
 
-.loader-logo {
-    width: 130px;
-    height: 130px;
+#pageLoader {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #0f2745 0%,
+            #020617 45%,
+            #000 100%
+        );
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
+    z-index: 999999999;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+
+/* Loader disappears */
+
+#pageLoader.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* Loader content */
+
+.loader-content {
+    width: 90%;
+    max-width: 420px;
+
+    text-align: center;
+}
+
+
+/* Logo */
+
+.loader-logo {
+    color: #38bdf8;
+
+    font-size: 42px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 45px;
+
+    text-shadow:
+        0 0 8px #38bdf8,
+        0 0 20px #38bdf8,
+        0 0 40px rgba(56, 189, 248, 0.5);
+
+    animation:
+        loaderLogoGlow 2s ease-in-out infinite;
+}
+
+
+@keyframes loaderLogoGlow {
+
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   NETWORK LOADER
+========================================================= */
+
+.network-loader {
     position: relative;
-    margin: 0 auto 25px;
+
+    width: 180px;
+    height: 180px;
+
+    margin: auto;
+
+    animation:
+        loaderRotate 8s linear infinite;
 }
 
-/* Glowing ring */
 
-.loader-logo::before {
-    content: "";
-
+.loader-center {
     position: absolute;
-    inset: -8px;
+
+    width: 70px;
+    height: 70px;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     border-radius: 50%;
 
-    border: 2px solid transparent;
-    border-top-color: #38bdf8;
-    border-right-color: #38bdf8;
+    background:
+        radial-gradient(
+            circle,
+            rgba(56, 189, 248, 0.25),
+            rgba(2, 6, 23, 0.95)
+        );
 
-    animation: loaderRing 2s linear infinite;
+    border: 2px solid #38bdf8;
 
     box-shadow:
-        0 0 15px rgba(56, 189, 248, 0.5),
-        0 0 30px rgba(56, 189, 248, 0.2);
+        0 0 10px #38bdf8,
+        0 0 30px rgba(56, 189, 248, 0.7),
+        inset 0 0 20px rgba(56, 189, 248, 0.2);
+
+    animation:
+        centerPulse 1.5s ease-in-out infinite;
+
+    z-index: 5;
 }
 
-/* Profile picture */
 
-.loader-logo img {
-    width: 110px;
-    height: 110px;
+.loader-center i {
+    color: #38bdf8;
 
-    object-fit: cover;
+    font-size: 30px;
+
+    text-shadow:
+        0 0 10px #38bdf8,
+        0 0 20px #38bdf8;
+}
+
+
+/* =========================================================
+   NETWORK NODES
+========================================================= */
+
+.loader-node {
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
 
     border-radius: 50%;
 
-    border: 3px solid #38bdf8;
+    background: #38bdf8;
 
     box-shadow:
-        0 0 15px #38bdf8,
-        0 0 35px rgba(56, 189, 248, 0.6);
+        0 0 8px #38bdf8,
+        0 0 20px #38bdf8,
+        0 0 35px rgba(56, 189, 248, 0.8);
 
-    animation: loaderProfile 2s ease-in-out infinite;
+    z-index: 4;
+
+    animation:
+        nodePulse 1.2s ease-in-out infinite;
 }
 
-/* Rotating ring */
 
-@keyframes loaderRing {
+.node-1 {
+    top: 10px;
+    left: 81px;
+}
+
+.node-2 {
+    right: 8px;
+    top: 81px;
+
+    animation-delay: 0.3s;
+}
+
+.node-3 {
+    bottom: 10px;
+    left: 81px;
+
+    animation-delay: 0.6s;
+}
+
+.node-4 {
+    left: 8px;
+    top: 81px;
+
+    animation-delay: 0.9s;
+}
+
+
+@keyframes nodePulse {
+
+    0%,
+    100% {
+        transform: scale(0.7);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   NETWORK CONNECTION LINES
+========================================================= */
+
+.loader-line {
+    position: absolute;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #38bdf8,
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px #38bdf8;
+
+    transform-origin: left center;
+
+    animation:
+        linePulse 1.5s ease-in-out infinite;
+}
+
+
+.line-1 {
+    width: 70px;
+
+    top: 89px;
+    left: 25px;
+}
+
+
+.line-2 {
+    width: 70px;
+
+    top: 89px;
+    left: 89px;
+
+    transform: rotate(90deg);
+}
+
+
+.line-3 {
+    width: 70px;
+
+    top: 89px;
+    left: 89px;
+
+    transform: rotate(45deg);
+}
+
+
+@keyframes linePulse {
+
+    0%,
+    100% {
+        opacity: 0.25;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* Center animation */
+
+@keyframes centerPulse {
+
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(0.95);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.08);
+    }
+}
+
+
+/* Outer rotation */
+
+@keyframes loaderRotate {
+
     from {
         transform: rotate(0deg);
     }
@@ -4786,21 +5041,176 @@ footer {
     }
 }
 
-/* Profile floating/glow animation */
 
-@keyframes loaderProfile {
+/* =========================================================
+   LOADING TEXT
+========================================================= */
+
+.loader-text {
+    margin-top: 35px;
+
+    color: #cbd5e1;
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+
+    animation:
+        loadingTextPulse 1.5s ease-in-out infinite;
+}
+
+
+@keyframes loadingTextPulse {
+
     0%,
     100% {
-        transform: scale(1);
-        box-shadow:
-            0 0 15px #38bdf8,
-            0 0 30px rgba(56, 189, 248, 0.4);
+        opacity: 0.4;
     }
 
     50% {
-        transform: scale(1.05);
-        box-shadow:
-            0 0 25px #38bdf8,
-            0 0 50px rgba(56, 189, 248, 0.7);
+        opacity: 1;
     }
+}
+
+
+/* =========================================================
+   LOADING BAR
+========================================================= */
+
+.loader-bar {
+    width: 100%;
+    height: 5px;
+
+    margin-top: 22px;
+
+    background:
+        rgba(148, 163, 184, 0.15);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(56, 189, 248, 0.2);
+}
+
+
+.loader-progress {
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #38bdf8,
+            #22d3ee
+        );
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 10px #38bdf8,
+        0 0 20px #38bdf8;
+
+    animation:
+        loadingProgress 2.5s ease forwards;
+}
+
+
+@keyframes loadingProgress {
+
+    0% {
+        width: 0%;
+    }
+
+    30% {
+        width: 35%;
+    }
+
+    60% {
+        width: 65%;
+    }
+
+    85% {
+        width: 88%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+
+/* Percentage */
+
+.loader-percent {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #38bdf8;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .loader-logo {
+        font-size: 34px;
+        margin-bottom: 35px;
+    }
+
+    .network-loader {
+        width: 150px;
+        height: 150px;
+    }
+
+    .loader-center {
+        width: 60px;
+        height: 60px;
+    }
+
+    .loader-center i {
+        font-size: 25px;
+    }
+
+    .loader-node {
+        width: 15px;
+        height: 15px;
+    }
+
+    .node-1 {
+        top: 5px;
+        left: 67px;
+    }
+
+    .node-2 {
+        right: 5px;
+        top: 67px;
+    }
+
+    .node-3 {
+        bottom: 5px;
+        left: 67px;
+    }
+
+    .node-4 {
+        left: 5px;
+        top: 67px;
+    }
+
+    .loader-text {
+        font-size: 14px;
+    }
+
 }
