@@ -4718,4 +4718,754 @@ footer {
         padding: 7px 9px;
     }
 }
+/* =====================================================
+   DIGITAL ID NETWORK LOADER
+===================================================== */
 
+#networkLoader {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #102a43 0%,
+            #06111f 35%,
+            #020617 70%,
+            #000 100%
+        );
+
+    overflow: hidden;
+
+    z-index: 9999999;
+
+    transition:
+        opacity 0.9s ease,
+        visibility 0.9s ease;
+
+}
+
+
+/* Loader hidden */
+
+#networkLoader.loader-finished {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   BACKGROUND GRID
+===================================================== */
+
+#networkLoader::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+
+        linear-gradient(
+            rgba(56,189,248,0.06) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(56,189,248,0.06) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    animation:
+        loaderGridMove 10s linear infinite;
+
+}
+
+
+@keyframes loaderGridMove {
+
+    from {
+        background-position:
+            0 0;
+    }
+
+    to {
+        background-position:
+            45px 45px;
+    }
+
+}
+
+
+/* =====================================================
+   BOOT CONTAINER
+===================================================== */
+
+.boot-container {
+
+    position: relative;
+
+    width: 380px;
+
+    max-width: 90%;
+
+    text-align: center;
+
+    z-index: 5;
+
+}
+
+
+/* =====================================================
+   PROFILE AREA
+===================================================== */
+
+.loader-profile {
+
+    position: relative;
+
+    width: 150px;
+
+    height: 150px;
+
+    margin:
+        0 auto 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+/* Profile image */
+
+.loader-profile img {
+
+    position: relative;
+
+    width: 112px;
+
+    height: 112px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border:
+        3px solid #38bdf8;
+
+    z-index: 5;
+
+    box-shadow:
+
+        0 0 15px #38bdf8,
+
+        0 0 35px rgba(
+            56,
+            189,
+            248,
+            0.7
+        ),
+
+        0 0 70px rgba(
+            56,
+            189,
+            248,
+            0.35
+        );
+
+    animation:
+        profileFloat 2.5s ease-in-out infinite;
+
+}
+
+
+@keyframes profileFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-6px);
+
+    }
+
+}
+
+
+/* =====================================================
+   PROFILE GLOW
+===================================================== */
+
+.profile-glow {
+
+    position: absolute;
+
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    background:
+        #38bdf8;
+
+    filter:
+        blur(45px);
+
+    opacity: 0.25;
+
+    animation:
+        glowPulse 2s ease-in-out infinite;
+
+}
+
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(0.8);
+
+        opacity:
+            0.18;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.25);
+
+        opacity:
+            0.4;
+
+    }
+
+}
+
+
+/* =====================================================
+   SCAN LINE
+===================================================== */
+
+.scan-line {
+
+    position: absolute;
+
+    left: 19px;
+
+    top: 18px;
+
+    width: 112px;
+
+    height: 2px;
+
+    background:
+        #38bdf8;
+
+    box-shadow:
+        0 0 8px #38bdf8,
+        0 0 18px #38bdf8;
+
+    opacity: 0.8;
+
+    z-index: 8;
+
+    animation:
+        scanMove 2.2s linear infinite;
+
+}
+
+
+@keyframes scanMove {
+
+    0% {
+
+        top: 18px;
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: 1;
+
+    }
+
+    50% {
+
+        top: 128px;
+
+        opacity: 1;
+
+    }
+
+    85% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        top: 18px;
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   ROTATING ORBITS
+===================================================== */
+
+.orbit {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(
+            56,
+            189,
+            248,
+            0.4
+        );
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* Orbit 1 */
+
+.orbit-one {
+
+    width: 155px;
+    height: 155px;
+
+    border-top-color:
+        #38bdf8;
+
+    animation:
+        orbitRotate 4s linear infinite;
+
+}
+
+
+/* Orbit 2 */
+
+.orbit-two {
+
+    width: 185px;
+    height: 185px;
+
+    border-right-color:
+        #38bdf8;
+
+    animation:
+        orbitRotateReverse 6s linear infinite;
+
+}
+
+
+/* Orbit 3 */
+
+.orbit-three {
+
+    width: 215px;
+    height: 215px;
+
+    border-bottom-color:
+        rgba(
+            56,
+            189,
+            248,
+            0.5
+        );
+
+    animation:
+        orbitRotate 9s linear infinite;
+
+}
+
+
+@keyframes orbitRotate {
+
+    from {
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            rotate(360deg);
+    }
+
+}
+
+
+@keyframes orbitRotateReverse {
+
+    from {
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            rotate(360deg);
+    }
+
+    to {
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            rotate(0deg);
+    }
+
+}
+
+
+/* =====================================================
+   NAME
+===================================================== */
+
+.boot-container h1 {
+
+    margin:
+        0 0 5px;
+
+    font-size:
+        40px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        3px;
+
+    color:
+        #ffffff;
+
+    text-shadow:
+
+        0 0 8px
+        #38bdf8,
+
+        0 0 25px
+        rgba(
+            56,
+            189,
+            248,
+            0.5
+        );
+
+}
+
+
+.boot-container h1 span {
+
+    color:
+        #38bdf8;
+
+}
+
+
+/* =====================================================
+   ROLE
+===================================================== */
+
+.loader-role {
+
+    color:
+        #38bdf8;
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        4px;
+
+    margin-bottom:
+        28px;
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.boot-status {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    min-height:
+        25px;
+
+    color:
+        #94a3b8;
+
+    font-size:
+        14px;
+
+    margin-bottom:
+        14px;
+
+}
+
+
+.status-light {
+
+    width:
+        8px;
+
+    height:
+        8px;
+
+    border-radius:
+        50%;
+
+    background:
+        #22c55e;
+
+    box-shadow:
+        0 0 8px #22c55e,
+        0 0 18px #22c55e;
+
+    animation:
+        statusPulse 1s infinite;
+
+}
+
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity:
+            0.4;
+    }
+
+    50% {
+        opacity:
+            1;
+    }
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.boot-progress {
+
+    width:
+        100%;
+
+    height:
+        4px;
+
+    background:
+        rgba(
+            148,
+            163,
+            184,
+            0.12
+        );
+
+    border-radius:
+        20px;
+
+    overflow:
+        hidden;
+
+}
+
+
+#bootProgress {
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0ea5e9,
+            #38bdf8,
+            #60a5fa
+        );
+
+    box-shadow:
+        0 0 12px #38bdf8;
+
+    transition:
+        width 0.1s linear;
+
+}
+
+
+/* =====================================================
+   BOTTOM INFO
+===================================================== */
+
+.boot-bottom {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    margin-top:
+        10px;
+
+    color:
+        #475569;
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+#bootPercent {
+
+    color:
+        #38bdf8;
+
+    font-weight:
+        bold;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .boot-container {
+
+        width:
+            320px;
+
+    }
+
+
+    .loader-profile {
+
+        transform:
+            scale(0.85);
+
+        margin-bottom:
+            20px;
+
+    }
+
+
+    .boot-container h1 {
+
+        font-size:
+            32px;
+
+        letter-spacing:
+            2px;
+
+    }
+
+
+    .loader-role {
+
+        font-size:
+            10px;
+
+        letter-spacing:
+            3px;
+
+    }
+
+
+    .boot-status {
+
+        font-size:
+            12px;
+
+    }
+
+}
