@@ -2370,3 +2370,169 @@ function escapeHTML(text) {
     return div.innerHTML;
 
 }
+/* =====================================================
+   DIGITAL ID NETWORK LOADER
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const loader =
+            document.getElementById(
+                "networkLoader"
+            );
+
+        const progress =
+            document.getElementById(
+                "bootProgress"
+            );
+
+        const percent =
+            document.getElementById(
+                "bootPercent"
+            );
+
+        const bootText =
+            document.getElementById(
+                "bootText"
+            );
+
+
+        if (
+            !loader ||
+            !progress ||
+            !percent ||
+            !bootText
+        ) {
+            return;
+        }
+
+
+        let value = 0;
+
+
+        const messages = [
+
+            {
+                max: 15,
+                text:
+                    "Booting System..."
+            },
+
+            {
+                max: 35,
+                text:
+                    "Initializing Network Modules..."
+            },
+
+            {
+                max: 55,
+                text:
+                    "Checking Network Interface..."
+            },
+
+            {
+                max: 75,
+                text:
+                    "Loading Portfolio Data..."
+            },
+
+            {
+                max: 92,
+                text:
+                    "Establishing Secure Connection..."
+            },
+
+            {
+                max: 100,
+                text:
+                    "System Ready ✓"
+            }
+
+        ];
+
+
+        const loaderTimer =
+            setInterval(
+                function () {
+
+                    value += 1;
+
+
+                    /* Progress */
+
+                    progress.style.width =
+                        value + "%";
+
+
+                    percent.textContent =
+                        value + "%";
+
+
+                    /* Status message */
+
+                    for (
+                        let i = 0;
+                        i < messages.length;
+                        i++
+                    ) {
+
+                        if (
+                            value <=
+                            messages[i].max
+                        ) {
+
+                            bootText.textContent =
+                                messages[i].text;
+
+                            break;
+
+                        }
+
+                    }
+
+
+                    /* Finish */
+
+                    if (value >= 100) {
+
+                        clearInterval(
+                            loaderTimer
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                loader.classList.add(
+                                    "loader-finished"
+                                );
+
+
+                                /*
+                                 * Loader completely
+                                 * disappear করার পর
+                                 */
+
+                                setTimeout(
+                                    function () {
+
+                                        loader.remove();
+
+                                    },
+                                    900
+                                );
+
+                            },
+                            700
+                        );
+
+                    }
+
+                },
+                28
+            );
+
+    }
+);
